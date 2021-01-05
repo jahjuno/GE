@@ -1,2 +1,2 @@
 # GE ( Gestion d'établissement)
-GE est un logiciel conçu pour gérer des grandes écoles ou des universités.
+GE est un logiciel conçu pour gérer les grandes écoles ou des universités.
