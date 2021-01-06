@@ -1,0 +1,10 @@
+{
+  "name":"ge",
+  "version": "1.0.0",
+  "author": "Aina Juno & Landry",
+  "description": "Logiciel de Gestion d'établissement",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  }
+}
