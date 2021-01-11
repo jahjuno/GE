@@ -1,32 +1,68 @@
 <!DOCTYPE html>
-<html>
-    <head lang="fr">
-        <title> Gestion d'établissement</title>
-        <meta charset="utf-8">
-        <meta name="author" content="Aina Juno">
-        <link rel="stylesheet" href="dist/css/index.css">
-        <link href="img/logo.png" rel="icon">
-        <link href="img/logo.png" rel="apple-touch-icon">
-        <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="dist/css/all.min.css">
+<html lang="fr">
+<head>
+	<title>ge_software</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="dist/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="dist/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="dist/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="dist/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/util.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/main.css">
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="dist/img/img-01.png" alt="IMG">
+				</div>
 
-        <script> window.jQuery =  window.$ = require('jquery'); </script>
-    
-        <script src="dist/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        
-       <h3>ZAH RAH MITESTE FO</h3>
+				<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						Choisir votre fonction
+					</span>
 
+					<div class="container-login100-form-btn">
+						<a href="connexion_admin.html" class="login100-form-btn">
+							<button>
+								Admin
+							</button>
+						</a>
+					</div>
 
+					<div class="container-login100-form-btn">
+						<a href="connexion_ensg.html" class="login100-form-btn">
+							<button>
+								Enseignant
+							</button>
+						</a>
+					</div>
 
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
 
+	
 
+	<script src="dist/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="dist/vendor/bootstrap/js/popper.js"></script>
+	<script src="dist/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/vendor/select2/select2.min.js"></script>
+	<script src="dist/vendor/tilt/tilt.jquery.min.js"></script>
 
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
 
+	<script src="dist/js/main.js"></script>
 
-       
-        <script src="/eel.js"></script>
-        <script src="dist/js/mousetrap.min.js"></script>
-    </body>
+</body>
 </html>
