@@ -10,6 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="dist/vendor/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="dist/css/util.css">
 	<link rel="stylesheet" type="text/css" href="dist/css/main.css">
+
+	<script> window.jQuery =  window.$ = require('jquery'); </script>
 </head>
 <body>
 	
@@ -17,28 +19,40 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="dist/img/img-01.png" alt="IMG">
+					<img src="dist/img/rescue.jpg" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form">
 					<span class="login100-form-title">
-						Choisir votre fonction
+						<br>
+						Se connecter en tant que
 					</span>
 
 					<div class="container-login100-form-btn">
+						
+							<button class="login100-form-btn" onclick="showDiv()">
+								Admin
+							</button>
+						
+					</div>
+					<br>
+					<div class="wrap-input100 validate-input hideDiv" data-validate = "Password">
+						<input class="input100" type="text" name="password" placeholder="Mot de passe">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="container-login100-form-btn hideDiv">
 						<a href="connexion_admin.html" class="login100-form-btn">
 							<button>
-								Admin
+								Se connecter
 							</button>
 						</a>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href="connexion_ensg.html" class="login100-form-btn">
-							<button>
+							<button class="login100-form-btn hideEnsg">
 								Enseignant
 							</button>
-						</a>
 					</div>
 
 				</form>
@@ -50,17 +64,12 @@
 
 	
 
-	<script src="dist/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="dist/vendor/bootstrap/js/popper.js"></script>
 	<script src="dist/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="dist/vendor/select2/select2.min.js"></script>
-	<script src="dist/vendor/tilt/tilt.jquery.min.js"></script>
+	<script src="js/app.js"></script>
 
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
+
 
 	<script src="dist/js/main.js"></script>
 
