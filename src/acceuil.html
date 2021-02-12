@@ -64,6 +64,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des profs : </h6>
+                        <a class="collapse-item" href="#insc">Inscription</a>
                         <a class="collapse-item" href="#">Présence</a>
                         <a class="collapse-item" href="#">Emploi du temps </a>
                     </div>
@@ -107,9 +108,9 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="dist/login.html">Login</a>
-                        <a class="collapse-item" href="dist/register.html">Register</a>
-                        <a class="collapse-item" href="dist/forgot-password.html">Forgot Password</a>
+                        <a class="collapse-item" href="dist/login.html">Se connecter</a>
+                        <a class="collapse-item" href="dist/register.html">S'inscrire</a>
+                        <a class="collapse-item" href="dist/forgot-password.html">Mot de pass oublié</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="dist/404.html">404 Page</a>
@@ -199,7 +200,7 @@
                         <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">                          
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">INSCRIPTION</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" id="insc">INSCRIPTION</h6>
                                 </div>
                             </div>
                     
@@ -230,7 +231,7 @@
                                                         <input type="email" class="form-control" placeholder="Email " value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control"  placeholder="CIN " value="" />
+                                                        <input type="text" maxlength="12" minlength="12" class="form-control"  placeholder="CIN " value="" />
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="maxl">
@@ -250,23 +251,20 @@
                                                         <input type="text" class="form-control" placeholder="Prénom *" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Tél +261 *" value="" />
+                                                        <input type="text" minlength="13" maxlength="13" name="txtEmpPhone" class="form-control" placeholder="Tél +261 *" value="" />
                                                     </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control">
-                                                            <option class="hidden"  selected disabled>Niveau</option>
-                                                            <option>L1</option>
-                                                            <option>L2</option>
-                                                            <option>L3</option>
-                                                            <option>M1</option>
-                                                            <option>M2</option>
-                                                        </select>
-                                                    </div>
+                                                    
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Adresse actuel *" value="" />
                                                     </div>
-                                                    <input type="submit" class="btnRegister"  value="Inscrire"/>
-                                                </div>
+                                                    <div class="form-control">
+                                                        <input type="file" value="Choisir une image">
+                                                    </div>
+                                                    <a href="dist/etudiant_inscrit.html">
+                                                        <input type="submit" class="btnRegister"  value="Inscrire"/>
+                                                    </a>
+<!--                                                     <input type="submit" class="btnRegister btn-primary"  value="Inscrire"/>
+ -->                                                </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -283,14 +281,14 @@
                                                         <input type="email" class="form-control" placeholder="Email *" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Tél +261  *" value="" />
+                                                        <input type="text" maxlength="13" minlength="13" class="form-control" placeholder="Tél +261  *" value="" />
                                                     </div>
 
 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="CIN *" value="" />
+                                                        <input type="text" maxlength="13" minlength="13" class="form-control" placeholder="CIN *" value="" />
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Adresse actuel *" value="" />
@@ -315,7 +313,10 @@
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <input type="submit" class="btnRegister"  value="Inscrire"/>
+                                                    <a href="dist/prof_inscrit.html">
+                                                        <input type="submit" class="btnRegister"  value="Inscrire"/>
+                                                    </a>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -379,14 +380,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="dist/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="dist/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="dist/js/demo/chart-area-demo.js"></script>
-    <script src="dist/js/demo/chart-pie-demo.js"></script>
-
 </body>
 
 </html>
