@@ -5,13 +5,46 @@ from psutil import net_connections
 
 eel.init('src')
 
+data = []
+
+
+@eel.expose()
+def setData(d):
+	global data
+	print("ato va")
+	data = d
+	try : 
+		connect_to_bdd = sqlite3.connect('donnee.db')
+		cur = connect_to_bdd.cursor()
+		donnee_1 = ''' 
+		INSERT INTO etudiant(nom, prenom, naissance, adresse, sexe, tel, cin)
+		VALUES (?, ?, ?, ?, ?, ?, ?)
+
+		);
+		'''
+		print("donnee insere")
+		cur.execute(donnee_1, d)
+		
+		
+		connect_to_bdd.commit()
+		cur.close()
+		connect_to_bdd.close()
+	except sqlite3.Error as error: 
+		print(error)
+		
+
+@eel.expose()
+def getData():
+	return data
+	
 @eel.expose()
 def createBDD():
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
-		donnee = ''' 
-		CREATE TABLE enseignant (
-			matricule INT  PRIMARY KEY,
+		cur = connect_to_bdd.cursor()
+		donnee_1 = ''' 
+		CREATE TABLE IF NOT EXISTS enseignant (
+			matricule INT AUTOINCRIMENT PRIMARY KEY,
 			nom TEXT,
 			prenom TEXT,
 			naissance TEXT NOT NULL,
@@ -19,11 +52,24 @@ def createBDD():
 			module TEXT,
 			sexe TEXT,
 			tel INT,
-			cin INT,
+			cin INT
 		);
 		'''
-		cur = connect_to_bdd.cursor()
-		cur.execute(donnee)
+		cur.execute(donnee_1)
+		
+		donnee_2 = '''
+		CREATE TABLE IF NOT EXISTS etudiant (
+			matricule INT  AUTOINCRIMENT PRIMARY KEY,
+			nom TEXT,
+			prenom TEXT,
+			naissance TEXT NOT NULL,
+			adresse TEXT,
+			sexe TEXT,
+			tel INT,
+			cin INT
+			);
+		'''
+		cur.execute(donnee_2)
 		connect_to_bdd.commit()
 		cur.close()
 		connect_to_bdd.close()
@@ -32,7 +78,7 @@ def createBDD():
 		
 createBDD()
 
-@eel.expose()
+
 def voirPort(port):
 	#vérification port
 	for proc in net_connections():

@@ -16,8 +16,8 @@
 
     <!-- Custom styles for this template-->
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
-
     <script> window.jQuery =  window.$ = require('jquery'); </script>
+
 </head>
 
 <body id="page-top">
@@ -222,25 +222,25 @@
                                             <div class="row register-form">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Nom *" value="" />
+                                                        <input type="text" class="form-control" id="nom" placeholder="Nom *" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Date de naissance jj/mm/aaaa *" value="" />
+                                                        <input type="text" class="form-control" id="date_nais" placeholder="Date de naissance jj/mm/aaaa *" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="email" class="form-control" placeholder="Email " value="" />
+                                                        <input type="email" class="form-control" id="email" placeholder="Email " value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="12" minlength="12" class="form-control"  placeholder="CIN " value="" />
+                                                        <input type="text" maxlength="12" minlength="12" id="cin" class="form-control"  placeholder="CIN " value="" />
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="maxl">
                                                             <label class="radio inline"> 
-                                                                <input type="radio" name="gender" value="male" checked>
+                                                                <input type="radio" name="genre" value="Homme" id="home" checked>
                                                                 <span> Home </span> 
                                                             </label>
                                                             <label class="radio inline"> 
-                                                                <input type="radio" name="gender" value="female">
+                                                                <input type="radio" name="genre" id="femme" value="Femme">
                                                                 <span>Femme </span> 
                                                             </label>
                                                         </div>
@@ -248,23 +248,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Prénom *" value="" />
+                                                        <input type="text" class="form-control" placeholder="Prénom *" id="prenom" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" minlength="13" maxlength="13" name="txtEmpPhone" class="form-control" placeholder="Tél +261 *" value="" />
+                                                        <input type="text" minlength="13" maxlength="13" name="txtEmpPhone" id="tel" class="form-control" placeholder="Tél +261 *" value="" />
                                                     </div>
                                                     
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Adresse actuel *" value="" />
+                                                        <input type="text" class="form-control" placeholder="Adresse actuel *" id="addr" value="" />
                                                     </div>
                                                     <div class="form-control">
                                                         <input type="file" value="Choisir une image">
                                                     </div>
-                                                    <a href="liste_etud.html">
-                                                        <input type="submit" class="btnRegister"  value="Inscrire"/>
-                                                    </a>
-<!--                                                     <input type="submit" class="btnRegister btn-primary"  value="Inscrire"/>
- -->                                                </div>
+                                                    
+                                                        <input type="submit" id="insc_etud" class="btnRegister" onclick="recup_info()" value="Inscrire"/>
+                                                    
+                                           </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -304,11 +303,11 @@
                                                     <div class="form-group">
                                                         <div class="maxl">
                                                             <label class="radio inline"> 
-                                                                <input type="radio" name="gender" value="male" checked>
+                                                                <input type="radio" name="genre" value="male" checked>
                                                                 <span> Home </span> 
                                                             </label>
                                                             <label class="radio inline"> 
-                                                                <input type="radio" name="gender" value="female">
+                                                                <input type="radio" name="genre" value="female">
                                                                 <span>Femme </span> 
                                                             </label>
                                                         </div>
@@ -373,6 +372,10 @@
         </div>
     </div>
 
+
+
+
+    
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -380,6 +383,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="dist/js/sb-admin-2.min.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+
+    
 </body>
 
 </html>

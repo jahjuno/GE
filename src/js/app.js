@@ -11,3 +11,16 @@ function showDiv_connect_admin() {
 };
 
 
+/* RECUPERATION DES VALEURS DES INPUTS */
+
+function recup_info(){
+  let nom = $("#nom").val();
+  let prenom = $("#prenom").val();
+  let date_nais = $("#date_nais").val();
+  let addr = $("#addr").val();
+  let genre = $("#genre").val();
+  let tel = $("#tel").val();
+  let cin = $("#cin").val();
+  let data = [nom, prenom, date_nais, addr, genre, tel, cin];
+  eel.setData(data);
+};
