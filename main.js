@@ -9,7 +9,7 @@ function createWindow () {
     }
   })
 
-  win.loadFile('src/index.html')
+  win.loadURL(`http://localhost:2500/index.html`)
 
   //plein écran
   win.maximize()
