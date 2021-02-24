@@ -22,7 +22,7 @@ def setData(d):
 
 		);
 		'''
-		print("donnee insere")
+		print("donnee inseré")
 		cur.execute(donnee_1, d)
 		
 		
