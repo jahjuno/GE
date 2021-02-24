@@ -43,7 +43,7 @@ def createBDD():
 		cur = connect_to_bdd.cursor()
 		donnee_1 = ''' 
 		CREATE TABLE IF NOT EXISTS enseignant (
-			matricule INT AUTOINCRIMENT PRIMARY KEY,
+			matricule INT  AUTOINCRIMENT PRIMARY KEY,
 			nom TEXT,
 			prenom TEXT,
 			naissance TEXT NOT NULL,
