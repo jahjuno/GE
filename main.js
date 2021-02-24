@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const PORT = process.env.gePORT
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -9,7 +10,7 @@ function createWindow () {
     }
   })
 
-  win.loadURL(`http://localhost:2500/index.html`)
+  win.loadURL(`http://localhost:${PORT}/index.html`)
 
   //plein écran
   win.maximize()

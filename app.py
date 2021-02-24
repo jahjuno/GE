@@ -43,7 +43,7 @@ def createBDD():
 		cur = connect_to_bdd.cursor()
 		donnee_1 = ''' 
 		CREATE TABLE IF NOT EXISTS enseignant (
-			matricule INT  AUTOINCRIMENT PRIMARY KEY,
+			matricule INT PRIMARY KEY,
 			nom TEXT,
 			prenom TEXT,
 			naissance TEXT NOT NULL,
@@ -55,10 +55,11 @@ def createBDD():
 		);
 		'''
 		cur.execute(donnee_1)
-		
+		print("t_enseignant créée")
+
 		donnee_2 = '''
 		CREATE TABLE IF NOT EXISTS etudiant (
-			matricule INT  AUTOINCRIMENT PRIMARY KEY,
+			matricule INT PRIMARY KEY,
 			nom TEXT,
 			prenom TEXT,
 			naissance TEXT NOT NULL,
@@ -69,6 +70,7 @@ def createBDD():
 			);
 		'''
 		cur.execute(donnee_2)
+		print("t_etudiant créée")
 		connect_to_bdd.commit()
 		cur.close()
 		connect_to_bdd.close()
@@ -84,10 +86,11 @@ def voirPort(port):
 		if proc.laddr.port == port : return True
 
 def main():
-	PORT = 2500
+	PORT = 1806
 	while voirPort(PORT):
 		PORT += 1
 	environ['gePORT'] = str(PORT)
+	print(PORT)
 	eel.start(mode='custom', cmdline_args=['node_modules/electron/dist/electron.exe', '.'], port=PORT)
 
 
