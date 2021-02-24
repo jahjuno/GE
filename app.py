@@ -19,13 +19,12 @@ def setData(d):
 		donnee_1 = ''' 
 		INSERT INTO etudiant(nom, prenom, naissance, adresse, sexe, tel, cin)
 		VALUES (?, ?, ?, ?, ?, ?, ?)
-
-		);
 		'''
-		print("donnee inseré")
+
+		
+		
 		cur.execute(donnee_1, d)
-		
-		
+		print("donnee insere")
 		connect_to_bdd.commit()
 		cur.close()
 		connect_to_bdd.close()
@@ -37,7 +36,7 @@ def setData(d):
 def getData():
 	return data
 	
-@eel.expose()
+
 def createBDD():
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
@@ -85,7 +84,7 @@ def voirPort(port):
 		if proc.laddr.port == port : return True
 
 def main():
-	PORT = 1333
+	PORT = 2500
 	while voirPort(PORT):
 		PORT += 1
 	environ['gePORT'] = str(PORT)
