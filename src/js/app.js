@@ -22,8 +22,10 @@ function recup_info(){
   let date_nais = $("#date_nais").val();
   let addr = $("#addr").val();
   let sexe = $("input[name=genre]:checked").val();
+  let annee_univ = $("#annee :selected").text();
+  let niveau = $("#niveau :selectd").text();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
-  let data = [nom, prenom, date_nais, addr, sexe, tel, cin];
+  let data = [annee_univ, nom, prenom, date_nais, addr, sexe, tel, cin, niveau];
   x = eel.setData(data);
 };

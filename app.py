@@ -60,13 +60,15 @@ def createBDD():
 		donnee_2 = '''
 		CREATE TABLE IF NOT EXISTS etudiant (
 			matricule INT PRIMARY KEY,
+			annee_univ TEXT,
 			nom TEXT,
 			prenom TEXT,
 			naissance TEXT NOT NULL,
 			adresse TEXT,
 			sexe TEXT,
 			tel INT,
-			cin INT
+			cin INT,
+			niveau TEXT
 			);
 		'''
 		cur.execute(donnee_2)
@@ -86,7 +88,7 @@ def voirPort(port):
 		if proc.laddr.port == port : return True
 
 def main():
-	PORT = 1806
+	PORT = 1998
 	while voirPort(PORT):
 		PORT += 1
 	environ['gePORT'] = str(PORT)
