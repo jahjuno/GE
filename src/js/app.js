@@ -25,6 +25,5 @@ function recup_info(){
   let tel = $("#tel").val();
   let cin = $("#cin").val();
   let data = [nom, prenom, date_nais, addr, sexe, tel, cin];
-  console.log()
   x = eel.setData(data);
 };
