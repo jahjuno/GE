@@ -14,18 +14,37 @@ function showDiv_connect_admin() {
 
 
 
-/* RECUPERATION DES VALEURS DES INPUTS */
+/* RECUPERATION DES INFOS ETUDIANTS */
 
-function recup_info(){
+function recup_info_etudiant(){
+  let matricule_etud = $("#matricule_etud").val();
   let nom = $("#nom").val();
   let prenom = $("#prenom").val();
-  let date_nais = $("#date_nais").val();
-  let addr = $("#addr").val();
+  let date_naissance = $("#date_nais").val();
+  let adresse = $("#addr").val();
+  let email = $("#email").val();
   let sexe = $("input[name=genre]:checked").val();
   let annee_univ = $("#annee :selected").text();
-  let niveau = $("#niveau :selectd").text();
+  let niveau = $("#niveau :selected").text();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
-  let data = [annee_univ, nom, prenom, date_nais, addr, sexe, tel, cin, niveau];
-  x = eel.setData(data);
+  let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau];
+  x = eel.setData(data, 'etud');
+};
+
+/* RECUPERATION DES INFOS PROFS */
+function recup_info_prof(){
+  let matricule_prof = $("#matricule_prof").val();
+  let nom = $("#nom_prof").val();
+  let prenom = $("#prenom_prof").val();
+  let adresse = $("#addr_prof").val();
+  let email = $("#email_prof").val();
+  let sexe = $("input[name=genre_prof]:checked").val();
+  let annee_univ = $("#annee_prof :selected").text();
+  let module = $("#module :selected").text();
+  let tel = $("#tel_prof").val();
+  let cin = $("#cin_prof").val();
+  let mdp = $("#mdp_prof").val();
+  let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp];
+  x = eel.setData(data, 'ensg');
 };

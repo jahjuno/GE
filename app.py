@@ -9,22 +9,27 @@ data = []
 
 
 @eel.expose()
-def setData(d):
+def setData(d, e):
 	global data
 	print("ato va")
 	data = d
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
-		donnee_1 = ''' 
-		INSERT INTO etudiant(nom, prenom, naissance, adresse, sexe, tel, cin)
-		VALUES (?, ?, ?, ?, ?, ?, ?)
-		'''
+		if e == 'etud':
+			donnee_etudiant = ''' 
+			INSERT INTO ETUDIANT(matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			'''		
+			cur.execute(donnee_etudiant, d)
+			print("donnee_etudiant inseré")
+		else :
+			donnee_enseignant = ''' 
+			INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			'''
+			cur.execute(donnee_enseignant, d)
 
-		
-		
-		cur.execute(donnee_1, d)
-		print("donnee insere")
 		connect_to_bdd.commit()
 		cur.close()
 		connect_to_bdd.close()
@@ -41,38 +46,96 @@ def createBDD():
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
-		donnee_1 = ''' 
-		CREATE TABLE IF NOT EXISTS enseignant (
-			matricule INT PRIMARY KEY,
-			nom TEXT,
-			prenom TEXT,
-			naissance TEXT NOT NULL,
-			adresse TEXT,
-			module TEXT,
-			sexe TEXT,
-			tel INT,
-			cin INT
+		t_admin = ''' 
+		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
+			matricule_admin	TEXT	NOT NULL,
+			email	TEXT	NOT NULL,
+			mdp	TEXT	NOT NULL,
+			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_admin)
 		);
 		'''
-		cur.execute(donnee_1)
-		print("t_enseignant créée")
+		print("Création tables en cours ...")
+		cur.execute(t_admin)
 
-		donnee_2 = '''
-		CREATE TABLE IF NOT EXISTS etudiant (
-			matricule INT PRIMARY KEY,
-			annee_univ TEXT,
-			nom TEXT,
-			prenom TEXT,
-			naissance TEXT NOT NULL,
-			adresse TEXT,
-			sexe TEXT,
-			tel INT,
-			cin INT,
-			niveau TEXT
+		t_ensg = '''
+		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
+			matricule_ensg	TEXT	NOT NULL,
+			annee_univ		TEXT	NOT NULL,
+			nom				TEXT	NOT NULL,
+			prenom			TEXT	NOT NULL,
+			tel				TEXT	NOT NULL,
+			email			TEXT	NOT NULL,
+			cin				INTEGER	NOT NULL,
+			sexe			TEXT	NOT NULL,
+			adresse			TEXT	NOT NULL,
+			module			TEXT	NOT NULL,
+			mdp				TEXT	NOT NULL,
+			CONSTRAINT ensg_pk PRIMARY KEY (matricule_ensg)
+			
 			);
 		'''
-		cur.execute(donnee_2)
-		print("t_etudiant créée")
+		cur.execute(t_ensg)
+		
+
+		t_etudiant = '''
+		CREATE TABLE IF NOT EXISTS ETUDIANT(
+			matricule_etud	TEXT	NOT NULL,
+			annee_univ		TEXT	NOT	NULL,
+			nom				TEXT	NOT NULL,
+			prenom			TEXT	NOT NULL,
+			date_naissance	TEXT	NOT NULL,
+			tel				TEXT	NOT NULL,
+			email			TEXT	NOT NULL,
+			cin				INTEGER	NOT NULL,
+			sexe			TEXT	NOT NULL,
+			adresse			TEXT	NOT NULL,
+			niveau			TEXT	NOT	NULL,
+			CONSTRAINT etudiant_pk	PRIMARY KEY (matricule_etud)
+			
+		)
+		'''
+		cur.execute(t_etudiant)
+		
+
+		t_module = '''
+		CREATE TABLE IF NOT EXISTS MODULE (
+			id_module		INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
+			nom		TEXT		NOT NULL,
+			reference	TEXT	NOT NULL,
+			matricule_ensg	TEXT	NOT NULL,
+			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
+		)
+		'''
+		cur.execute(t_module)
+
+
+		t_note = '''
+		CREATE TABLE IF NOT EXISTS NOTE (
+			id_note		TEXT		NOT NULL,
+			note_module		REAL		NOT NULL,
+			matricule_etud	TEXT	NOT NULL,
+			id_module		INTEGER	NOT NULL,
+			CONSTRAINT	note_pk	PRIMARY KEY (id_note),
+			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
+			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
+		)
+		'''
+		cur.execute(t_note)
+	
+
+		t_etudier = '''
+		CREATE TABLE IF NOT EXISTS ETUDIER (
+			matricule_etud	TEXT	NOT NULL,
+			id_module		INTEGER	NOT NULL,
+			CONSTRAINT	etudier_pk	PRIMARY KEY (matricule_etud, id_module),
+			CONSTRAINT	etudier_fk	FOREIGN KEY (matricule_etud)	REFERENCES ETUDIANT(matricule_etud),
+			CONSTRAINT	etudier_module_fk	FOREIGN KEY (id_module)	REFERENCES MODULE(id_module)
+		)
+		
+		'''
+		cur.execute(t_etudier)
+		print('terminée !!')
+
 		connect_to_bdd.commit()
 		cur.close()
 		connect_to_bdd.close()
@@ -93,7 +156,7 @@ def main():
 		PORT += 1
 	environ['gePORT'] = str(PORT)
 	print(PORT)
-	eel.start(mode='custom', cmdline_args=['node_modules/electron/dist/electron.exe', '.'], port=PORT)
+	eel.start(mode='custom', cmdline_args=['node_modules/electron/dist/electron.exe', '.'], port=PORT, block=True)
 
 
 if __name__ == '__main__':

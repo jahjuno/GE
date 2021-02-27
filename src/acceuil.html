@@ -17,6 +17,7 @@
     <!-- Custom styles for this template-->
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
     <script> window.jQuery =  window.$ = require('jquery'); </script>
+    <script type="text/javascript" src="/eel.js"></script>
 
 </head>
 
@@ -221,6 +222,11 @@
                                             <h4 class="register-heading">Inscrire un nouvel étudiant</h4>
                                             <div class="row justify-content-between">
                                                 <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="n° matricule *" id="matricule_etud" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-4">
                                                     <select class="form-control" id="annee">
                                                         <option class="hidden"  selected disabled>Année Universitaire</option>
                                                         <option>2019-2020</option>
@@ -282,39 +288,58 @@
                                                         <input type="file" value="Choisir une image">
                                                     </div>
                                                     
-                                                        <input type="button" id="insc_etud" class="btnRegister" onclick="recup_info()" value="Inscrire"/>
+                                                        <input type="button" id="insc_etud" class="btnRegister" onclick="recup_info_etudiant()" value="Inscrire"/>
                                                     
                                            </div>
                                             </div>
                                         </div>
+                                        <!-- INSCRIPTION DES NOUVEAUX PROFESSEURS -->
                                         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                             <h4  class="register-heading">Inscrire un nouveau professeur</h4>
+                                            <div class="row justify-content-between">
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="n° matricule *" id="matricule_prof" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <select class="form-control" id="annee_prof">
+                                                        <option class="hidden"  selected disabled>Année Universitaire</option>
+                                                        <option>2019-2020</option>
+                                                        <option>2020-2021</option>
+                                                        <option>2021-2022</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="row register-form">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Nom *" value="" />
+                                                        <input type="text" class="form-control" placeholder="Nom *" id="nom_prof" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Prénom *" value="" />
+                                                        <input type="text" class="form-control" placeholder="Prénom *" id="prenom_prof" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="email" class="form-control" placeholder="Email *" value="" />
+                                                        <input type="email" class="form-control" placeholder="Email *" id="email_prof" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="13" minlength="13" class="form-control" placeholder="Tél +261  *" value="" />
+                                                        <input type="password" class="form-control" placeholder="mot de pass" id="mdp_prof" value="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" maxlength="13" minlength="13" class="form-control" id="tel_prof" placeholder="Tél +261  *" value="" />
                                                     </div>
 
 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="13" minlength="13" class="form-control" placeholder="CIN *" value="" />
+                                                        <input type="text" maxlength="13" minlength="13" class="form-control" id="cin_prof" placeholder="CIN *" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Adresse actuel *" value="" />
+                                                        <input type="text" class="form-control" placeholder="Adresse actuel *" id="addr_prof" value="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="module">
                                                             <option class="hidden"  selected disabled>Module enseigné</option>
                                                             <option>Anatomie</option>
                                                             <option>Biologie</option>
@@ -324,17 +349,17 @@
                                                     <div class="form-group">
                                                         <div class="maxl">
                                                             <label class="radio inline"> 
-                                                                <input type="radio" name="genre" value="male" checked>
+                                                                <input type="radio" name="genre_prof" value="male" checked>
                                                                 <span> Home </span> 
                                                             </label>
                                                             <label class="radio inline"> 
-                                                                <input type="radio" name="genre" value="female">
+                                                                <input type="radio" name="genre_prof" value="female">
                                                                 <span>Femme </span> 
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <a href="dist/prof_inscrit.html">
-                                                        <input type="submit" class="btnRegister"  value="Inscrire"/>
+                                                    
+                                                        <input type="button" class="btnRegister" id="insc_prof" value="Inscrire" onclick="recup_info_prof()"/>
                                                     </a>
                                                     
                                                 </div>
@@ -405,7 +430,7 @@
     <!-- Custom scripts for all pages-->
     <script src="dist/js/sb-admin-2.min.js"></script>
     <script src="js/app.js"></script>
-    <script type="text/javascript" src="/eel.js"></script>
+    
 
     
 </body>
