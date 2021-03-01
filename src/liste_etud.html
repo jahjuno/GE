@@ -18,6 +18,7 @@
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
 
     <script> window.jQuery =  window.$ = require('jquery'); </script>
+    <script type="text/javascript" src="/eel.js"></script>
 </head>
 
 <body id="page-top">
@@ -206,33 +207,47 @@
                                     <thead>
                                         <tr>
                                             <th>Matricule</th>
+                                            <th>Année Universitaire</th>
                                             <th>Nom</th>
                                             <th>Prénom</th>
                                             <th>Date de naissance</th>
-                                            <th>Email</th>
                                             <th>Tél</th>
-                                            <th>Adresse actuel</th>
+                                            <th>Email</th>
+                                            <th>N° CIN</th>
                                             <th>Sexe</th>
-                                            <th>CIN</th>
+                                            <th>Adresse actuel</th>
+                                            <th>Niveau</th>
                                             <th>Modifier</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td id="t_matricule">001</td>
-                                            <td id="t_nom">RAFIDISON</td>
-                                            <td id="t_prenom">Hasin'ny Aina Juno</td>
-                                            <td id="t_date">18/06/1998</td>
-                                            <td id="t_mail">aina.juno.rafidison@esti.mg</td>
-                                            <td id="t_tel">034 24 042 56</td>
-                                            <td id="t_addr">Ambatoroka Lot VI 17JZ</td>
-                                            <td id="t_sexe">Homme</td>
-                                            <td id="t_cin">210 011 039 857</td>
-                                            <td>
-                                                <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                                                <a class="edit" title="Supprimer" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                                            </td>
-                                        </tr>
+                                    <tbody id="bdd_print">
+                                        <script>
+                                            eel.getData()(printData);
+                                            function printData(data_recupered) {
+                                                for (let i=0; i<data_recupered.length; i++){
+                                                    let line = `
+                                                        <tr>
+                                                        <td id="t_matricule">${data_recupered[i][0]}</td>
+                                                        <td id="annee_univ">${data_recupered[i][1]}</td>
+                                                        <td id="t_nom">${data_recupered[i][2]}</td>
+                                                        <td id="t_prenom">${data_recupered[i][3]}</td>
+                                                        <td id="t_date">${data_recupered[i][4]}</td>
+                                                        <td id="t_tel">${data_recupered[i][5]}</td>
+                                                        <td id="t_mail">${data_recupered[i][6]}</td>
+                                                        <td id="t_cin">${data_recupered[i][7]}</td>
+                                                        <td id="t_sexe">${data_recupered[i][8]}</td>
+                                                        <td id="t_addr">${data_recupered[i][9]}</td>
+                                                        <td id="t_niveau">${data_recupered[i][10]}</td>
+                                                        <td>
+                                                            <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                                                            <a class="edit" title="Supprimer" data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                        `
+                                                    $('#bdd_print').append(line);
+                                                };
+                                            };
+                                        </script>
                                     </tbody>
                                 </table>
                             </div>

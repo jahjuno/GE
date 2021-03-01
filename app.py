@@ -11,7 +11,6 @@ data = []
 @eel.expose()
 def setData(d, e):
 	global data
-	print("ato va")
 	data = d
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
@@ -39,8 +38,24 @@ def setData(d, e):
 
 @eel.expose()
 def getData():
-	return data
+	try :
+		connect_to_bdd = sqlite3.connect('donnee.db')
+		cur = connect_to_bdd.cursor()
+		get_data_etudiant = '''
+		SELECT matricule_etud, annee_univ, nom, prenom, date_naissance, tel, email, cin, sexe, adresse, niveau 
+		FROM ETUDIANT
+		'''
+		cur.execute(get_data_etudiant)
+		return cur.fetchall()
+		""" connect_to_bdd.commit()
+		cur.close()
+		connect_to_bdd.close() """
+
+	except sqlite3.Error as error: 
+		print(error)
 	
+	
+getData()	
 
 def createBDD():
 	try : 

@@ -1,5 +1,5 @@
 
-
+/* CACHER/APPARAITRE un élément */
 $(".hideDiv").hide();
 
 function showDiv_connect_admin() {
@@ -10,6 +10,10 @@ function showDiv_connect_admin() {
   $(".hideEnsg").hide();
 };
 
+/* REDIRECTION PAGE */
+function redirection_page() {
+  window.location.href("../liste_etud.html");
+};
 
 
 
