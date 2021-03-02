@@ -34,6 +34,7 @@ function recup_info_etudiant(){
   let cin = $("#cin").val();
   let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau];
   x = eel.setData(data, 'etud');
+  alert('Inscription terminée');
 };
 
 /* RECUPERATION DES INFOS PROFS */
@@ -51,4 +52,5 @@ function recup_info_prof(){
   let mdp = $("#mdp_prof").val();
   let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp];
   x = eel.setData(data, 'ensg');
+  alert('Inscription terminée');
 };
