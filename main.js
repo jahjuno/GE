@@ -2,13 +2,17 @@ const { app, BrowserWindow } = require('electron')
 const PORT = process.env.gePORT
 
 function createWindow () {
-  const win = new BrowserWindow({
+    const win = new BrowserWindow({
     width: 900,
     height: 700,
+    center: true,
+
     webPreferences: {
+      //intégration de NodeJS dans un projet
       nodeIntegration : true
     }
   })
+
 
   win.loadURL(`http://localhost:${PORT}/index.html`)
 

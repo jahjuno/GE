@@ -54,3 +54,8 @@ function recup_info_prof(){
   x = eel.setData(data, 'ensg');
   alert('Inscription terminée');
 };
+
+/* Exporter les données en CSV */
+function export_data(val_bdd) {
+  eel.export_data_csv(val_bdd);
+};

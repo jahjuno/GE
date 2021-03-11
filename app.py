@@ -1,5 +1,5 @@
-import eel
-import sqlite3
+import eel, csv
+import sqlite3, os
 from os import environ
 from psutil import net_connections
 
@@ -8,7 +8,7 @@ eel.init('src')
 data = []
 
 
-@eel.expose()
+@eel.expose
 def setData(d, e):
 	global data
 	data = d
@@ -34,9 +34,44 @@ def setData(d, e):
 		connect_to_bdd.close()
 	except sqlite3.Error as error: 
 		print(error)
-		
 
-@eel.expose()
+#EXPORTATION DONNEES EN CSV 
+@eel.expose
+def export_data_csv(val_bdd):
+
+	try :
+		connect_to_bdd = sqlite3.connect('donnee.db')
+		cur = connect_to_bdd.cursor()
+		if 	val_bdd == 'student' :
+			""" get_data = '''
+				SELECT matricule_etud, annee_univ, nom, prenom, date_naissance, tel, email, cin, sexe, adresse, niveau 
+				FROM ETUDIANT
+			''' """	
+			cur.execute('''SELECT matricule_etud, annee_univ, nom, prenom, date_naissance, tel, email, cin, sexe, adresse, niveau 
+				FROM ETUDIANT''')
+		#Exporting data into CSV file
+			with open("student_data.csv", "w") as csv_file :
+				csv_writer = csv.writer(csv_file, delimiter = ";")
+				csv_writer.writerow([i[0] for i in cur.description])
+				csv_writer.writerows(cur)
+			dirpath = os.getcwd() + "/Desktop/GE/student_data.csv"
+		else :
+			""" get_data = '''
+			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
+			FROM ENSEIGNANT
+			''' """
+			cur.execute('''SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
+			FROM ENSEIGNANT''')
+			#Exporting data into CSV file
+			with open("prof_data.csv", "w") as csv_file :
+				csv_writer = csv.writer(csv_file, delimiter = ";")
+				csv_writer.writerow([i[0] for i in cur.description])
+				csv_writer.writerows(cur)
+			dirpath = os.getcwd() + "/Desktop/GE/prof_data.csv"
+	except sqlite3.Error as e:
+		print(e)
+
+@eel.expose
 def getData(val_bdd):
 	try :
 		connect_to_bdd = sqlite3.connect('donnee.db')
@@ -51,7 +86,7 @@ def getData(val_bdd):
 			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
 			FROM ENSEIGNANT
 			'''
-		
+
 		cur.execute(get_data)
 		return cur.fetchall()
 
