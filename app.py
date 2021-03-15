@@ -54,7 +54,7 @@ def export_data_csv(val_bdd):
 				csv_writer = csv.writer(csv_file, delimiter = ";")
 				csv_writer.writerow([i[0] for i in cur.description])
 				csv_writer.writerows(cur)
-			dirpath = os.getcwd() + "/Desktop/GE/student_data.csv"
+			dirpath = os.getcwd() + "/Desktop/student_data.csv"
 		else :
 			""" get_data = '''
 			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
@@ -196,7 +196,19 @@ def createBDD():
 		
 createBDD()
 
+#CONNECTION EN TANT ADMIN
+""" def connect_admin() :
+	try :
+		connect_to_bdd = sqlite3.connect('donnee.db')
+		cur = connect_to_bdd.cursor()
+		recup_mdp = '''
+		SELECT mdp FROM PERSONNEL_ADMINISTRATIF
+		'''
 
+
+	except sqlite3.Error as e : 
+		print(e)
+ """
 def voirPort(port):
 	#vérification port
 	for proc in net_connections():
