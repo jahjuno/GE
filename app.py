@@ -191,7 +191,7 @@ def createBDD():
 createBDD()
 
 #CONNECTION EN TANT ADMIN
-def connect_admin() :
+""" def connect_admin(mdp_base, mdp_input) :
 	try :
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
@@ -199,13 +199,12 @@ def connect_admin() :
 		SELECT mdp FROM PERSONNEL_ADMINISTRATIF
 		''')
 		print(recup_mdp.fetchone())
-		
 
 
 	except sqlite3.Error as e : 
 		print(e)
 
-connect_admin()
+connect_admin() """
 
 def voirPort(port):
 	#vérification port
