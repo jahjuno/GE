@@ -58,4 +58,5 @@ function recup_info_prof(){
 /* Exporter les données en CSV */
 function export_data(val_bdd) {
   eel.export_data_csv(val_bdd);
+  alert('Exportation terminée');
 };

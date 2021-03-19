@@ -43,31 +43,25 @@ def export_data_csv(val_bdd):
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
 		if 	val_bdd == 'student' :
-			""" get_data = '''
-				SELECT matricule_etud, annee_univ, nom, prenom, date_naissance, tel, email, cin, sexe, adresse, niveau 
-				FROM ETUDIANT
-			''' """	
 			cur.execute('''SELECT matricule_etud, annee_univ, nom, prenom, date_naissance, tel, email, cin, sexe, adresse, niveau 
 				FROM ETUDIANT''')
 		#Exporting data into CSV file
-			with open("student_data.csv", "w") as csv_file :
+			dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
+			with open(dirpath + "student_data.csv", "w") as csv_file :
 				csv_writer = csv.writer(csv_file, delimiter = ";")
 				csv_writer.writerow([i[0] for i in cur.description])
 				csv_writer.writerows(cur)
-			dirpath = os.getcwd() + "/Desktop/student_data.csv"
+			
 		else :
-			""" get_data = '''
-			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
-			FROM ENSEIGNANT
-			''' """
 			cur.execute('''SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
 			FROM ENSEIGNANT''')
 			#Exporting data into CSV file
-			with open("prof_data.csv", "w") as csv_file :
+			dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
+			with open(dirpath + "prof_data.csv", "w") as csv_file :
 				csv_writer = csv.writer(csv_file, delimiter = ";")
 				csv_writer.writerow([i[0] for i in cur.description])
 				csv_writer.writerows(cur)
-			dirpath = os.getcwd() + "/Desktop/GE/prof_data.csv"
+			
 	except sqlite3.Error as e:
 		print(e)
 
@@ -197,18 +191,22 @@ def createBDD():
 createBDD()
 
 #CONNECTION EN TANT ADMIN
-""" def connect_admin() :
+def connect_admin() :
 	try :
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
-		recup_mdp = '''
+		recup_mdp = cur.execute('''
 		SELECT mdp FROM PERSONNEL_ADMINISTRATIF
-		'''
+		''')
+		print(recup_mdp.fetchone())
+		
 
 
 	except sqlite3.Error as e : 
 		print(e)
- """
+
+connect_admin()
+
 def voirPort(port):
 	#vérification port
 	for proc in net_connections():
@@ -220,7 +218,7 @@ def main():
 		PORT += 1
 	environ['gePORT'] = str(PORT)
 	print(PORT)
-	eel.start(mode='custom', cmdline_args=['node_modules/electron/dist/electron.exe', '.'], port=PORT, block=True)
+	eel.start(mode='custom', cmdline_args=['./node_modules/electron/dist/electron.exe', '.'], port=PORT)
 
 
 if __name__ == '__main__':
