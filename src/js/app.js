@@ -10,13 +10,21 @@ function showDiv_connect_admin() {
   $(".hideEnsg").hide();
 };
 
-/* REDIRECTION PAGE */
+/* REDIRECTION PAGE __ verification mdp */
 function redirection_page() {
-  window.location.href("../liste_etud.html");
+  let recup_mdp = $("#mdp").val();
+  eel.connect_admin(recup_mdp)(verify_mdp);
 };
 
-
-
+//REDIRECTION DE LA PAGE__ verification mdp
+function verify_mdp(data){
+  if (data == true){
+    document.location.href='../acceuil.html';
+  }
+  else{
+    alert("Mot de passe incorrect!");
+  }
+}
 
 /* RECUPERATION DES INFOS ETUDIANTS */
 
