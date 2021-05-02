@@ -46,7 +46,7 @@ Menu.setApplicationMenu(menu);
   win.maximize()
 
   //ouvrir un devtools
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 }
 
 app.whenReady().then(createWindow)

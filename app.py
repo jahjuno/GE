@@ -208,7 +208,7 @@ def connect_admin(mdp) :
 		print(e)
 
 #CONNECTION EN TANT QU'ENSEIGNANT
-@eel.expose
+""" @eel.expose
 def connect_ensg():
 	try:
 		connect_to_bdd = sqlite3.connect("donnee.db")
@@ -220,7 +220,7 @@ def connect_ensg():
 		print(m)
 	except sqlite3.Error as e:
 		print(e)
-connect_ensg()
+connect_ensg() """
 
 def voirPort(port):
 	#vérification port
