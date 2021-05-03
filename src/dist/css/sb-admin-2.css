@@ -7578,6 +7578,7 @@ button.bg-dark:focus {
 
 .h-100 {
   height: 100% !important;
+  width: 250% !important;
 }
 
 .h-auto {
