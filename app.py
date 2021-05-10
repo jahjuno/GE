@@ -192,17 +192,17 @@ createBDD()
 
 #CONNECTION EN TANT ADMIN
 @eel.expose
-def connect_admin(mdp) :
+def connect_admin(usr, mdp) :
 	try :
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
 		recup_mdp = cur.execute('''
-		SELECT mdp FROM PERSONNEL_ADMINISTRATIF
-		''')
-		m=recup_mdp.fetchone()
-		if m[0]==mdp : return True
-		else : return False
-
+		SELECT 1 FROM PERSONNEL_ADMINISTRATIF WHERE email=? AND mdp=?
+		''', (usr, mdp))
+		if len(cur.fetchall()) == 1:
+			return True
+		else:
+			return 'Authentification échouée'
 
 	except sqlite3.Error as e : 
 		print(e)

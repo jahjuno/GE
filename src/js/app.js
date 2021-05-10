@@ -20,13 +20,13 @@ function showDiv_connect_ensg() {
     }
   );
   $(".hideAdmin").hide();
-  $(".hideEnsg").hide();
 }
 
 /* REDIRECTION PAGE __ verification mdp */
 function redirection_page() {
+  let recup_pseudo_admin = $("#pseudo_admin").val();
   let recup_mdp = $("#mdp").val();
-  eel.connect_admin(recup_mdp)(verify_mdp);
+  eel.connect_admin(recup_pseudo_admin, recup_mdp)(verify_mdp);
 };
 
 //REDIRECTION DE LA PAGE__ verification mdp
@@ -39,6 +39,7 @@ function verify_mdp(data){
   }
 }
 
+//recup pseudo et mdp ensg et vérification
 function redirection_page_ensg() {
   let recup_pseudo = $("#pseudo_ensg").val();
   let recup_mdp_ensg = $("#mdp_ensg").val();
