@@ -7,7 +7,7 @@ eel.init('src')
 
 data = []
 
-
+#INSERTION DES DONNEES
 @eel.expose
 def setData(d, e):
 	global data
@@ -34,6 +34,8 @@ def setData(d, e):
 		connect_to_bdd.close()
 	except sqlite3.Error as error: 
 		print(error)
+
+
 
 #EXPORTATION DONNEES EN CSV 
 @eel.expose
@@ -65,6 +67,8 @@ def export_data_csv(val_bdd):
 	except sqlite3.Error as e:
 		print(e)
 
+
+#AFFICHER LES DONNEES DANS LES TABLEAUX
 @eel.expose
 def getData(val_bdd):
 	try :
@@ -87,7 +91,10 @@ def getData(val_bdd):
 	except sqlite3.Error as error: 
 		print(error)
 	
-	
+
+
+
+#CREATE DE LA BASE DE DONNEE
 def createBDD():
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
@@ -190,6 +197,8 @@ def createBDD():
 		
 createBDD()
 
+
+
 #CONNECTION EN TANT ADMIN
 @eel.expose
 def connect_admin(usr, mdp) :
@@ -206,6 +215,8 @@ def connect_admin(usr, mdp) :
 
 	except sqlite3.Error as e : 
 		print(e)
+
+
 
 #CONNECTION EN TANT QU'ENSEIGNANT
 @eel.expose
@@ -224,6 +235,12 @@ def connect_ensg(usr, mdp):
 		
 	except sqlite3.Error as e:
 		print(e)
+
+
+
+
+
+
 
 
 def voirPort(port):

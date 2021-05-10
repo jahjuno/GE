@@ -54,6 +54,7 @@ function verify_mdp_ensg(data) {
   }
 }
 
+//AFFICHAGE DANS LES TABLEAUX
 /* RECUPERATION DES INFOS ETUDIANTS */
 
 function recup_info_etudiant(){
