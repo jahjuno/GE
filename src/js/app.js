@@ -39,18 +39,19 @@ function verify_mdp(data){
   }
 }
 
-/* function redirection_page_ensg() {
+function redirection_page_ensg() {
+  let recup_pseudo = $("#pseudo_ensg").val();
   let recup_mdp_ensg = $("#mdp_ensg").val();
-  eel.connect_ensg(recup_mdp_ensg)(verify_mdp_ensg);
+  eel.connect_ensg(recup_pseudo, recup_mdp_ensg)(verify_mdp_ensg);
 }
 //redirection to the page_ensg
 function verify_mdp_ensg(data) {
-  if (data == true){
+  if ( data == true){
     document.location.href='../profil_etudiant.html';
   } else {
     alert("Mot de passe incorrect !!");
   }
-} */
+}
 
 /* RECUPERATION DES INFOS ETUDIANTS */
 

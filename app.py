@@ -208,27 +208,22 @@ def connect_admin(mdp) :
 		print(e)
 
 #CONNECTION EN TANT QU'ENSEIGNANT
-""" @eel.expose
-def connect_ensg(mdp_ensg):
+@eel.expose
+def connect_ensg(usr, mdp):
 	try:
 		connect_to_bdd = sqlite3.connect("donnee.db")
 		cur = connect_to_bdd.cursor()
 		recup_mdp_prof = cur.execute('''
-		SELECT mdp FROM ENSEIGNANT
-		''')
-		m=recup_mdp_prof.fetchall()
-		print(m)
-		i=len(m)
-		for i in m:
-			
-		if m[i] == mdp_ensg : 
-			i+1
+		SELECT 1 FROM ENSEIGNANT WHERE email=? AND mdp=?
+		''', (usr, mdp))
+		if len(cur.fetchall()) == 1:
 			return True
-		else : return False
+		else:
+			return 'Authentification échouée'
 		
 		
 	except sqlite3.Error as e:
-		print(e) """
+		print(e)
 
 
 def voirPort(port):
