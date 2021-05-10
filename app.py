@@ -209,7 +209,7 @@ def connect_admin(mdp) :
 
 #CONNECTION EN TANT QU'ENSEIGNANT
 """ @eel.expose
-def connect_ensg():
+def connect_ensg(mdp_ensg):
 	try:
 		connect_to_bdd = sqlite3.connect("donnee.db")
 		cur = connect_to_bdd.cursor()
@@ -218,9 +218,18 @@ def connect_ensg():
 		''')
 		m=recup_mdp_prof.fetchall()
 		print(m)
+		i=len(m)
+		for i in m:
+			
+		if m[i] == mdp_ensg : 
+			i+1
+			return True
+		else : return False
+		
+		
 	except sqlite3.Error as e:
-		print(e)
-connect_ensg() """
+		print(e) """
+
 
 def voirPort(port):
 	#vérification port

@@ -30,26 +30,38 @@
 
 					<div class="container-login100-form-btn">
 						
-							<button class="login100-form-btn" onclick="showDiv_connect_admin()">
+							<button class="login100-form-btn hideAdmin" onclick="showDiv_connect_admin()">
 								Admin
 							</button>
 						
 					</div>
 					<br>
-					<div class="wrap-input100 validate-input hideDiv" data-validate = "password">
+					<div class="validate-input hideDiv_admin">
 						<input class="input100" id="mdp" type="password" name="password" placeholder="Mot de passe">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
-					<div class="container-login100-form-btn hideDiv">
+					<div class="container-login100-form-btn hideDiv_admin">
 							<button class="login100-form-btn" onclick="redirection_page()">
 								Se connecter
 							</button>
 					</div>
 
 					<div class="container-login100-form-btn">
-							<button class="login100-form-btn hideEnsg" id="connecter" onclick="window.location.href='profil_etudiant.html'">
+							<button class="login100-form-btn hideEnsg" id="connecter" onclick="showDiv_connect_ensg()">
 								Enseignant
+							</button>
+					</div>
+					<br>
+					<div class="validate-input hideDiv_ensg">
+						<input class="input100" id="mdp_ensg" type="email" name="pseudo" placeholder="email">
+					</div> <br>
+					<div class="validate-input hideDiv_ensg">
+						<input class="input100" id="mdp_ensg" type="password" name="password" placeholder="Mot de passe">
+					</div>
+
+					<div class="container-login100-form-btn hideDiv_ensg">
+							<button class="login100-form-btn" onclick="redirection_page_ensg()">
+								Se connecter
 							</button>
 					</div>
 

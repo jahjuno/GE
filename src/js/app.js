@@ -1,14 +1,27 @@
 
-/* CACHER/APPARAITRE un élément */
-$(".hideDiv").hide();
+/* CACHER/APPARAITRE un élément input password ADMIN */
+$(".hideDiv_admin").hide();
 
 function showDiv_connect_admin() {
-  $(".hideDiv:hidden").each(function(){
+  $(".hideDiv_admin:hidden").each(
+    function(){
     $(this).show();
   });
 
   $(".hideEnsg").hide();
 };
+
+/* Hide input password and ADMIN  */
+$(".hideDiv_ensg").hide();
+function showDiv_connect_ensg() {
+  $(".hideDiv_ensg:hidden").each(
+    function(){
+      $(this).show();
+    }
+  );
+  $(".hideAdmin").hide();
+  $(".hideEnsg").hide();
+}
 
 /* REDIRECTION PAGE __ verification mdp */
 function redirection_page() {
@@ -25,6 +38,19 @@ function verify_mdp(data){
     alert("Mot de passe incorrect!");
   }
 }
+
+/* function redirection_page_ensg() {
+  let recup_mdp_ensg = $("#mdp_ensg").val();
+  eel.connect_ensg(recup_mdp_ensg)(verify_mdp_ensg);
+}
+//redirection to the page_ensg
+function verify_mdp_ensg(data) {
+  if (data == true){
+    document.location.href='../profil_etudiant.html';
+  } else {
+    alert("Mot de passe incorrect !!");
+  }
+} */
 
 /* RECUPERATION DES INFOS ETUDIANTS */
 
