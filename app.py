@@ -91,6 +91,29 @@ def getData(val_bdd):
 	except sqlite3.Error as error: 
 		print(error)
 	
+#AFFICHER PROFIL
+@eel.expose
+def getdata_profil(type_profil, profil_data):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	if type_profil == 'student_profil':
+		search_profil = cur.execute('''
+		SELECT * FROM etudiant WHERE matricule_etud=?
+		''', (profil_data,))
+		print (cur.fetchall())
+		
+	else:
+		search_profil = cur.execute('''
+		SELECT * FROM enseignant WHERE matricule_ensg=?
+		''', (profil_data,))
+		print (cur.fetchall())
+#getdata_profil('student_profil','003_ETUD2021')
+	
+
+
+
+
+
 
 
 
