@@ -107,5 +107,5 @@ function print_profil_student(data){
 
 function print_profil_prof(data) {
   table_bdd = eel.getdata_profil('ensg_profil', data);
-  document.location.href="../profil_etudiant.html";
+  document.location.href="../profil_prof.html";
 }

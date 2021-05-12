@@ -111,8 +111,8 @@ def getdata_profil(type_profil, profil_data):
 		search_profil = cur.execute('''
 		SELECT * FROM enseignant WHERE matricule_ensg=?
 		''', (profil_data,))
-		print (cur.fetchall())
-#getdata_profil('student_profil','003_ETUD2021')
+		storage_get_profil_data=cur.fetchall()
+
 	
 
 
