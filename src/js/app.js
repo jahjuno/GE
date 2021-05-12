@@ -109,3 +109,14 @@ function print_profil_prof(data) {
   table_bdd = eel.getdata_profil('ensg_profil', data);
   document.location.href="../profil_prof.html";
 }
+
+//SUPPRESSION LIGNE
+function delete_student(data_recup){
+  eel.delete_person('student_list',data_recup);
+  location.reload();
+}
+
+function delete_prof(data_recup){
+  eel.delete_person('prof_list',data_recup);
+  location.reload();
+}

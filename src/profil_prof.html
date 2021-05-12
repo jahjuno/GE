@@ -9,14 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Acceuil_Admin</title>
+    <title>Profil Etudiant</title>
 
     <!-- Custom fonts for this template-->
     <link href="dist/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="dist/css/profil_etudiant.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
-
     <script> window.jQuery =  window.$ = require('jquery'); </script>
     <script type="text/javascript" src="/eel.js"></script>
 </head>
@@ -64,7 +64,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion des enseignants :</h6>
+                        <h6 class="collapse-header">Gestion des profs :</h6>
                         <a class="collapse-item" href="acceuil.html">Inscription</a>
                         <a class="collapse-item" href="liste_prof.html">Liste Enseignant</a>
                         <a class="collapse-item" href="#">Emploi du temps</a>
@@ -84,8 +84,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des étudiants :</h6>
                         <a class="collapse-item" href="acceuil.html">Inscription</a>
-                        <a class="collapse-item" href="#">Présence</a>
                         <a class="collapse-item" href="liste_etud.html">Liste Etudiant</a>
+                        <a class="collapse-item" href="#">Présence</a>
                         <a class="collapse-item" href="#">Emploi du temps</a>
                     </div>
                 </div>
@@ -93,7 +93,6 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -131,6 +130,7 @@
                     </form>
 
                     <!-- Topbar Navbar -->
+
                     <ul class="navbar-nav ml-auto">
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -162,74 +162,115 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                <!-- TABLE CONTAINT -->
-                <div class="container-lg">
-                    <div class="table-responsive">
-                        <div class="table-wrapper col-lg-12">
-                            <div class="table-title">
-                                <div>
-                                    <div class="col-sm-12">
-                                        <h2>LISTE DES ENSEIGNANTS INSCRITS</h2>
+
+                <!-- Contenu de la page d'acceuil -->
+                <div class="container-fluid">
+                    
+                </div>
+
+
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- BODY -->
+            <div class="container-fluid">
+                 <!-- Page Heading -->
+                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">PROFILS</h1>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+
+                                    <!-- PROFIL ETUDIANT -->
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-primary shadow h-100 py-2" id="card_avatar">
+                                            <div class="card-body">
+                                                <div style="max-width: 540px;">
+                                                    <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img class="avatar" src="dist/img/avatar.jpg" alt="...">
+                                                    </div>
+                                                    <div class="col-md-8" id="info">
+                                                        <script>
+                                                            eel.new_data_profil()(print_profil_prof)
+                                                            function print_profil_prof(data_profil_prof){
+                                                                for (i=0; i < data_profil_prof.length; i++) {
+                                                                    let print_profil = `
+                                                                    
+                                                                        <div class="card-body card_profil">
+                                                                            <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
+                                                                            <span>${data_profil_prof[i][0]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                                                                            <span>${data_profil_prof[i][2]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                                                                            <span>${data_profil_prof[i][3]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="email">TEL:</span>
+                                                                            <span>${data_profil_prof[i][4]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
+                                                                            <span>${data_profil_prof[i][5]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                                                                            <span>${data_profil_prof[i][6]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUEL: </span>
+                                                                            <span>${data_profil_prof[i][8]}</span><br>
+
+                                                                            <span class="font-weight-bold text-primary">MODULE: </span>
+                                                                            <span>${data_profil_prof[i][9]}</span><br>
+
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    `
+                                                                    $('#info').append(print_profil);
+                                                                    };                                                        
+                                                            };
+                                                       </script>
+                                                    </div>
+                                
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                   
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2" id="card_ohter_info">
+                            <div class="card-body">
+                                <h3>Autres INFOS</h3>
                             </div>
-                            <div class="col-lg-12">
-                                <input type="button" onclick="export_data('prof')" value="Exporter en CSV"></input>
-                                <hr>
-                            </div>
-                            <div class="col-lg-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Matricule</th>
-                                            <th>Année Universitaire</th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Tél</th>
-                                            <th>Email</th>
-                                            <th>N° CIN</th>
-                                            <th>Sexe</th>
-                                            <th>Adresse actuel</th>
-                                            <th>Module</th>
-                                            <th>Modifier</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bdd_print">
-                                        <script>
-                                            eel.getData('t')(printData);
-                                            function printData(data_recupered) {
-                                                for (let i=0; i<data_recupered.length; i++){
-                                                    let line = `
-                                                        <tr>
-                                                        <td id="t_matricule">${data_recupered[i][0]}</td>
-                                                        <td id="annee_univ">${data_recupered[i][1]}</td>
-                                                        <td id="t_nom">${data_recupered[i][2]}</td>
-                                                        <td id="t_prenom">${data_recupered[i][3]}</td>
-                                                        <td id="t_tel">${data_recupered[i][4]}</td>
-                                                        <td id="t_mail">${data_recupered[i][5]}</td>
-                                                        <td id="t_cin">${data_recupered[i][6]}</td>
-                                                        <td id="t_sexe">${data_recupered[i][7]}</td>
-                                                        <td id="t_addr">${data_recupered[i][8]}</td>
-                                                        <td id="t_module">${data_recupered[i][9]}</td>
-                                                        <td>
-                                                            <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                                                            <a class="edit" title="Voir Profil" type="button" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-                                                            <a class="edit" title="Supprimer" type="button" onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                        `
-                                                    $('#bdd_print').append(line);
-                                                };
-                                            };
-                                        </script>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
-                <!-- END TABLE CONTAINT -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4" id="card_notes">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">LES NOTES</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <!-- Ending Body -->
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -251,26 +292,11 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Voulez-vous deconnecter?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Cliquer sur "Deconnexion" ci-dessous si vous êtes prêt à mettre fin à votre session. </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                    <a class="btn btn-primary" href="dist/login.html">Deconnexion</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
+
+
+
+    
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -278,11 +304,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="dist/js/sb-admin-2.min.js"></script>
-
     <script src="js/app.js"></script>
-    <script>
-        
-    </script>
+    
+
+    
 </body>
 
 </html>

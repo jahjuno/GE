@@ -113,6 +113,23 @@ def getdata_profil(type_profil, profil_data):
 		''', (profil_data,))
 		storage_get_profil_data=cur.fetchall()
 
+
+#SUPPRESSION LIGNE DANS LA LISTE_ETUD et LISTE_PROF
+@eel.expose
+def delete_person(type_person, data_perso) :
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	if type_person == 'student_list' :
+		delete_data= cur.execute('''
+		DELETE FROM etudiant WHERE matricule_etud=?
+		''', (data_perso,))
+		connect_to_bdd.commit()
+	else:
+		delete_data= cur.execute('''
+		DELETE FROM enseignant WHERE matricule_ensg=?
+		''', (data_perso,))
+		connect_to_bdd.commit()
+		
 	
 
 

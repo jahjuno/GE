@@ -1,0 +1,28 @@
+#card_avatar  {
+   width: 240% !important;
+   height: 85% !important;
+   padding-right : 10% !important;
+}
+
+#card_ohter_info {
+   margin-left: 360px !important;
+   width: 180% !important;
+   height: 85% !important;
+}
+
+#card_notes {
+   width: 156% !important;
+   margin-left: -13px;
+   margin-top: -60px;
+}
+
+.card_profil {
+   margin-top: -7%;
+   margin-left: 50px;
+   width: 100%;
+   
+}
+
+.avatar {
+   max-height: 80% !important;
+}
