@@ -104,7 +104,6 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
 
@@ -164,19 +163,18 @@
                 <!-- End of Topbar -->
                 <!-- TABLE CONTAINT -->
                 <div class="container-lg">
+                    
                     <div class="table-responsive">
                         <div class="table-wrapper col-lg-12">
                             <div class="table-title">
-                                <div>
-                                    <div class="col-sm-12">
-                                        <h2>LISTE DES ENSEIGNANTS INSCRITS</h2>
-                                    </div>
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <h1 class="h3 mb-0 text-gray-800">LISTE DES ENSEIGNANTS INSCRITS</h1>
+                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('prof')">
+                                        <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
-                                <input type="button" onclick="export_data('prof')" value="Exporter en CSV"></input>
-                                <hr>
-                            </div>
+                            
                             <div class="col-lg-12">
                                 <table class="table table-bordered">
                                     <thead>
