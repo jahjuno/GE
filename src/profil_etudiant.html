@@ -18,7 +18,7 @@
     <!-- Custom styles for this template-->
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
     <script> window.jQuery =  window.$ = require('jquery'); </script>
-
+    <script type="text/javascript" src="/eel.js"></script>
 </head>
 
 <body id="page-top">
@@ -185,50 +185,65 @@
                 <!-- Content Row -->
                 <div class="row">
 
-                    <!-- PROFIL ETUDIANT -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2" id="card_avatar">
-                            <div class="card-body">
-                                <div style="max-width: 540px;">
-                                    <div class="row g-0">
-                                      <div class="col-md-4">
-                                        <img class="avatar" src="dist/img/avatar.jpg" alt="...">
-                                      </div>
-                                      <div class="col-md-8">
-                                        <div class="card-body card_profil">
-                                            <span class="font-weight-bold text-primary" id="nom">NOM : </span>
-                                            <span>RAFIDISON</span><br>
+                                    <!-- PROFIL ETUDIANT -->
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-primary shadow h-100 py-2" id="card_avatar">
+                                            <div class="card-body">
+                                                <div style="max-width: 540px;">
+                                                    <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img class="avatar" src="dist/img/avatar.jpg" alt="...">
+                                                    </div>
+                                                    <div class="col-md-8" id="info">
+                                                        <script>
+                                                            eel.new_data_profil()(print_student_profil)
+                                                            function print_student_profil(data_profil_student){
+                                                                for (i=0; i < data_profil_student.length; i++) {
+                                                                    let print_profil = `
+                                                                    
+                                                                        <div class="card-body card_profil">
+                                                                            <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
+                                                                            <span>${data_profil_student[i][0]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                                                                            <span>${data_profil_student[i][2]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                                                                            <span>${data_profil_student[i][3]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="email">DATE DE NAISSANCE:</span>
+                                                                            <span>${data_profil_student[i][4]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
+                                                                            <span>${data_profil_student[i][5]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="date_naiss">EMAIL: </span>
+                                                                            <span>${data_profil_student[i][6]}</span><br>
+        
+                                                                            <span class="font-weight-bold text-primary" id="cin">CIN: </span>
+                                                                            <span>${data_profil_student[i][7]}</span><br>
 
-                                            <span class="font-weight-bold text-primary" id="prenom">PRENOM:</span>
-                                            <span>Hasin'ny Aina Juno</span><br>
+                                                                            <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                                                                            <span>${data_profil_student[i][9]}</span><br>
 
-                                            <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE:</span>
-                                            <span>001F_2021ETUD</span><br>
-
-                                            <span class="font-weight-bold text-primary" id="tel">TEL:</span>
-                                            <span>+261 34 03 632 37</span><br>
-
-                                            <span class="font-weight-bold text-primary" id="email">EMAIL:</span>
-                                            <span>aina.juno.rafidison@esti.mg</span><br>
-
-                                            <span class="font-weight-bold text-primary" id="niveau">NIVEAU: </span>
-                                            <span>L3</span><br>
-
-                                            <span class="font-weight-bold text-primary" id="date_naiss">DATE DE NAISSANCE: </span>
-                                            <span>18 juin 2000</span><br>
-
-                                            <span class="font-weight-bold text-primary" id="cin">CIN: </span>
-                                            <span>210 011 039 857</span><br>
-
-                                            <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
-                                            <span>Ambanidia Lot VI 17 JZ (Ambohimiandra)</span>
+                                                                            <span class="font-weight-bold text-primary">NIVEAU: </span>
+                                                                            <span>${data_profil_student[i][10]}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    `
+                                                                    $('#info').append(print_profil);
+                                                                    };                                                        
+                                                            };
+                                                       </script>
+                                                    </div>
+                                
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
+                   
 
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2" id="card_ohter_info">
@@ -291,7 +306,7 @@
     <!-- Custom scripts for all pages-->
     <script src="dist/js/sb-admin-2.min.js"></script>
     <script src="js/app.js"></script>
-    <script type="text/javascript" src="/eel.js"></script>
+    
 
     
 </body>

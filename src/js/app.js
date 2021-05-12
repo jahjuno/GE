@@ -101,9 +101,11 @@ function export_data(val_bdd) {
 
 //AFFICHAGE PROFIL
 function print_profil_student(data){
-  table_bdd = eel.getdata_profil('student_profil', data);  
+  table_bdd = eel.getdata_profil('student_profil', data);
+  document.location.href="../profil_etudiant.html";  
 }
 
 function print_profil_prof(data) {
   table_bdd = eel.getdata_profil('ensg_profil', data);
+  document.location.href="../profil_etudiant.html";
 }

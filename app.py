@@ -6,6 +6,7 @@ from psutil import net_connections
 eel.init('src')
 
 data = []
+storage_get_profil_data=None
 
 #INSERTION DES DONNEES
 @eel.expose
@@ -90,7 +91,10 @@ def getData(val_bdd):
 
 	except sqlite3.Error as error: 
 		print(error)
-	
+
+@eel.expose
+def new_data_profil():
+	return storage_get_profil_data
 #AFFICHER PROFIL
 @eel.expose
 def getdata_profil(type_profil, profil_data):
@@ -100,7 +104,8 @@ def getdata_profil(type_profil, profil_data):
 		search_profil = cur.execute('''
 		SELECT * FROM etudiant WHERE matricule_etud=?
 		''', (profil_data,))
-		print (cur.fetchall())
+		global storage_get_profil_data
+		storage_get_profil_data=cur.fetchall()
 		
 	else:
 		search_profil = cur.execute('''
