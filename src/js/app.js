@@ -48,7 +48,7 @@ function redirection_page_ensg() {
 //redirection to the page_ensg
 function verify_mdp_ensg(data) {
   if ( data == true){
-    document.location.href='../profil_etudiant.html';
+    document.location.href='../espace_ensg.html';
   } else {
     alert("Mot de passe incorrect !!");
   }
