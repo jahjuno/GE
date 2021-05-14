@@ -83,7 +83,7 @@ function recup_info_prof(){
   let email = $("#email_prof").val();
   let sexe = $("input[name=genre_prof]:checked").val();
   let annee_univ = $("#annee_prof :selected").text();
-  let module = $("#module :selected").text();
+  let module = $("#module").val();
   let tel = $("#tel_prof").val();
   let cin = $("#cin_prof").val();
   let mdp = $("#mdp_prof").val();
