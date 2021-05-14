@@ -16,6 +16,10 @@
    margin-top: 50px;
 }
 
+#card_notes_espace_ensg{
+   width: 430% !important;
+}
+
 .card_profil {
    margin-top: -7%;
    margin-left: 50px;
