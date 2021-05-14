@@ -20,6 +20,10 @@
    width: 430% !important;
 }
 
+#button_add_note{
+   margin-left: 12px !important;
+}
+
 .card_profil {
    margin-top: -7%;
    margin-left: 50px;
