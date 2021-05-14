@@ -22,7 +22,6 @@ def setData(d, e):
 			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 			'''		
 			cur.execute(donnee_etudiant, d)
-			print("donnee_etudiant inseré")
 		else :
 			donnee_enseignant = ''' 
 			INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
@@ -140,6 +139,27 @@ def get_niveau(data) :
 	SELECT DISTINCT niveau FROM etudiant
 	''')
 	return cur.fetchall()
+
+#AFFICHER TOUS LES PRENOMS des etudiants dans la selection espace_prof
+@eel.expose
+def get_lastname(data):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_lastname_student = cur.execute('''
+	SELECT prenom FROM etudiant
+	''')
+	return cur.fetchall()
+
+#AFFICHER TOUS LES MODULES dans la selection espace_prof
+@eel.expose
+def get_module(module_got):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_module_ensg = cur.execute ('''
+	SELECT module FROM enseignant
+	''')
+	return cur.fetchall()
+
 	
 
 
