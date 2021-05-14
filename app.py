@@ -92,10 +92,11 @@ def getData(val_bdd):
 	except sqlite3.Error as error: 
 		print(error)
 
+#AFFICHER PROFIL
 @eel.expose
 def new_data_profil():
 	return storage_get_profil_data
-#AFFICHER PROFIL
+
 @eel.expose
 def getdata_profil(type_profil, profil_data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
@@ -129,8 +130,19 @@ def delete_person(type_person, data_perso) :
 		DELETE FROM enseignant WHERE matricule_ensg=?
 		''', (data_perso,))
 		connect_to_bdd.commit()
-		
+
+#AFFICHER TOUS LES NIVEAUX DANS la selection espace_prof
+@eel.expose
+def get_niveau(data) :
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_niveau_study = cur.execute('''
+	SELECT DISTINCT niveau FROM etudiant
+	''')
+	return cur.fetchall()
 	
+
+
 
 
 
