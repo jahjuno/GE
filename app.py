@@ -232,6 +232,7 @@ def createBDD():
 			id_module		INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
 			nom		TEXT		NOT NULL,
 			reference	TEXT	NOT NULL,
+			semestre TEXT NOT NULL,
 			matricule_ensg	TEXT	NOT NULL,
 			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
 		)
