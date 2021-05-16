@@ -176,18 +176,16 @@ def createBDD():
 	try : 
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
-		t_admin = ''' 
+		t_admin = cur.execute(''' 
 		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
 			matricule_admin	TEXT	NOT NULL,
 			email	TEXT	NOT NULL,
 			mdp	TEXT	NOT NULL,
 			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_admin)
-		);
-		'''
-		print("Création tables en cours ...")
-		cur.execute(t_admin)
+		)
+		''')
 
-		t_ensg = '''
+		t_ensg = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
 			matricule_ensg	TEXT	NOT NULL,
 			annee_univ		TEXT	NOT NULL,
@@ -203,11 +201,9 @@ def createBDD():
 			CONSTRAINT ensg_pk PRIMARY KEY (matricule_ensg)
 			
 			);
-		'''
-		cur.execute(t_ensg)
-		
+		''')
 
-		t_etudiant = '''
+		t_etudiant = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ETUDIANT(
 			matricule_etud	TEXT	NOT NULL,
 			annee_univ		TEXT	NOT	NULL,
@@ -223,11 +219,9 @@ def createBDD():
 			CONSTRAINT etudiant_pk	PRIMARY KEY (matricule_etud)
 			
 		)
-		'''
-		cur.execute(t_etudiant)
-		
+		''')
 
-		t_module = '''
+		t_module = cur.execute('''
 		CREATE TABLE IF NOT EXISTS MODULE (
 			id_module		INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
 			nom		TEXT		NOT NULL,
@@ -236,11 +230,9 @@ def createBDD():
 			matricule_ensg	TEXT	NOT NULL,
 			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
 		)
-		'''
-		cur.execute(t_module)
+		''')
 
-
-		t_note = '''
+		t_note = cur.execute('''
 		CREATE TABLE IF NOT EXISTS NOTE (
 			id_note		TEXT		NOT NULL,
 			note_module		REAL		NOT NULL,
@@ -250,11 +242,9 @@ def createBDD():
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
 		)
-		'''
-		cur.execute(t_note)
-	
+		''')
 
-		t_etudier = '''
+		t_etudier = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ETUDIER (
 			matricule_etud	TEXT	NOT NULL,
 			id_module		INTEGER	NOT NULL,
@@ -263,9 +253,8 @@ def createBDD():
 			CONSTRAINT	etudier_module_fk	FOREIGN KEY (id_module)	REFERENCES MODULE(id_module)
 		)
 		
-		'''
-		cur.execute(t_etudier)
-		print('terminée !!')
+		''')
+		print('Creation table finished')
 
 		connect_to_bdd.commit()
 		cur.close()
