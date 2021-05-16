@@ -254,8 +254,6 @@ def createBDD():
 		)
 		
 		''')
-		print('Creation table finished')
-
 		connect_to_bdd.commit()
 		cur.close()
 		connect_to_bdd.close()
