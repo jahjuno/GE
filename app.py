@@ -178,7 +178,7 @@ def createBDD():
 		cur = connect_to_bdd.cursor()
 		t_admin = cur.execute(''' 
 		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
-			matricule_admin	TEXT	NOT NULL,
+			matricule_admin	TEXT	NOT NULL UNIQUE,
 			email	TEXT	NOT NULL,
 			mdp	TEXT	NOT NULL,
 			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_admin)
@@ -235,12 +235,12 @@ def createBDD():
 		t_note = cur.execute('''
 		CREATE TABLE IF NOT EXISTS NOTE (
 			id_note				TEXT		NOT NULL,
+			matricule_etud		TEXT		NOT NULL,
+			id_module			INTEGER	NOT NULL,
 			note_sur20			REAL		NOT NULL,
 			note_sur10			REAL		NOT NULL,
 			bonus					REAL		NOT NULL,
 			malus					REAL		NOT NULL,
-			matricule_etud		TEXT		NOT NULL,
-			id_module			INTEGER	NOT NULL,
 			CONSTRAINT	note_pk	PRIMARY KEY (id_note),
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
@@ -265,6 +265,16 @@ def createBDD():
 		
 createBDD()
 
+#INSERTION COMPTE ADMIN
+def insert_admin_account():
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	add_admin_account = cur.execute('''
+	INSERT OR IGNORE INTO personnel_administratif (matricule_admin, email, mdp)
+	VALUES ('001_ADMIN', 'admin', 'admin')
+	''')
+	connect_to_bdd.commit()
+insert_admin_account()
 
 
 #CONNECTION EN TANT ADMIN

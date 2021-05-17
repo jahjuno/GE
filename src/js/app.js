@@ -92,6 +92,13 @@ function recup_info_prof(){
   alert('Inscription terminée');
 };
 
+/* RECUPERATION AJOUT NOTES */
+/* function recup_insert_note(){
+  let lastname_select_etud = $("#lastname_etud :selected").text();
+  let niveau_etud = $("#niveau_etud :selected").text();
+  let mdoule_select = $("#module_select : selected").text();
+} */
+
 /* Exporter les données en CSV */
 function export_data(val_bdd) {
   eel.export_data_csv(val_bdd);
