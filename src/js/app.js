@@ -97,6 +97,14 @@ function recup_info_prof(){
   let lastname_select_etud = $("#lastname_etud :selected").text();
   let niveau_etud = $("#niveau_etud :selected").text();
   let mdoule_select = $("#module_select : selected").text();
+  let semestre_input = $("#semestre").val();
+  let note_20 = $("#note_20").val();
+  let note_10 = $("#note_10").val();
+  let bonus = $("#bonus").val();
+  let malus = $("#malus").val();
+  let data_recup =[note_20, note_10, bonus, malus];
+  send_data = eel.insert_notes(data_recup);
+  alert ('Ajout note terminé');
 } */
 
 /* Exporter les données en CSV */

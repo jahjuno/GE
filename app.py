@@ -35,6 +35,20 @@ def setData(d, e):
 	except sqlite3.Error as error: 
 		print(error)
 
+#INSERTION NOTES
+""" @eel.expose
+def insert_notes(note_recup):
+	try:
+		connect_to_bdd = sqlite3.connect('donnee.db')
+		cur = connect_to_bdd.cursor()
+		note_insert = cur.execute('''
+		INSERT INTO NOTE(note_sur20, note_sur10, bonus, malus)
+		VALUES (?, ?, ?, ?)
+		''')
+		connect_to_bdd.commit()
+	except sqlite3.Error as erro:
+		print(error) """
+
 
 
 #EXPORTATION DONNEES EN CSV 
