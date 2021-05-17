@@ -205,17 +205,17 @@ def createBDD():
 
 		t_etudiant = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ETUDIANT(
-			matricule_etud	TEXT	NOT NULL,
-			annee_univ		TEXT	NOT	NULL,
-			nom				TEXT	NOT NULL,
-			prenom			TEXT	NOT NULL,
-			date_naissance	TEXT	NOT NULL,
-			tel				TEXT	NOT NULL,
-			email			TEXT	NOT NULL,
-			cin				INTEGER	NOT NULL,
-			sexe			TEXT	NOT NULL,
-			adresse			TEXT	NOT NULL,
-			niveau			TEXT	NOT	NULL,
+			matricule_etud			TEXT	NOT NULL,
+			annee_univ				TEXT	NOT NULL,
+			nom						TEXT	NOT NULL,
+			prenom					TEXT	NOT NULL,
+			date_naissance			TEXT	NOT NULL,
+			tel						TEXT	NOT NULL,
+			email						TEXT	NOT NULL,
+			cin						INTEGER	NOT NULL,
+			sexe						TEXT	NOT NULL,
+			adresse					TEXT	NOT NULL,
+			niveau					TEXT	NOT NULL,
 			CONSTRAINT etudiant_pk	PRIMARY KEY (matricule_etud)
 			
 		)
@@ -234,10 +234,13 @@ def createBDD():
 
 		t_note = cur.execute('''
 		CREATE TABLE IF NOT EXISTS NOTE (
-			id_note		TEXT		NOT NULL,
-			note_module		REAL		NOT NULL,
-			matricule_etud	TEXT	NOT NULL,
-			id_module		INTEGER	NOT NULL,
+			id_note				TEXT		NOT NULL,
+			note_sur20			REAL		NOT NULL,
+			note_sur10			REAL		NOT NULL,
+			bonus					REAL		NOT NULL,
+			malus					REAL		NOT NULL,
+			matricule_etud		TEXT		NOT NULL,
+			id_module			INTEGER	NOT NULL,
 			CONSTRAINT	note_pk	PRIMARY KEY (id_note),
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)

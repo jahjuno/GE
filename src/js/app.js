@@ -32,10 +32,10 @@ function redirection_page() {
 //REDIRECTION DE LA PAGE__ verification mdp
 function verify_mdp(data){
   if (data == true){
-    document.location.href='../acceuil.html';
+    document.location.href='../espace_admin.html';
   }
   else{
-    alert("Mot de passe incorrect!");
+    alert("Mot de passe incorrect et/ou \n Adresse email incorrecte!!");
   }
 }
 
@@ -50,7 +50,7 @@ function verify_mdp_ensg(data) {
   if ( data == true){
     document.location.href='../espace_ensg.html';
   } else {
-    alert("Mot de passe incorrect !!");
+    alert("Mot de passe incorrect et/ou \n Adresse email incorrecte!!");
   }
 }
 
