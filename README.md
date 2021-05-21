@@ -15,5 +15,5 @@ GE est un logiciel conçu pour gérer les grandes écoles ou des universités
 - voir les notes
 
 ## Pour les profs :
-- ajout note par les profs et calcul automatique de la moyenne
+- ajout note et calcul automatique de la moyenne
 - modification des notes
