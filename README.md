@@ -7,13 +7,13 @@
 
 GE est un logiciel conçu pour gérer les grandes écoles ou des universités
 
-##Pour l'admin :
+## Pour l'admin :
 - inscrir des nouveaux étudiants, profs
 - voir les listes des inscrits (prof, étudiants)
 - supprimer des étudiants et/ou profs de la liste
 - voir les profils de chaque étudiant et prof 
 - voir les notes
 
-##Pour les profs :
+## Pour les profs :
 - ajout note par les profs et calcul automatique de la moyenne
 - modification des notes
