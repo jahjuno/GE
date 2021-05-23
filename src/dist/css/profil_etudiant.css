@@ -34,3 +34,8 @@
 .avatar {
    max-height: 80% !important;
 }
+
+.add_btn {
+   margin-top: 5px !important;
+   border-radius: 12px !important;
+}

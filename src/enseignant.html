@@ -176,12 +176,95 @@
                             <!-- Card Header - Dropdown -->
                             <div
                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">LES NOTES</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">AJOUT NOTE</h6>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
+                                  <div class="row justify-content-between">
+                                        <div class="form-group col-3">
+                                            <select class="form-control" id="niveau">
+                                                <option class="hidden"  selected disabled>Niveau</option>
+                                                <option>L1</option>
+                                                <option>L2</option>
+                                                <option>L3</option>
+                                                <option>M1</option>
+                                                <option>M2</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-3">
+                                            <select class="form-control" id="prenom">
+                                                <option class="hidden"  selected disabled>Prénoms Etudiants</option>
+                                                <option>Teste1</option>
+                                                <option>Teste2</option>
+                                                <option>Teste3</option>
+                                                <option>Teste4</option>
+                                                <option>Teste5</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-3">
+                                            <select class="form-control" id="niveau">
+                                                <option class="hidden"  selected disabled>MODULE</option>
+                                                <option>Biologie Animale</option>
+                                                <option>Biologie végétale</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-3">
+                                            <select class="form-control" id="prenom">
+                                                <option class="hidden"  selected disabled>SEMESTRE</option>
+                                                <option>S1</option>
+                                                <option>S2</option>
+                                                <option>S3</option>
+                                                <option>S4</option>
+                                                <option>S5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row justify-content-between">
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Note" id="note" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                                <select class="form-control" id="niveau">
+                                                    <option class="hidden"  selected disabled>Sur (/)</option>
+                                                    <option>/20</option>
+                                                    <option>/10</option>
+                                                </select>                         
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <select class="form-control" id="niveau">
+                                                <option class="hidden"  selected disabled>Types</option>
+                                                <option>Examen</option>
+                                                <option>Contrôle Continue</option>
+                                            </select>                         
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Bonus" id="bonus" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Malus" id="malus" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn" onclick="export_data('prof')">
+                                                <i class="fas fa-plus-square fa-sm text-white-50"></i> Ajouter autre note
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
