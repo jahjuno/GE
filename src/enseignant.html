@@ -170,93 +170,24 @@
                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">AJOUT NOTE</h1>
                 </div>
-
-                <!-- Content Row -->
                 <div class="row">
-
-                                    <!-- PROFIL ETUDIANT -->
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <div class="card border-left-primary shadow h-100 py-2" id="card_avatar">
-                                            <div class="card-body">
-                                                <div style="max-width: 540px;">
-                                                    <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img class="avatar" src="dist/img/avatar.jpg" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8" id="info">
-                                                        <script>
-                                                            eel.new_data_profil()(print_student_profil)
-                                                            function print_student_profil(data_profil_student){
-                                                                for (i=0; i < data_profil_student.length; i++) {
-                                                                    let print_profil = `
-                                                                    
-                                                                        <div class="card-body card_profil">
-                                                                            <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                                                                            <span>${data_profil_student[i][0]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
-                                                                            <span>${data_profil_student[i][2]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
-                                                                            <span>${data_profil_student[i][3]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="email">DATE DE NAISSANCE:</span>
-                                                                            <span>${data_profil_student[i][4]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
-                                                                            <span>${data_profil_student[i][5]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="date_naiss">EMAIL: </span>
-                                                                            <span>${data_profil_student[i][6]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="cin">CIN: </span>
-                                                                            <span>${data_profil_student[i][7]}</span><br>
-
-                                                                            <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
-                                                                            <span>${data_profil_student[i][9]}</span><br>
-
-                                                                            <span class="font-weight-bold text-primary">NIVEAU: </span>
-                                                                            <span>${data_profil_student[i][10]}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    `
-                                                                    $('#info').append(print_profil);
-                                                                    };                                                        
-                                                            };
-                                                       </script>
-                                                    </div>
-                                
-                                                   
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                   
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2" id="card_ohter_info">
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4" id="card_notes_espace_ensg">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">LES NOTES</h6>
+                            </div>
+                            <!-- Card Body -->
                             <div class="card-body">
-                                <h3>Autres INFOS</h3>
+                                <div class="chart-area">
+                                    <canvas id="myAreaChart"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4" id="card_notes">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">LES NOTES</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  
 
             </div>
             <!-- Ending Body -->
