@@ -32,7 +32,7 @@ function redirection_page() {
 //REDIRECTION DE LA PAGE__ verification mdp
 function verify_mdp(data){
   if (data == true){
-    document.location.href='../espace_admin.html';
+    document.location.href='../admin.html';
   }
   else{
     alert("Mot de passe incorrect et/ou \n Adresse email incorrecte!!");
@@ -48,7 +48,7 @@ function redirection_page_ensg() {
 //redirection to the page_ensg
 function verify_mdp_ensg(data) {
   if ( data == true){
-    document.location.href='../espace_ensg.html';
+    document.location.href='../enseignant.html';
   } else {
     alert("Mot de passe incorrect et/ou \n Adresse email incorrecte!!");
   }

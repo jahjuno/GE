@@ -17,6 +17,7 @@
 
     <!-- Custom styles for this template-->
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
+
     <script> window.jQuery =  window.$ = require('jquery'); </script>
     <script type="text/javascript" src="/eel.js"></script>
 </head>
@@ -51,36 +52,18 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Gérer les profs</span>
+                    <span>Vous pouvez voir :</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion des profs :</h6>
-                        <a class="collapse-item" href="acceuil.html">Inscription</a>
-                        <a class="collapse-item" href="liste_prof.html">Liste Enseignant</a>
+                        <h6 class="collapse-header">Vous pouvez voir:</h6>
+                        <a class="collapse-item" href="liste_etud.html">Liste des étudiants</a>
+                        <a class="collapse-item" href="liste_prof.html">Liste des Enseignants</a>
                         <a class="collapse-item" href="#">Emploi du temps</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Gérer les étudiants</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion des étudiants :</h6>
-                        <a class="collapse-item" href="acceuil.html">Inscription</a>
-                        <a class="collapse-item" href="liste_etud.html">Liste Etudiant</a>
-                        <a class="collapse-item" href="#">Présence</a>
-                        <a class="collapse-item" href="#">Emploi du temps</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -166,10 +149,7 @@
 
             <!-- BODY -->
             <div class="container-fluid">
-                 <!-- Page Heading -->
-                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">AJOUT NOTE</h1>
-                </div>
+               
                 <div class="row">
                     <div class="col-xl-8 col-lg-7">
                         <div class="card shadow mb-4" id="card_notes_espace_ensg">
@@ -198,9 +178,6 @@
                                                 <option class="hidden"  selected disabled>Prénoms Etudiants</option>
                                                 <option>Teste1</option>
                                                 <option>Teste2</option>
-                                                <option>Teste3</option>
-                                                <option>Teste4</option>
-                                                <option>Teste5</option>
                                             </select>
                                         </div>
 
@@ -217,9 +194,6 @@
                                                 <option class="hidden"  selected disabled>SEMESTRE</option>
                                                 <option>S1</option>
                                                 <option>S2</option>
-                                                <option>S3</option>
-                                                <option>S4</option>
-                                                <option>S5</option>
                                             </select>
                                         </div>
                                     </div>
@@ -260,7 +234,7 @@
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn" onclick="export_data('prof')">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
                                                 <i class="fas fa-plus-square fa-sm text-white-50"></i> Ajouter autre note
                                             </button>
                                         </div>
@@ -303,8 +277,6 @@
     
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
 
     <!-- Custom scripts for all pages-->
     <script src="dist/js/sb-admin-2.min.js"></script>

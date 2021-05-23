@@ -164,7 +164,7 @@ def get_lastname(data):
 	''')
 	return cur.fetchall()
 
-#AFFICHER TOUS LES MODULES dans la selection espace_prof
+#AFFICHER TOUS LES MODULES dans la selection enseignant
 @eel.expose
 def get_module(module_got):
 	connect_to_bdd = sqlite3.connect('donnee.db')
