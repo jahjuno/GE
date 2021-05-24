@@ -131,7 +131,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle"
-                                    src="dist/img/undraw_profile.svg">
+                                    src="dist/img/undraw_profile.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -177,52 +177,10 @@
                                             <div class="card-body">
                                                 <div style="max-width: 540px;">
                                                     <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img class="avatar" src="dist/img/avatar.jpg" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8" id="info">
-                                                        <script>
-                                                            eel.new_data_profil()(print_profil_prof)
-                                                            function print_profil_prof(data_profil_prof){
-                                                                for (i=0; i < data_profil_prof.length; i++) {
-                                                                    let print_profil = `
-                                                                    
-                                                                        <div class="card-body card_profil">
-                                                                            <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                                                                            <span>${data_profil_prof[i][0]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
-                                                                            <span>${data_profil_prof[i][2]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
-                                                                            <span>${data_profil_prof[i][3]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="email">TEL:</span>
-                                                                            <span>${data_profil_prof[i][4]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
-                                                                            <span>${data_profil_prof[i][5]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
-                                                                            <span>${data_profil_prof[i][6]}</span><br>
-        
-                                                                            <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUEL: </span>
-                                                                            <span>${data_profil_prof[i][8]}</span><br>
-
-                                                                            <span class="font-weight-bold text-primary">MODULE: </span>
-                                                                            <span>${data_profil_prof[i][9]}</span><br>
-
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                    `
-                                                                    $('#info').append(print_profil);
-                                                                    };                                                        
-                                                            };
-                                                       </script>
-                                                    </div>
-                                
-                                                   
+                                                        <div class="col-md-4">
+                                                            <img class="avatar" src="dist/img/avatar.jpg" alt="...">
+                                                        </div>
+                                                        <div class="col-md-8" id="info"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,7 +223,46 @@
 
 
 
+<!-- AFFICHAGE PROFILE PROF -->
+    <script>
+        eel.new_data_profil()(print_profil_prof)
+        function print_profil_prof(data_profil_prof){
+            for (i=0; i < data_profil_prof.length; i++) {
+                let print_profil = `
+                
+                    <div class="card-body card_profil">
+                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
+                        <span>${data_profil_prof[i][0]}</span><br>
 
+                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                        <span>${data_profil_prof[i][2]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                        <span>${data_profil_prof[i][3]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="email">TEL:</span>
+                        <span>${data_profil_prof[i][4]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
+                        <span>${data_profil_prof[i][5]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                        <span>${data_profil_prof[i][6]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUEL: </span>
+                        <span>${data_profil_prof[i][8]}</span><br>
+
+                        <span class="font-weight-bold text-primary">MODULE: </span>
+                        <span>${data_profil_prof[i][9]}</span><br>
+
+                        
+                    </div>
+                </div>
+                `
+                $('#info').append(print_profil);
+                };                                                        
+        };
+    </script>
 
     
     <!-- Bootstrap core JavaScript-->
