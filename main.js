@@ -26,12 +26,18 @@ const menu = Menu.buildFromTemplate(
           click : () =>{
             let apropos = dialog.showMessageBox(win, {
               title : "A PROPOS DU LOGICIEL",
-              message : "\nGE est un logiciel de Gestion d'Etablissement.\n GE V1.0.0",
+              message : "\nGE est un logiciel de Gestion d'Etablissement.\n GE V2.0.0",
             });
           }
-      },
+        },
       {
         label : "Développeurs",
+        click : () => {
+          let devprs = dialog.showMessageBox(win,  {
+            title : "A PROPOS DU DEVELOPPEUR",
+            message : "En cours ...",
+          });
+        }
       }
       ]
      
