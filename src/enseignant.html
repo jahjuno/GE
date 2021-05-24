@@ -175,10 +175,8 @@
                                         </div>
 
                                         <div class="form-group col-3">
-                                            <select class="form-control" id="niveau">
+                                            <select class="form-control" id="module">
                                                 <option class="hidden"  selected disabled>MODULE</option>
-                                                <option>Biologie Animale</option>
-                                                <option>Biologie végétale</option>
                                             </select>
                                         </div>
 
@@ -274,6 +272,7 @@
             $('#niveau').append(print_select); 
         };                                  
     </script>
+
 <!-- affichage PRENOM dans select -->
     <script>
         eel.get_lastname('recup_prenom')(print_select_lastnanme);
@@ -281,6 +280,16 @@
             let print_lastname = '';
             for (i=0; i<lastname.length; i++) print_lastname += `<option>${lastname[i]}</option>`
             $('#prenom').append(print_lastname);
+        };
+    </script>
+
+<!-- affichage MODULE dans select -->
+    <script>
+        eel.get_module('recup_module')(print_select_module);
+        function print_select_module(module) {
+            let print_module = '';
+            for (i=0; i<module.length; i++) print_module += `<option>${module[i]}</option>`
+            $('#module').append(print_module);
         };
     </script>
     
