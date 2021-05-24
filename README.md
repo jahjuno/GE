@@ -21,4 +21,3 @@ GE est un logiciel conçu pour gérer les grandes écoles ou des universités
 - modification des notes
 
 <img src="https://github.com/jahjuno/GE/tree/main/src/dist/img/ensg.png">
-
