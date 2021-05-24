@@ -182,35 +182,7 @@
                                             <th>Modifier</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="bdd_print">
-                                        <script>
-                                            eel.getData('t')(printData);
-                                            function printData(data_recupered) {
-                                                for (let i=0; i<data_recupered.length; i++){
-                                                    let line = `
-                                                        <tr>
-                                                        <td id="t_matricule">${data_recupered[i][0]}</td>
-                                                        <td id="annee_univ">${data_recupered[i][1]}</td>
-                                                        <td id="t_nom">${data_recupered[i][2]}</td>
-                                                        <td id="t_prenom">${data_recupered[i][3]}</td>
-                                                        <td id="t_tel">${data_recupered[i][4]}</td>
-                                                        <td id="t_mail">${data_recupered[i][5]}</td>
-                                                        <td id="t_cin">${data_recupered[i][6]}</td>
-                                                        <td id="t_sexe">${data_recupered[i][7]}</td>
-                                                        <td id="t_addr">${data_recupered[i][8]}</td>
-                                                        <td id="t_module">${data_recupered[i][9]}</td>
-                                                        <td>
-                                                            <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                                                            <a class="edit" title="Voir Profil" type="button" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-                                                            <a class="edit" title="Supprimer" type="button" onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                        `
-                                                    $('#bdd_print').append(line);
-                                                };
-                                            };
-                                        </script>
-                                    </tbody>
+                                    <tbody id="bdd_print"></tbody>
                                 </table>
                             </div>
                             
@@ -258,6 +230,35 @@
             </div>
         </div>
     </div>
+
+    <!-- AFFICHAGE LISTE PROF -->
+    <script>
+        eel.getData('t')(printData);
+        function printData(data_recupered) {
+            for (let i=0; i<data_recupered.length; i++){
+                let line = `
+                    <tr>
+                    <td id="t_matricule">${data_recupered[i][0]}</td>
+                    <td id="annee_univ">${data_recupered[i][1]}</td>
+                    <td id="t_nom">${data_recupered[i][2]}</td>
+                    <td id="t_prenom">${data_recupered[i][3]}</td>
+                    <td id="t_tel">${data_recupered[i][4]}</td>
+                    <td id="t_mail">${data_recupered[i][5]}</td>
+                    <td id="t_cin">${data_recupered[i][6]}</td>
+                    <td id="t_sexe">${data_recupered[i][7]}</td>
+                    <td id="t_addr">${data_recupered[i][8]}</td>
+                    <td id="t_module">${data_recupered[i][9]}</td>
+                    <td>
+                        <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                        <a class="edit" title="Voir Profil" type="button" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                        <a class="edit" title="Supprimer" type="button" onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                    </td>
+                </tr>
+                    `
+                $('#bdd_print').append(line);
+            };
+        };
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
