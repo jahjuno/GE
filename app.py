@@ -150,7 +150,7 @@ def get_niveau(data) :
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_niveau_study = cur.execute('''
-	SELECT DISTINCT niveau FROM etudiant
+	SELECT DISTINCT niveau FROM etudiant ORDER BY niveau
 	''')
 	return cur.fetchall()
 

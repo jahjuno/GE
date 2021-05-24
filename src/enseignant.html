@@ -165,19 +165,12 @@
                                         <div class="form-group col-3">
                                             <select class="form-control" id="niveau">
                                                 <option class="hidden"  selected disabled>Niveau</option>
-                                                <option>L1</option>
-                                                <option>L2</option>
-                                                <option>L3</option>
-                                                <option>M1</option>
-                                                <option>M2</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group col-3">
                                             <select class="form-control" id="prenom">
                                                 <option class="hidden"  selected disabled>Prénoms Etudiants</option>
-                                                <option>Teste1</option>
-                                                <option>Teste2</option>
                                             </select>
                                         </div>
 
@@ -272,8 +265,24 @@
 
 
 
-
-
+<!--  affichage NIVEAU dans select -->
+    <script>
+        eel.get_niveau('recup_niveau')(print_select_niveau);
+        function print_select_niveau(niveau) {
+            let print_select =''; 
+            for (i=0; i<niveau.length; i++) print_select +=`<option>${niveau[i]}</option>`
+            $('#niveau').append(print_select); 
+        };                                  
+    </script>
+<!-- affichage PRENOM dans select -->
+    <script>
+        eel.get_lastname('recup_prenom')(print_select_lastnanme);
+        function print_select_lastnanme(lastname) {
+            let print_lastname = '';
+            for (i=0; i<lastname.length; i++) print_lastname += `<option>${lastname[i]}</option>`
+            $('#prenom').append(print_lastname);
+        };
+    </script>
     
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
