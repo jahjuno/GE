@@ -192,16 +192,23 @@ def createBDD():
 		cur = connect_to_bdd.cursor()
 		t_admin = cur.execute(''' 
 		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
-			matricule_admin	TEXT	NOT NULL UNIQUE,
-			email	TEXT	NOT NULL,
-			mdp	TEXT	NOT NULL,
+			matricule_preso_admin	TEXT	NOT NULL UNIQUE,
+			nom			TEXT	NOT 	NULL,
+			prenom		TEXT 	NOT 	NULL,
+			fonction 	TEXT 	NOT 	NULL,
+			annee_univ	TEXT 	NOT 	NULL,
+			tel			TEXT	NOT 	NULL,
+			cin			INTEGER NOT NULL,
+			email			TEXT	NOT 	NULL,
+			mdp			TEXT	NOT 	NULL,
+			sexe			TEXT	NOT	NULL, 
 			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_admin)
 		)
 		''')
 
 		t_ensg = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
-			matricule_ensg	TEXT	NOT NULL,
+			matricule_ensg	TEXT	NOT NULL	,
 			annee_univ		TEXT	NOT NULL,
 			nom				TEXT	NOT NULL,
 			prenom			TEXT	NOT NULL,
