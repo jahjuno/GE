@@ -168,19 +168,22 @@
                             </div>
                     
                             
-                        <div class="container register" style="margin-left : 100px !important;">
+                        <div class="container register" style="margin-left : 70px !important;">
                             <div class="row">
-                                <div class="col-md-9 register-right" style="margin-left: 75px !important;">
+                                <div class="col-md-9 register-right" style="margin-left: 70px !important;">
                                     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">ETUDIANTS</a>
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#inscrire_etud" role="tab" aria-controls="home" aria-selected="true">ETUDIANTS</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">PROFESSEURS</a>
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#inscrire_prof" role="tab" aria-controls="profile" aria-selected="false">PROFESSEURS</a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#perso_admin" role="tab" aria-controls="profile" aria-selected="false">PERSONNEL ADMINISTRATIF</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
+                                        <div class="tab-pane fade show active" id="inscrire_etud" role="tabpanel" aria-labelledby="home-tab"><br>
                                             <h4 class="register-heading">Inscrire un nouvel étudiant</h4><br>
                                             <div class="row justify-content-between">
                                                 <div class="form-group col-4">
@@ -256,8 +259,9 @@
                                             </div>
                                             </div>
                                         </div>
-                                        <!-- INSCRIPTION DES NOUVEAUX PROFESSEURS -->
-                                        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab"><br>
+
+                        <!-- INSCRIPTION DES NOUVEAUX PROFESSEURS -->
+                                        <div class="tab-pane fade show" id="inscrire_prof" role="tabpanel" aria-labelledby="profile-tab"><br>
                                             <h4  class="register-heading">Inscrire un nouveau professeur</h4><br>
                                             <div class="row justify-content-between">
                                                 <div class="form-group col-4">
@@ -321,6 +325,79 @@
                                                         <hr>
                                                         <button class="btn btn-primary" id="insc_prof" onclick="recup_info_prof()">Inscrire</button>
                                                         <button id="list_etud" class="btn btn-primary" onclick="window.location.href='liste_prof.html';">Voir Liste</button>
+                                                    </a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                    <!-- INSCRIPTION DES NOUVEAUX PERSONNEL ADMINISTRATIF -->
+                                        <div class="tab-pane fade show" id="perso_admin" role="tabpanel" aria-labelledby="profile-tab"><br>
+                                            <h4  class="register-heading">Inscrire un nouveau personnel administratif</h4><br>
+                                            <div class="row justify-content-between">
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="n° matricule *" id="matricule_prof" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Fonction (exp : secrétaire)" id="asa" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <select class="form-control" id="annee_prof">
+                                                        <option class="hidden"  selected disabled>Année Universitaire</option>
+                                                        <option>2019-2020</option>
+                                                        <option>2020-2021</option>
+                                                        <option>2021-2022</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row register-form">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Nom *" id="nom_perso_admin" value="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Prénom *" id="prenom_perso_admin" value="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" placeholder="Email *" id="email_perso_admin" value="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" maxlength="13" minlength="13" class="form-control" id="tel_perso_admin" placeholder="Tél +261  *" value="" />
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" maxlength="13" minlength="13" class="form-control" id="cin_perso_admin" placeholder="CIN *" value="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Adresse actuel *" id="addr_perso_admin" value="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-control">
+                                                            <input type="file" value="image" placeholder="Photo de profil">
+                                                        </div>                                                    
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="maxl">
+                                                            <label class="radio inline"> 
+                                                                <input type="radio" name="genre_perso_admin" value="Homme" checked>
+                                                                <span> Home </span> 
+                                                            </label>
+                                                            <label class="radio inline"> 
+                                                                <input type="radio" name="genre_perso_admin" value="Femme">
+                                                                <span>Femme </span> 
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                        <hr>
+                                                        <button class="btn btn-primary" id="insc_perso_admin" onclick="recup_info_prof()">Inscrire</button>
+                                                        <button id="list_perso_admin" class="btn btn-primary" onclick="window.location.href='liste_prof.html';">Voir Liste</button>
                                                     </a>
                                                     
                                                 </div>
