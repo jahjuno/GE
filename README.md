@@ -13,6 +13,8 @@ GE est un logiciel conçu pour gérer les grandes écoles ou des universités
 - supprimer des étudiants et/ou profs de la liste
 - voir les profils de chaque étudiant et prof 
 - voir les notes
+- exportation des listes étudiante et prof en CSV
+- exportation du profil en PDF
 <img src="https://github.com/jahjuno/GE/tree/main/src/dist/img/admin_page.png">
 
 
