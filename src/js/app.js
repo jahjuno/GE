@@ -138,3 +138,15 @@ function delete_prof(data_recup){
   eel.delete_person('prof_list',data_recup);
   location.reload();
 }
+
+/* Ajouter autre note */
+$(".add_notes").hide();
+function add_new_note(){
+  let i=0;
+  $(".add_notes:hidden").each(function(){
+    if (i==0){
+      $(this).show();
+    }
+    i++;
+  });
+}

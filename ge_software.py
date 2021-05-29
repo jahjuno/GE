@@ -180,16 +180,6 @@ def get_module(module_got):
 	''')
 	return cur.fetchall()
 
-	
-
-
-
-
-
-
-
-
-
 
 #CREATE DE LA BASE DE DONNEE
 def createBDD():

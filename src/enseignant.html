@@ -192,7 +192,7 @@
                                     <div class="row justify-content-between">
                                         <div class="form-group col-2">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Note" id="note" value="" />
+                                                <input type="text" class="form-control" placeholder="Note 1" id="note" value="" />
                                             </div>
                                         </div>
 
@@ -226,10 +226,99 @@
 
                                         <div class="form-group col-2">
                                             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
-                                                <i class="fas fa-plus-square fa-sm text-white-50"></i> Ajouter autre note
+                                                <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                             </button>
                                         </div>
                                     </div>
+
+                                    <div class="row justify-content-between add_notes">
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Note 2" id="note" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                                <select class="form-control" id="niveau">
+                                                    <option class="hidden"  selected disabled>Sur (/)</option>
+                                                    <option>/20</option>
+                                                    <option>/10</option>
+                                                </select>                         
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <select class="form-control" id="niveau">
+                                                <option class="hidden"  selected disabled>Types</option>
+                                                <option>Examen</option>
+                                                <option>Contrôle Continue</option>
+                                            </select>                         
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Bonus" id="bonus" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Malus" id="malus" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
+                                                <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-between add_notes">
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Note 3" id="note" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                                <select class="form-control" id="niveau">
+                                                    <option class="hidden"  selected disabled>Sur (/)</option>
+                                                    <option>/20</option>
+                                                    <option>/10</option>
+                                                </select>                         
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <select class="form-control" id="niveau">
+                                                <option class="hidden"  selected disabled>Types</option>
+                                                <option>Examen</option>
+                                                <option>Contrôle Continue</option>
+                                            </select>                         
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Bonus" id="bonus" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Malus" id="malus" value="" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
+                                                <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-2">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn" onclick="add_new_note()">
+                                                <i class="fas fa-plus-square fa-sm text-white-50"></i> Ajouter autre note
+                                            </button>
                                 </div>
                             </div>
                         </div>
