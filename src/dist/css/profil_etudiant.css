@@ -35,7 +35,12 @@
    max-height: 80% !important;
 }
 
-.add_btn {
+.btn_note {
    margin-top: 3.5px !important;
    border-radius: 10px !important;
+}
+
+.add_btn{
+   margin-top: -20px !important;
+   margin-left: -10px !important;
 }

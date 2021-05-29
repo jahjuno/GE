@@ -225,11 +225,12 @@
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note">
                                                 <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                             </button>
                                         </div>
                                     </div>
+
 
                                     <div class="row justify-content-between add_notes">
                                         <div class="form-group col-2">
@@ -267,7 +268,7 @@
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note">
                                                 <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                             </button>
                                         </div>
@@ -309,17 +310,29 @@
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note">
                                                 <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                             </button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add_btn" onclick="add_new_note()">
+
+                                    <div class="row add_btn">
+                                        <div class="form-group col-2">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note" onclick="add_new_note()">
                                                 <i class="fas fa-plus-square fa-sm text-white-50"></i> Ajouter autre note
                                             </button>
+                                        </div>
+
+                                        <div class="form-group col-2">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note" onclick="remove_note()">
+                                                <i class="fas fa-plus-square fa-sm text-white-50"></i> Supprimer note
+                                            </button>
+                                        </div>
+                                    </div>
+                                
                                 </div>
+
+                                
                             </div>
                         </div>
                     </div>

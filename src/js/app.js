@@ -128,7 +128,7 @@ function print_profil_prof(data) {
   document.location.href="../profil_prof.html";
 }
 
-//SUPPRESSION LIGNE
+//SUPPRESSION LIGNE LISTE ETUDIANT ET PROF
 function delete_student(data_recup){
   eel.delete_person('student_list',data_recup);
   location.reload();
@@ -146,6 +146,17 @@ function add_new_note(){
   $(".add_notes:hidden").each(function(){
     if (i==0){
       $(this).show();
+    }
+    i++;
+  });
+}
+/* Suppression note */
+function remove_note() {
+  let i=1;
+  let line_note = $(".add_notes:visible");
+  line_note.each(function() {
+    if ((i) == line_note.length) {
+      $(this).hide();
     }
     i++;
   });
