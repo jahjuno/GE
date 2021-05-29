@@ -22,6 +22,12 @@ def setData(d, e):
 			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 			'''		
 			cur.execute(donnee_etudiant, d)
+		elif e == 'perso_admin':
+			donnee_perso_admin = '''
+			INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe)
+			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			'''
+			cur.execute(donnee_perso_admin, d)
 		else :
 			donnee_enseignant = ''' 
 			INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
@@ -192,7 +198,7 @@ def createBDD():
 		cur = connect_to_bdd.cursor()
 		t_admin = cur.execute(''' 
 		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
-			matricule_preso_admin	TEXT	NOT NULL UNIQUE,
+			matricule_perso_admin	TEXT	NOT NULL UNIQUE,
 			nom			TEXT	NOT 	NULL,
 			prenom		TEXT 	NOT 	NULL,
 			fonction 	TEXT 	NOT 	NULL,
@@ -200,9 +206,10 @@ def createBDD():
 			tel			TEXT	NOT 	NULL,
 			cin			INTEGER NOT NULL,
 			email			TEXT	NOT 	NULL,
-			mdp			TEXT	NOT 	NULL,
+			adresse		TEXT	NOT	NULL,
+			mdp			TEXT	,
 			sexe			TEXT	NOT	NULL, 
-			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_admin)
+			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_perso_admin)
 		)
 		''')
 
@@ -291,8 +298,8 @@ def insert_admin_account():
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	add_admin_account = cur.execute('''
-	INSERT OR IGNORE INTO personnel_administratif (matricule_admin, email, mdp)
-	VALUES ('001_ADMIN', 'admin', 'admin')
+	INSERT OR IGNORE INTO personnel_administratif (matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, mdp, sexe) 
+	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','admin', 'sexe')
 	''')
 	connect_to_bdd.commit()
 insert_admin_account()

@@ -92,6 +92,24 @@ function recup_info_prof(){
   alert('Inscription terminée');
 };
 
+/* RECUPERATION DES INFOS PERSONNEL ADMINISTRATIF */
+function recup_info_perso_admin() {
+  let matri_perso_admin = $("#matricule_perso").val();
+  let annee_univ = $("#annee_univ_admin :selected").text();
+  let nom = $("#nom_perso_admin").val();
+  let prenom = $("#prenom_perso_admin").val();
+  let mail = $("#email_perso_admin").val();
+  let adresse = $("#addr_perso_admin").val();
+  let tel = $("#tel_perso_admin").val();
+  let fonction = $("#asa").val();
+  let cin = $("#cin_perso_admin").val();
+  let sexe = $("input[name=genre_perso_admin]:checked").val();
+  let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe];
+  x = eel.setData(donnee, 'perso_admin');
+  alert('Inscription terminée');
+
+}
+
 /* Exporter les données en CSV */
 function export_data(val_bdd) {
   eel.export_data_csv(val_bdd);
