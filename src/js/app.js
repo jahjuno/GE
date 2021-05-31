@@ -268,8 +268,8 @@ function printData_perso_admin(data_recupered) {
             `
         $('#bdd_print').append(line);
   };
-  let titre_left =  `LISTE DES PERSONNELS ADMINISTRATIFS INSCRITS`
-  let grand_titre_left = `LISTE_PERSO_ADMIN`
+  let titre_left =  `LES PERSONNELS ADMINISTRATIFS INSCRITS`
+  let grand_titre_left = `PERSO_ADMIN`
   $('#h1_liste').append(titre_left);
   $('#list_title').append(grand_titre_left);
 
