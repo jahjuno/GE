@@ -128,7 +128,7 @@ function print_profil_prof(data) {
   document.location.href="../profil_prof.html";
 }
 
-//SUPPRESSION LIGNE LISTE ETUDIANT ET PROF
+//SUPPRESSION LIGNE LISTE ETUDIANT, PROF ET PERSONNEL_ADMINISTRATIF
 function delete_student(data_recup){
   eel.delete_person('student_list',data_recup);
   location.reload();
@@ -136,6 +136,11 @@ function delete_student(data_recup){
 
 function delete_prof(data_recup){
   eel.delete_person('prof_list',data_recup);
+  location.reload();
+}
+
+function delete_perso_admin(data_recup){
+  eel.delete_person('person_admin_list',data_recup);
   location.reload();
 }
 
@@ -166,12 +171,14 @@ function remove_note() {
 
 let arg = window.location.search.substr(1);
 if (arg == 'prof') eel.getData('prof')(printData_prof); //AFFICHAGE LISTE PROF
-else if (arg == 'student') eel.getData('student')(printData_etud); //AFFICHAGE LIST ETUD
+else if (arg == 'student') eel.getData('student')(printData_etud);//AFFICHAGE LISTE ETUD
+else if (arg == 'perso_admin') eel.getData('admin_personnel')(printData_perso_admin); //AFFICHER LISTE PERSONNEL ADMINISTRATIF
 
 //AFFICHAGE PROF
 function printData_prof(data_recupered) {
   $("#naissance").hide();
   $("#niveau").hide();
+  $("#fonction").hide();
   $("#module").show();
   for (let i=0; i<data_recupered.length; i++){
       let line = `
@@ -204,6 +211,7 @@ function printData_prof(data_recupered) {
 //AFFICHAGE LISTE ETUDIANT
 function printData_etud(data_recupered) {
     $('#module').hide();
+    $('#fonction').hide();
     for (let i=0; i<data_recupered.length; i++){
         let line = `
             <tr>
@@ -232,3 +240,33 @@ function printData_etud(data_recupered) {
     $('#h1_liste').append(titre_left);
     $('#list_title').append(grand_titre_left);
 };
+
+//AFFICHAGE LISTE PERSONNEL ADMINISTRATIF
+function printData_perso_admin(data_recupered) {
+  $("#naissance").hide();
+  $("#niveau").hide();
+  $("#module").hide();
+  for (i=0; i<data_recupered.length; i++) {
+    let line = `
+            <tr>
+            <td id="t_matricule">${data_recupered[i][0]}</td>
+            <td id="t_nom">${data_recupered[i][1]}</td>
+            <td id="t_prenom">${data_recupered[i][2]}</td>
+            <td id="t_fonction">${data_recupered[i][3]}</td>
+            <td id="annee_univ">${data_recupered[i][4]}</td>
+            <td id="t_tel">${data_recupered[i][5]}</td>
+            <td id="t_cin">${data_recupered[i][6]}</td>
+            <td id="t_email">${data_recupered[i][7]}</td>
+            <td id="t_addr">${data_recupered[i][8]}</td>
+            <td id="t_sexe">${data_recupered[i][9]}</td>
+            <td>
+                <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="edit" title="Supprimer" type="button" onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+            </td>
+        </tr>
+            `
+        $('#bdd_print').append(line);
+  };
+
+}

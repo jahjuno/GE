@@ -99,10 +99,15 @@ def getData(val_bdd):
 			SELECT matricule_etud, annee_univ, nom, prenom, date_naissance, tel, email, cin, sexe, adresse, niveau 
 			FROM ETUDIANT
 			'''
-		else:
+		elif val_bdd == 'prof':
 			get_data = '''
 			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
 			FROM ENSEIGNANT
+			'''
+		else :
+			get_data = '''
+			SELECT matricule_perso_admin, annee_univ, nom, prenom, fonction,  tel, email,  cin, sexe, adresse
+			FROM PERSONNEL_ADMINISTRATIF
 			'''
 
 		cur.execute(get_data)
@@ -134,7 +139,7 @@ def getdata_profil(type_profil, profil_data):
 		storage_get_profil_data=cur.fetchall()
 
 
-#SUPPRESSION LIGNE DANS LA LISTE_ETUD et LISTE_PROF
+#SUPPRESSION LIGNE DANS LA LISTE_ETUD, LISTE_PROF et LISTE PERSONNNEL ADMINISTRATIF
 @eel.expose
 def delete_person(type_person, data_perso) :
 	connect_to_bdd = sqlite3.connect('donnee.db')
@@ -144,9 +149,14 @@ def delete_person(type_person, data_perso) :
 		DELETE FROM etudiant WHERE matricule_etud=?
 		''', (data_perso,))
 		connect_to_bdd.commit()
-	else:
+	elif type_person == 'prof_list':
 		delete_data= cur.execute('''
 		DELETE FROM enseignant WHERE matricule_ensg=?
+		''', (data_perso,))
+		connect_to_bdd.commit()
+	else:
+		delete_data = cur.execute(''' 
+		DELETE FROM PERSONNEL_ADMINISTRATIF WHERE matricule_perso_admin=?
 		''', (data_perso,))
 		connect_to_bdd.commit()
 
