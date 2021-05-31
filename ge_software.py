@@ -350,7 +350,7 @@ def main():
 		PORT += 1
 	environ['gePORT'] = str(PORT)
 	print(PORT)
-	eel.start(mode='custom', cmdline_args=['./node_modules/electron/dist/electron.exe', '.'], port=PORT)
+	eel.start(mode='custom', cmdline_args=['./node_modules/electron/dist/electron.exe', '.'], port=PORT, shutdown_delay=5)
 
 
 if __name__ == '__main__':

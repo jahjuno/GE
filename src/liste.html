@@ -55,7 +55,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des profs : </h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
-                        <a class="collapse-item" href="liste_prof.html">Liste Enseignant</a>
+                        <a class="collapse-item" href="liste.html?prof">Liste Enseignant</a>
                         <a class="collapse-item" href="#">Présence</a>
                         <a class="collapse-item" href="#">Emploi du temps </a>
                     </div>
@@ -74,7 +74,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des étudiants :</h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
-                        <a class="collapse-item" href="liste_etud.html">Liste Etudiant</a>
+                        <a class="collapse-item" href="liste.html?student">Liste Etudiant</a>
                         <a class="collapse-item" href="#">Emploi du temps</a>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                         <div class="table-wrapper col-lg-12">
                             <div class="table-title">
                                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                    <h1 class="h3 mb-0 text-gray-800">LISTE DES ETUDIANTS INSCRITS</h1>
+                                    <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
                                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('student')">
                                         <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
                                     </button>
@@ -167,20 +167,7 @@
                             <div class="col-lg-12">
                                 <table class="table table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th>Matricule</th>
-                                            <th>Année Universitaire</th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Date de naissance</th>
-                                            <th>Tél</th>
-                                            <th>Email</th>
-                                            <th>N° CIN</th>
-                                            <th>Sexe</th>
-                                            <th>Adresse actuel</th>
-                                            <th>Niveau</th>
-                                            <th>Actions</th>
-                                        </tr>
+                                        <tr id="table_head"></tr>
                                     </thead>
                                     <tbody id="bdd_print"></tbody>
                                 </table>
@@ -232,36 +219,26 @@
     </div>
 
 
-<!-- AFFICHAGE LISTE ETUDIANT -->
     <script>
-        eel.getData('student')(printData);
-        function printData(data_recupered) {
-            for (let i=0; i<data_recupered.length; i++){
-                let line = `
-                    <tr>
-                    <td id="t_matricule">${data_recupered[i][0]}</td>
-                    <td id="annee_univ">${data_recupered[i][1]}</td>
-                    <td id="t_nom">${data_recupered[i][2]}</td>
-                    <td id="t_prenom">${data_recupered[i][3]}</td>
-                    <td id="t_date">${data_recupered[i][4]}</td>
-                    <td id="t_tel">${data_recupered[i][5]}</td>
-                    <td id="t_mail">${data_recupered[i][6]}</td>
-                    <td id="t_cin">${data_recupered[i][7]}</td>
-                    <td id="t_sexe">${data_recupered[i][8]}</td>
-                    <td id="t_addr">${data_recupered[i][9]}</td>
-                    <td id="t_niveau">${data_recupered[i][10]}</td>
-                    <td>
-                        <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                        <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-                        <a class="edit" title="Supprimer" type="button" onclick='delete_student("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
-                    </td>
-                </tr>
-                    `
-                $('#bdd_print').append(line);
-            };
-        };
+        
+            let tableau_head = `
+                <th>Matricule</th>
+                <th>Année Universitaire</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th id="naissance">Date de naissance</th>
+                <th>Tél</th>
+                <th>Email</th>
+                <th>N° CIN</th>
+                <th>Sexe</th>
+                <th>Adresse actuel</th>
+                <th id="niveau">Niveau</th>
+                <th id="module">MODULE</th>
+                <th>Actions</th>
+            `
+            $('#table_head').append(tableau_head);
+        
     </script>
-
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

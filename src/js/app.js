@@ -157,7 +157,78 @@ function remove_note() {
   line_note.each(function() {
     if ((i) == line_note.length) {
       $(this).hide();
-    }
+    } 
     i++;
   });
 }
+
+
+
+let arg = window.location.search.substr(1);
+if (arg == 'prof') eel.getData('prof')(printData_prof); //AFFICHAGE LISTE PROF
+else if (arg == 'student') eel.getData('student')(printData_etud); //AFFICHAGE LIST ETUD
+
+//AFFICHAGE PROF
+function printData_prof(data_recupered) {
+  $("#naissance").hide();
+  $("#niveau").hide();
+  $("#module").show();
+  for (let i=0; i<data_recupered.length; i++){
+      let line = `
+          <tr>
+          <td id="t_matricule">${data_recupered[i][0]}</td>
+          <td id="annee_univ">${data_recupered[i][1]}</td>
+          <td id="t_nom">${data_recupered[i][2]}</td>
+          <td id="t_prenom">${data_recupered[i][3]}</td>
+          <td id="t_tel">${data_recupered[i][4]}</td>
+          <td id="t_mail">${data_recupered[i][5]}</td>
+          <td id="t_cin">${data_recupered[i][6]}</td>
+          <td id="t_sexe">${data_recupered[i][7]}</td>
+          <td id="t_addr">${data_recupered[i][8]}</td>
+          <td id="t_module">${data_recupered[i][9]}</td>
+          <td>
+              <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+              <a class="edit" title="Voir Profil" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+              <a class="edit" title="Supprimer"  onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+          </td>
+      </tr>
+          `
+      $('#bdd_print').append(line);
+  };
+  let titre_left =  `
+  LISTE DES PROFS INSCRITS
+  `
+  $('#h1_liste').append(titre_left);
+};
+
+//AFFICHAGE LISTE ETUDIANT
+function printData_etud(data_recupered) {
+    $('#module').hide();
+    for (let i=0; i<data_recupered.length; i++){
+        let line = `
+            <tr>
+            <td id="t_matricule">${data_recupered[i][0]}</td>
+            <td id="annee_univ">${data_recupered[i][1]}</td>
+            <td id="t_nom">${data_recupered[i][2]}</td>
+            <td id="t_prenom">${data_recupered[i][3]}</td>
+            <td id="t_date">${data_recupered[i][4]}</td>
+            <td id="t_tel">${data_recupered[i][5]}</td>
+            <td id="t_mail">${data_recupered[i][6]}</td>
+            <td id="t_cin">${data_recupered[i][7]}</td>
+            <td id="t_sexe">${data_recupered[i][8]}</td>
+            <td id="t_addr">${data_recupered[i][9]}</td>
+            <td id="t_niveau">${data_recupered[i][10]}</td>
+            <td>
+                <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="edit" title="Supprimer" type="button" onclick='delete_student("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+            </td>
+        </tr>
+            `
+        $('#bdd_print').append(line);
+    };
+    let titre_left =  `
+    LISTE DES ETUDIANTS INSCRITS
+  `
+  $('#h1_liste').append(titre_left);
+};
