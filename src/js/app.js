@@ -195,10 +195,10 @@ function printData_prof(data_recupered) {
           `
       $('#bdd_print').append(line);
   };
-  let titre_left =  `
-  LISTE DES PROFS INSCRITS
-  `
+  let titre_left =  `LISTE DES PROFS INSCRITS`
+  let grand_titre_left = `LISTE_PROF`
   $('#h1_liste').append(titre_left);
+  $('#list_title').append(grand_titre_left);
 };
 
 //AFFICHAGE LISTE ETUDIANT
@@ -227,8 +227,8 @@ function printData_etud(data_recupered) {
             `
         $('#bdd_print').append(line);
     };
-    let titre_left =  `
-    LISTE DES ETUDIANTS INSCRITS
-  `
-  $('#h1_liste').append(titre_left);
+    let titre_left =  `LISTE DES ETUDIANTS INSCRITS`
+    let grand_titre_left = `LISTE_ETUDIANT`
+    $('#h1_liste').append(titre_left);
+    $('#list_title').append(grand_titre_left);
 };
