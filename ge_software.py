@@ -255,13 +255,21 @@ def createBDD():
 			id_note				TEXT		NOT NULL,
 			matricule_etud		TEXT		NOT NULL,
 			id_module			INTEGER	NOT NULL,
-			note_sur20			REAL		NOT NULL,
-			note_sur10			REAL		NOT NULL,
-			bonus					REAL		NOT NULL,
-			malus					REAL		NOT NULL,
+			TYPE					TEXT		NOT NULL,
+			coeff					INTEGER	NOT NULL,
 			CONSTRAINT	note_pk	PRIMARY KEY (id_note),
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
+		)
+		''')
+
+		t_bonus_malus = cur.execute('''
+		CREATE TABLE IF NOT EXISTS BONUS_MALUS (
+			id_bonus_malus		TEXT	NOT NULL,
+			id_note				TEXT	NOT NULL,
+			bonus_malus			REAL	NOT NULL,
+			CONSTRAINT bonus_malus_pk PRIMARY KEY (id_bonus_malus),
+			CONSTRAINT	note_etud_bm_fk FOREIGN KEY (id_note) REFERENCES NOTE(id_note)
 		)
 		''')
 
