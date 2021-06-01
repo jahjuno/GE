@@ -321,7 +321,9 @@ function printData_perso_admin(data_recupered) {
                 $('#info').append(print_profil);
                 };
                 let title_profil = `PROFIL ETUDIANT`
-                $('#title_profil_var').append(title_profil);                                                       
+                let title_left = `PROFIL_ETUDIANT`
+                $('#title_profil_var').append(title_profil);  
+                $('#side_title').append(title_left);                                                       
         }
 
         function print_prof_profil(data_profil_prof){
@@ -362,5 +364,7 @@ function printData_perso_admin(data_recupered) {
                 }; 
                 
                 let title_profil = `PROFIL PROFESSEUR`
+                let title_left = `PROFIL_PROF`
                 $('#title_profil_var').append(title_profil);
+                $('#side_title').append(title_left);
         }
