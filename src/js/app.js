@@ -117,17 +117,6 @@ function export_data(val_bdd) {
 };
 
 
-//AFFICHAGE PROFIL
-function print_profil_student(data){
-  table_bdd = eel.getdata_profil('student_profil', data);
-  document.location.href="../profil_etudiant.html";  
-}
-
-function print_profil_prof(data) {
-  table_bdd = eel.getdata_profil('ensg_profil', data);
-  document.location.href="../profil_prof.html";
-}
-
 //SUPPRESSION LIGNE LISTE ETUDIANT, PROF ET PERSONNEL_ADMINISTRATIF
 function delete_student(data_recup){
   eel.delete_person('student_list',data_recup);
@@ -274,3 +263,104 @@ function printData_perso_admin(data_recupered) {
   $('#list_title').append(grand_titre_left);
 
 }
+
+
+
+//AFFICHAGE PROFILE ETUDIANT
+
+        function print_profil_student(data){
+          table_bdd = eel.getdata_profil('student_profil', data);
+          document.location.href="../profil.html?student_profile";  
+        }
+        
+        function print_profil_prof(data) {
+          table_bdd = eel.getdata_profil('ensg_profil', data);
+          document.location.href="../profil.html?prof_profile";
+        }
+
+
+
+        let arg_print_profile = window.location.search.substr(1);
+        if (arg_print_profile =='student_profile') eel.new_data_profil()(print_student_profil);
+        else if (arg_print_profile == 'prof_profile')  eel.new_data_profil()(print_prof_profil);
+        
+        function print_student_profil(data_profil_student){
+            for (i=0; i < data_profil_student.length; i++) {
+                let print_profil = `
+                
+                    <div class="card-body card_profil">
+                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
+                        <span>${data_profil_student[i][0]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                        <span>${data_profil_student[i][2]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                        <span>${data_profil_student[i][3]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="email">DATE DE NAISSANCE:</span>
+                        <span>${data_profil_student[i][4]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
+                        <span>${data_profil_student[i][5]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="date_naiss">EMAIL: </span>
+                        <span>${data_profil_student[i][6]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="cin">CIN: </span>
+                        <span>${data_profil_student[i][7]}</span><br>
+
+                        <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                        <span>${data_profil_student[i][9]}</span><br>
+
+                        <span class="font-weight-bold text-primary">NIVEAU: </span>
+                        <span>${data_profil_student[i][10]}</span>
+                    </div>
+                </div>
+                `
+                $('#info').append(print_profil);
+                };
+                let title_profil = `PROFIL ETUDIANT`
+                $('#title_profil_var').append(title_profil);                                                       
+        }
+
+        function print_prof_profil(data_profil_prof){
+            $(".notes").hide();
+            for (i=0; i < data_profil_prof.length; i++) {
+                let print_profil = `
+                
+                    <div class="card-body card_profil">
+                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
+                        <span>${data_profil_prof[i][0]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                        <span>${data_profil_prof[i][2]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                        <span>${data_profil_prof[i][3]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="email">TEL:</span>
+                        <span>${data_profil_prof[i][4]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
+                        <span>${data_profil_prof[i][5]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                        <span>${data_profil_prof[i][6]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUEL: </span>
+                        <span>${data_profil_prof[i][8]}</span><br>
+
+                        <span class="font-weight-bold text-primary">MODULE: </span>
+                        <span>${data_profil_prof[i][9]}</span><br>
+
+                        
+                    </div>
+                </div>
+                `
+                $('#info').append(print_profil);
+                }; 
+                
+                let title_profil = `PROFIL PROFESSEUR`
+                $('#title_profil_var').append(title_profil);
+        }
