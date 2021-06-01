@@ -159,9 +159,9 @@ function remove_note() {
 
 
 let arg = window.location.search.substr(1);
-if (arg == 'prof') eel.getData('prof')(printData_prof); //AFFICHAGE LISTE PROF
-else if (arg == 'student') eel.getData('student')(printData_etud);//AFFICHAGE LISTE ETUD
-else if (arg == 'perso_admin') eel.getData('admin_personnel')(printData_perso_admin); //AFFICHER LISTE PERSONNEL ADMINISTRATIF
+if (arg == 'prof_list') eel.getData('prof')(printData_prof); //AFFICHAGE LISTE PROF
+else if (arg == 'student_list') eel.getData('student')(printData_etud);//AFFICHAGE LISTE ETUD
+else if (arg == 'perso_admin_list') eel.getData('admin_personnel')(printData_perso_admin); //AFFICHER LISTE PERSONNEL ADMINISTRATIF
 
 //AFFICHAGE PROF
 function printData_prof(data_recupered) {

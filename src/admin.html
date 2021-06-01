@@ -56,7 +56,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des profs : </h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
-                        <a class="collapse-item" href="liste.html?prof">Liste Enseignant</a>
+                        <a class="collapse-item" href="liste.html?prof_list">Liste Enseignant</a>
                         <a class="collapse-item" href="#">Présence</a>
                         <a class="collapse-item" href="#">Emploi du temps </a>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Les personnels administratifs: </h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
-                        <a class="collapse-item" href="liste.html?perso_admin">Liste Perso_Admin</a>
+                        <a class="collapse-item" href="liste.html?perso_admin_list">Liste Perso_Admin</a>
                     </div>
                 </div>
             </li>
@@ -90,7 +90,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des étudiants :</h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
-                        <a class="collapse-item" href="liste.html?student">Liste Etudiant</a>
+                        <a class="collapse-item" href="liste.html?student_list">Liste Etudiant</a>
                         <a class="collapse-item" href="#">Emploi du temps</a>
                     </div>
                 </div>
@@ -269,7 +269,7 @@
                                                     </div>
                                                         <hr>
                                                         <input type="button" id="insc_etud" class="btn btn-primary" onclick="recup_info_etudiant()" value="Inscrire"/>
-                                                        <input type="button" id="list_etud" class="btn btn-primary" onclick="window.location.href='liste.html?student';" value="Voir Liste" />
+                                                        <input type="button" id="list_etud" class="btn btn-primary" onclick="window.location.href='liste.html?student_list';" value="Voir Liste" />
                                                     
                                             </div>
                                             </div>
@@ -339,7 +339,7 @@
                                                     </div>
                                                         <hr>
                                                         <button class="btn btn-primary" id="insc_prof" onclick="recup_info_prof()">Inscrire</button>
-                                                        <button id="list_etud" class="btn btn-primary" onclick="window.location.href='liste.html?prof'">Voir Liste</button>
+                                                        <button id="list_etud" class="btn btn-primary" onclick="window.location.href='liste.html?prof_list'">Voir Liste</button>
                                                     </a>
                                                     
                                                 </div>
@@ -412,7 +412,7 @@
                                                     </div>
                                                         <hr>
                                                         <button class="btn btn-primary" id="insc_perso_admin" onclick="recup_info_perso_admin()">Inscrire</button>
-                                                        <button id="list_perso_admin" class="btn btn-primary" onclick="window.location.href='liste.html?perso_admin';">Voir Liste</button>
+                                                        <button id="list_perso_admin" class="btn btn-primary" onclick="window.location.href='liste.html?perso_admin_list';">Voir Liste</button>
                                                     </a>
                                                     
                                                 </div>
