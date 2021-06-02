@@ -250,7 +250,7 @@ function printData_perso_admin(data_recupered) {
             <td id="t_sexe">${data_recupered[i][9]}</td>
             <td>
                 <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="edit" type="button" onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
                 <a class="edit" title="Supprimer" type="button" onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>
         </tr>
@@ -274,8 +274,13 @@ function printData_perso_admin(data_recupered) {
         }
         
         function print_profil_prof(data) {
-          table_bdd = eel.getdata_profil('ensg_profil', data);
+          table_bdd = eel.getdata_profil('prof_profil', data);
           document.location.href="../profil.html?prof_profile";
+        }
+
+        function print_person_admin_profil(data) {
+          table_bdd = eel.getdata_profil('admin_perso_profil', data);
+          document.location.href="../profil.html?person_admin";
         }
 
 
@@ -283,6 +288,7 @@ function printData_perso_admin(data_recupered) {
         let arg_print_profile = window.location.search.substr(1);
         if (arg_print_profile =='student_profile') eel.new_data_profil()(print_student_profil);
         else if (arg_print_profile == 'prof_profile')  eel.new_data_profil()(print_prof_profil);
+        else if (arg_print_profile == 'person_admin') eel.new_data_profil()(print_admin_profil);
         
         function print_student_profil(data_profil_student){
             for (i=0; i < data_profil_student.length; i++) {
@@ -367,4 +373,47 @@ function printData_perso_admin(data_recupered) {
                 let title_left = `PROFIL_PROF`
                 $('#title_profil_var').append(title_profil);
                 $('#side_title').append(title_left);
+        }
+
+        function print_admin_profil(data_profil_admin) {
+          $(".notes").hide();
+            for (i=0; i < data_profil_admin.length; i++) {
+                let print_profil = `
+                
+                    <div class="card-body card_profil">
+                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
+                        <span>${data_profil_admin[i][0]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                        <span>${data_profil_admin[i][1]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                        <span>${data_profil_admin[i][2]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="email">FONCTION:</span>
+                        <span>${data_profil_admin[i][3]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
+                        <span>${data_profil_admin[i][5]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                        <span>${data_profil_admin[i][6]}</span><br>
+
+                        <span class="font-weight-bold text-primary" id="cin">EMAIL: </span>
+                        <span>${data_profil_admin[i][7]}</span><br>
+
+                        <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                        <span>${data_profil_admin[i][8]}</span><br>
+
+                        
+                    </div>
+                </div>
+                `
+                $('#info').append(print_profil);
+                }; 
+                let title_profil = `PROFIL PERSONNEL ADMINISTRATIF`
+                let title_left = `PROFIL_ADMIN`
+                $('#title_profil_var').append(title_profil);
+                $('#side_title').append(title_left);
+
         }

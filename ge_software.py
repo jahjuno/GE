@@ -132,11 +132,16 @@ def getdata_profil(type_profil, profil_data):
 		global storage_get_profil_data
 		storage_get_profil_data=cur.fetchall()
 		
-	else:
+	elif type_profil ==  'prof_profil':
 		search_profil = cur.execute('''
 		SELECT * FROM enseignant WHERE matricule_ensg=?
 		''', (profil_data,))
 		storage_get_profil_data=cur.fetchall()
+	elif type_profil == 'admin_perso_profil':
+		search_profil = cur.execute('''
+		SELECT * FROM personnel_administratif WHERE matricule_perso_admin=?
+		''', (profil_data,))
+		storage_get_profil_data = cur.fetchall()
 
 
 #SUPPRESSION LIGNE DANS LA LISTE_ETUD, LISTE_PROF et LISTE PERSONNNEL ADMINISTRATIF
