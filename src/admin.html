@@ -13,6 +13,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="dist/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="dist/css/my_css.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
     <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
@@ -21,7 +22,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="overflow-y: hidden !important;">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -268,8 +269,8 @@
                                                         <input type="file" value="Choisir une image">
                                                     </div>
                                                         <hr>
-                                                        <input type="button" id="insc_etud" class="btn btn-primary" onclick="recup_info_etudiant()" value="Inscrire"/>
-                                                        <input type="button" id="list_etud" class="btn btn-primary" onclick="window.location.href='liste.html?student_list';" value="Voir Liste" />
+                                                        <input type="button" id="insc_etud" class="btn btn-primary btn_admin" onclick="recup_info_etudiant()" value="Inscrire"/>
+                                                        <input type="button" id="list_etud" class="btn btn-primary btn_admin_list" onclick="window.location.href='liste.html?student_list';" value="Voir Liste" />
                                                     
                                             </div>
                                             </div>
@@ -338,8 +339,8 @@
                                                         </div>
                                                     </div>
                                                         <hr>
-                                                        <button class="btn btn-primary" id="insc_prof" onclick="recup_info_prof()">Inscrire</button>
-                                                        <button id="list_etud" class="btn btn-primary" onclick="window.location.href='liste.html?prof_list'">Voir Liste</button>
+                                                        <button class="btn btn-primary btn_admin" id="insc_prof" onclick="recup_info_prof()">Inscrire</button>
+                                                        <button id="list_etud" class="btn btn-primary btn_admin_list" onclick="window.location.href='liste.html?prof_list'">Voir Liste</button>
                                                     </a>
                                                     
                                                 </div>
@@ -411,8 +412,8 @@
                                                         </div>
                                                     </div>
                                                         <hr>
-                                                        <button class="btn btn-primary" id="insc_perso_admin" onclick="recup_info_perso_admin()">Inscrire</button>
-                                                        <button id="list_perso_admin" class="btn btn-primary" onclick="window.location.href='liste.html?perso_admin_list';">Voir Liste</button>
+                                                        <button class="btn btn-primary btn_admin" id="insc_perso_admin" onclick="recup_info_perso_admin()">Inscrire</button>
+                                                        <button id="list_perso_admin" class="btn btn-primary btn_admin_list" onclick="window.location.href='liste.html?perso_admin_list';">Voir Liste</button>
                                                     </a>
                                                     
                                                 </div>
@@ -431,10 +432,10 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white" style="height: 8px !important; margin-top: 10px !important; padding-top: 1% !important;">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>GE v 0.1.0</span>
+                        <span>GE v2.0.0</span>
                     </div>
                 </div>
             </footer>
