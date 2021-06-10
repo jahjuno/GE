@@ -1,3 +1,7 @@
+/* #page-top {
+   overflow-y: hidden !important;
+} */
+
 #card_avatar  {
    width: 240% !important;
    height: 85% !important;
@@ -53,4 +57,10 @@
 .add_btn{
    margin-top: -20px !important;
    margin-left: -10px !important;
+}
+
+.adjusted_footer {
+   height: 8px !important; 
+   margin-top: 10px !important; 
+   padding-top: 1% !important;
 }
