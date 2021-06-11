@@ -64,3 +64,9 @@
    margin-top: 10px !important; 
    padding-top: 1% !important;
 }
+
+.adjusted_footer_list {
+   height: 8px !important; 
+   margin-top: 225px !important; 
+   padding-top: 2% !important;
+}
