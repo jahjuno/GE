@@ -275,6 +275,7 @@ def createBDD():
 			id_module			INTEGER	NOT NULL,
 			TYPE					TEXT		NOT NULL,
 			coeff					INTEGER	NOT NULL,
+			credit_obtenu		INTEGER	NOT NULL,
 			CONSTRAINT	note_pk	PRIMARY KEY (id_note),
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
