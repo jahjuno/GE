@@ -203,6 +203,7 @@ def createBDD():
 		cur = connect_to_bdd.cursor()
 		t_admin = cur.execute(''' 
 		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
+			id_admin		INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
 			matricule_perso_admin	TEXT	NOT NULL UNIQUE,
 			nom			TEXT	NOT 	NULL,
 			prenom		TEXT 	NOT 	NULL,
@@ -220,6 +221,7 @@ def createBDD():
 
 		t_ensg = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
+			id_prof			INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
 			matricule_ensg	TEXT	NOT NULL	,
 			annee_univ		TEXT	NOT NULL,
 			nom				TEXT	NOT NULL,
@@ -238,6 +240,7 @@ def createBDD():
 
 		t_etudiant = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ETUDIANT(
+			id_etud					INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
 			matricule_etud			TEXT	NOT NULL,
 			annee_univ				TEXT	NOT NULL,
 			nom						TEXT	NOT NULL,
@@ -267,7 +270,7 @@ def createBDD():
 
 		t_note = cur.execute('''
 		CREATE TABLE IF NOT EXISTS NOTE (
-			id_note				TEXT		NOT NULL,
+			id_note				TEXT		NOT NULL	PRIMARY KEY AUTOINCREMENT,
 			matricule_etud		TEXT		NOT NULL,
 			id_module			INTEGER	NOT NULL,
 			TYPE					TEXT		NOT NULL,
@@ -280,7 +283,7 @@ def createBDD():
 
 		t_bonus_malus = cur.execute('''
 		CREATE TABLE IF NOT EXISTS BONUS_MALUS (
-			id_bonus_malus		TEXT	NOT NULL,
+			id_bonus_malus		TEXT	NOT NULL	PRIMARY KEY AUTOINCREMENT,
 			id_note				TEXT	NOT NULL,
 			bonus_malus			REAL	NOT NULL,
 			CONSTRAINT bonus_malus_pk PRIMARY KEY (id_bonus_malus),
