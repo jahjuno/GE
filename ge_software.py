@@ -8,6 +8,129 @@ eel.init('src')
 data = []
 storage_get_profil_data=None
 
+#CREATE DE LA BASE DE DONNEE
+def createBDD():
+	try : 
+		connect_to_bdd = sqlite3.connect('donnee.db')
+		cur = connect_to_bdd.cursor()
+		
+		t_admin = cur.execute(''' 
+		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
+			id_admin		INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
+			matricule_perso_admin	TEXT	NOT NULL UNIQUE,
+			nom			TEXT	NOT 	NULL,
+			prenom		TEXT 	NOT 	NULL,
+			fonction 	TEXT 	NOT 	NULL,
+			annee_univ	TEXT 	NOT 	NULL,
+			tel			TEXT	NOT 	NULL,
+			cin			INTEGER NOT NULL,
+			email			TEXT	NOT 	NULL,
+			adresse		TEXT	NOT	NULL,
+			mdp			TEXT	,
+			sexe			TEXT	NOT	NULL
+		)
+		''')
+
+
+		t_ensg = cur.execute('''
+		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
+			id_prof			INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
+			matricule_ensg	TEXT	NOT NULL	UNIQUE,
+			annee_univ		TEXT	NOT NULL,
+			nom				TEXT	NOT NULL,
+			prenom			TEXT	NOT NULL,
+			tel				TEXT	NOT NULL,
+			email			TEXT	NOT NULL,
+			cin				INTEGER	NOT NULL,
+			sexe			TEXT	NOT NULL,
+			adresse			TEXT	NOT NULL,
+			module			TEXT	NOT NULL,
+			mdp				TEXT	NOT NULL
+			);
+		''')
+
+		t_etudiant = cur.execute('''
+		CREATE TABLE IF NOT EXISTS ETUDIANT(
+			id_etud					INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
+			matricule_etud			TEXT	NOT NULL UNIQUE,
+			annee_univ				TEXT	NOT NULL,
+			nom						TEXT	NOT NULL,
+			prenom					TEXT	NOT NULL,
+			date_naissance			TEXT	NOT NULL,
+			tel						TEXT	NOT NULL,
+			email						TEXT	NOT NULL,
+			cin						INTEGER	NOT NULL,
+			sexe						TEXT	NOT NULL,
+			adresse					TEXT	NOT NULL,
+			niveau					TEXT	NOT NULL
+		)
+		''')
+
+		t_module = cur.execute('''
+		CREATE TABLE IF NOT EXISTS MODULE (
+			id_module		INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
+			nom		TEXT		NOT NULL,
+			reference	TEXT	NOT NULL,
+			semestre TEXT NOT NULL,
+			matricule_ensg	TEXT	NOT NULL,
+			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
+		)
+		''')
+
+		t_note = cur.execute('''
+		CREATE TABLE IF NOT EXISTS NOTE (
+			id_note				INTEGER		NOT NULL PRIMARY KEY AUTOINCREMENT,
+			matricule_etud		TEXT		NOT NULL,
+			id_module			INTEGER	NOT NULL,
+			TYPE					TEXT		NOT NULL,
+			coeff					INTEGER	NOT NULL,
+			credit_obtenu		INTEGER	NOT NULL,
+			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
+			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
+		)
+		''')
+
+		t_bonus_malus = cur.execute('''
+		CREATE TABLE IF NOT EXISTS BONUS_MALUS (
+			id_bonus_malus		INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
+			id_note				INTEGER	NOT NULL,
+			bonus_malus			REAL	NOT NULL,
+			CONSTRAINT	note_etud_bm_fk FOREIGN KEY (id_note) REFERENCES NOTE(id_note)
+		)
+		''')
+
+		t_etudier = cur.execute('''
+		CREATE TABLE IF NOT EXISTS ETUDIER (
+			matricule_etud	TEXT	NOT NULL,
+			id_module		INTEGER	NOT NULL,
+			CONSTRAINT	etudier_pk	PRIMARY KEY (matricule_etud, id_module),
+			CONSTRAINT	etudier_fk	FOREIGN KEY (matricule_etud)	REFERENCES ETUDIANT(matricule_etud),
+			CONSTRAINT	etudier_module_fk	FOREIGN KEY (id_module)	REFERENCES MODULE(id_module)
+		)
+		
+		''')
+
+		connect_to_bdd.commit()
+		cur.close()
+		connect_to_bdd.close()
+	except sqlite3.Error as error: 
+		print(error)		
+createBDD()
+
+
+#INSERTION COMPTE ADMIN
+def insert_admin_account():
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	add_admin_account = cur.execute('''
+	INSERT OR IGNORE INTO PERSONNEL_ADMINISTRATIF (matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, mdp, sexe) 
+	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','admin', 'sexe')
+	''')
+	connect_to_bdd.commit()
+	connect_to_bdd.close()
+insert_admin_account()
+
+
 #INSERTION DES DONNEES
 @eel.expose
 def setData(d, e):
@@ -194,132 +317,6 @@ def get_module(module_got):
 	SELECT module FROM enseignant
 	''')
 	return cur.fetchall()
-
-
-#CREATE DE LA BASE DE DONNEE
-def createBDD():
-	try : 
-		connect_to_bdd = sqlite3.connect('donnee.db')
-		cur = connect_to_bdd.cursor()
-		t_admin = cur.execute(''' 
-		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
-			id_admin		INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			matricule_perso_admin	TEXT	NOT NULL UNIQUE,
-			nom			TEXT	NOT 	NULL,
-			prenom		TEXT 	NOT 	NULL,
-			fonction 	TEXT 	NOT 	NULL,
-			annee_univ	TEXT 	NOT 	NULL,
-			tel			TEXT	NOT 	NULL,
-			cin			INTEGER NOT NULL,
-			email			TEXT	NOT 	NULL,
-			adresse		TEXT	NOT	NULL,
-			mdp			TEXT	,
-			sexe			TEXT	NOT	NULL, 
-			CONSTRAINT perso_admin_pk	PRIMARY KEY (matricule_perso_admin)
-		)
-		''')
-
-		t_ensg = cur.execute('''
-		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
-			id_prof			INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			matricule_ensg	TEXT	NOT NULL	,
-			annee_univ		TEXT	NOT NULL,
-			nom				TEXT	NOT NULL,
-			prenom			TEXT	NOT NULL,
-			tel				TEXT	NOT NULL,
-			email			TEXT	NOT NULL,
-			cin				INTEGER	NOT NULL,
-			sexe			TEXT	NOT NULL,
-			adresse			TEXT	NOT NULL,
-			module			TEXT	NOT NULL,
-			mdp				TEXT	NOT NULL,
-			CONSTRAINT ensg_pk PRIMARY KEY (matricule_ensg)
-			
-			);
-		''')
-
-		t_etudiant = cur.execute('''
-		CREATE TABLE IF NOT EXISTS ETUDIANT(
-			id_etud					INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			matricule_etud			TEXT	NOT NULL,
-			annee_univ				TEXT	NOT NULL,
-			nom						TEXT	NOT NULL,
-			prenom					TEXT	NOT NULL,
-			date_naissance			TEXT	NOT NULL,
-			tel						TEXT	NOT NULL,
-			email						TEXT	NOT NULL,
-			cin						INTEGER	NOT NULL,
-			sexe						TEXT	NOT NULL,
-			adresse					TEXT	NOT NULL,
-			niveau					TEXT	NOT NULL,
-			CONSTRAINT etudiant_pk	PRIMARY KEY (matricule_etud)
-			
-		)
-		''')
-
-		t_module = cur.execute('''
-		CREATE TABLE IF NOT EXISTS MODULE (
-			id_module		INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
-			nom		TEXT		NOT NULL,
-			reference	TEXT	NOT NULL,
-			semestre TEXT NOT NULL,
-			matricule_ensg	TEXT	NOT NULL,
-			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
-		)
-		''')
-
-		t_note = cur.execute('''
-		CREATE TABLE IF NOT EXISTS NOTE (
-			id_note				TEXT		NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			matricule_etud		TEXT		NOT NULL,
-			id_module			INTEGER	NOT NULL,
-			TYPE					TEXT		NOT NULL,
-			coeff					INTEGER	NOT NULL,
-			credit_obtenu		INTEGER	NOT NULL,
-			CONSTRAINT	note_pk	PRIMARY KEY (id_note),
-			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
-			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
-		)
-		''')
-
-		t_bonus_malus = cur.execute('''
-		CREATE TABLE IF NOT EXISTS BONUS_MALUS (
-			id_bonus_malus		TEXT	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			id_note				TEXT	NOT NULL,
-			bonus_malus			REAL	NOT NULL,
-			CONSTRAINT bonus_malus_pk PRIMARY KEY (id_bonus_malus),
-			CONSTRAINT	note_etud_bm_fk FOREIGN KEY (id_note) REFERENCES NOTE(id_note)
-		)
-		''')
-
-		t_etudier = cur.execute('''
-		CREATE TABLE IF NOT EXISTS ETUDIER (
-			matricule_etud	TEXT	NOT NULL,
-			id_module		INTEGER	NOT NULL,
-			CONSTRAINT	etudier_pk	PRIMARY KEY (matricule_etud, id_module),
-			CONSTRAINT	etudier_fk	FOREIGN KEY (matricule_etud)	REFERENCES ETUDIANT(matricule_etud),
-			CONSTRAINT	etudier_module_fk	FOREIGN KEY (id_module)	REFERENCES MODULE(id_module)
-		)
-		
-		''')
-		connect_to_bdd.commit()
-		cur.close()
-		connect_to_bdd.close()
-	except sqlite3.Error as error: 
-		print(error)
-		
-createBDD()
-
-#INSERTION COMPTE ADMIN
-def insert_admin_account():
-	connect_to_bdd = sqlite3.connect('donnee.db')
-	cur = connect_to_bdd.cursor()
-	add_admin_account = cur.execute('''
-	INSERT OR IGNORE INTO personnel_administratif (matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, mdp, sexe) 
-	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','admin', 'sexe')
-	''')
-	connect_to_bdd.commit()
-insert_admin_account()
 
 
 #CONNECTION EN TANT ADMIN

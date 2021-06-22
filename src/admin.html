@@ -188,17 +188,27 @@
                             <div class="row">
                                 <div class="col-md-9 register-right" style="margin-left: 10% !important;">
                                     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+
                                         <li class="nav-item">
                                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#inscrire_etud" role="tab" aria-controls="home" aria-selected="true">ETUDIANTS</a>
                                         </li>
+
                                         <li class="nav-item">
                                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#inscrire_prof" role="tab" aria-controls="profile" aria-selected="false">PROFESSEURS</a>
                                         </li>
-                                         <li class="nav-item">
+
+                                        <li class="nav-item">
                                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#perso_admin" role="tab" aria-controls="profile" aria-selected="false">PERSONNEL ADMINISTRATIF</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#create_module" role="tab" aria-controls="profile" aria-selected="false">CREATION MODULE</a>
+                                        </li>
                                     </ul>
+
                                     <div class="tab-content" id="myTabContent">
+
+                                        <!-- INSCRIPTION NOUVEAU ETUDIANT -->
                                         <div class="tab-pane fade show active" id="inscrire_etud" role="tabpanel" aria-labelledby="home-tab"><br>
                                             <h4 class="register-heading">Inscrire un nouvel étudiant</h4><br>
                                             <div class="row justify-content-between">
@@ -276,7 +286,7 @@
                                             </div>
                                         </div>
 
-                        <!-- INSCRIPTION DES NOUVEAUX PROFESSEURS -->
+                                        <!-- INSCRIPTION DES NOUVEAUX PROFESSEURS -->
                                         <div class="tab-pane fade show" id="inscrire_prof" role="tabpanel" aria-labelledby="profile-tab"><br>
                                             <h4  class="register-heading">Inscrire un nouveau professeur</h4><br>
                                             <div class="row justify-content-between">
@@ -347,7 +357,7 @@
                                             </div>
                                         </div>
 
-                    <!-- INSCRIPTION DES NOUVEAUX PERSONNEL ADMINISTRATIF -->
+                                        <!-- INSCRIPTION DES NOUVEAUX PERSONNEL ADMINISTRATIF -->
                                         <div class="tab-pane fade show" id="perso_admin" role="tabpanel" aria-labelledby="profile-tab"><br>
                                             <h4  class="register-heading">Inscrire un nouveau personnel administratif</h4><br>
                                             <div class="row justify-content-between">
@@ -419,6 +429,38 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- CREATION MODULE -->
+                                        <div class="tab-pane fade show" id="create_module" role="tabpanel" aria-labelledby="profile-tab"><br>
+                                            <h4  class="register-heading">CREATION MODULE</h4><br>
+                                            <div class="row justify-content-between">
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Nom_Module" id="note" value="" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Reference_Module" id="note" value="" />
+                                                    </div>                     
+                                                </div>
+
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Semestre" id="note" value="" />
+                                                    </div>                        
+                                                </div>
+
+                                                <div class="form-group col-2">
+                                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note">
+                                                        <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -431,15 +473,7 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white adjusted_footer">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>GE v2.0.0</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+           
 
         </div>
         <!-- End of Content Wrapper -->
