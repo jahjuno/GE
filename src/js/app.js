@@ -110,6 +110,16 @@ function recup_info_perso_admin() {
 
 }
 
+//RECUPERATION MODULE
+function recup_module(){
+  let module_name = $("#module_name").val();
+  let ref_module = $("#ref_module").val();
+  let semestre = $("#semestre").val();
+  let data = [module_name, ref_module, semestre];
+  set_data = eel.setData(data, 'module');
+  alert('Module Enregistré');
+}
+
 /* Exporter les données en CSV */
 function export_data(val_bdd) {
   eel.export_data_csv(val_bdd);

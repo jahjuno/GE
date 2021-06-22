@@ -318,6 +318,16 @@ def get_module(module_got):
 	''')
 	return cur.fetchall()
 
+#AFFICHER LISTE PROF DANS LA CREATION MODULE
+@eel.expose
+def get_prof(prof_got):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_prof_list = cur.execute(''' 
+	SELECT nom, prenom FROM enseignant
+	''')
+	return cur.fetchall()
+
 
 #CONNECTION EN TANT ADMIN
 @eel.expose
