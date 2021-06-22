@@ -68,11 +68,12 @@ def createBDD():
 
 		t_module = cur.execute('''
 		CREATE TABLE IF NOT EXISTS MODULE (
-			id_module		INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
-			nom		TEXT		NOT NULL,
-			reference	TEXT	NOT NULL,
-			semestre TEXT NOT NULL,
-			matricule_ensg	TEXT	NOT NULL,
+			id_module			INTEGER		NOT NULL	PRIMARY KEY		AUTOINCREMENT,
+			nom					TEXT			NOT NULL,
+			reference			TEXT			NOT NULL,
+			semestre 			TEXT 			NOT NULL,
+			matricule_ensg		TEXT			NOT NULL,
+			archive				INTEGER		NOT NULL 	DEFAULT 0,	
 			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
 		)
 		''')
