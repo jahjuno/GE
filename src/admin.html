@@ -459,7 +459,7 @@
                                                 </div>
 
                                                 <div class="form-group col-2">
-                                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note">
+                                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note" type="submit" onclick="recup_module()">
                                                         <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                                     </button>
                                                 </div>
@@ -518,7 +518,7 @@
         eel.get_prof('recup_info')(print_select_prof);
         function print_select_prof(name_prof) {
             let print_select =''; 
-            for (i=0; i<name_prof.length; i++) print_select +=`<option>${name_prof[i][0]} ${name_prof[i][1]}</option>`
+            for (i=0; i<name_prof.length; i++) print_select +=`<option value="${name_prof[i][2]}">${name_prof[i][0]} ${name_prof[i][1]}</option>`
             $('#nom_prof_select').append(print_select); 
         };                                  
     </script>

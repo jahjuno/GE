@@ -145,12 +145,21 @@ def setData(d, e):
 			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 			'''		
 			cur.execute(donnee_etudiant, d)
+
 		elif e == 'perso_admin':
 			donnee_perso_admin = '''
 			INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe)
 			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 			'''
 			cur.execute(donnee_perso_admin, d)
+
+		elif e == 'module':
+			donnee_module = '''
+			INSERT INTO MODULE(nom, reference, semestre, matricule_ensg)
+			VALUES(?, ?, ?, ?)
+			'''
+			cur.execute(donnee_module, d)
+			
 		else :
 			donnee_enseignant = ''' 
 			INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
@@ -324,7 +333,7 @@ def get_prof(prof_got):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_prof_list = cur.execute(''' 
-	SELECT nom, prenom FROM enseignant
+	SELECT nom, prenom, matricule_ensg FROM enseignant
 	''')
 	return cur.fetchall()
 

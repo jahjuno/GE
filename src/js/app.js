@@ -115,7 +115,8 @@ function recup_module(){
   let module_name = $("#module_name").val();
   let ref_module = $("#ref_module").val();
   let semestre = $("#semestre").val();
-  let data = [module_name, ref_module, semestre];
+  let prof_matricule = $("#nom_prof_select :selected").val()
+  let data = [module_name, ref_module, semestre, prof_matricule];
   set_data = eel.setData(data, 'module');
   alert('Module Enregistré');
 }
