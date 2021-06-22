@@ -181,10 +181,8 @@
                                         </div>
 
                                         <div class="form-group col-3">
-                                            <select class="form-control" id="prenom">
+                                            <select class="form-control" id="semestre_selected">
                                                 <option class="hidden"  selected disabled>SEMESTRE</option>
-                                                <option>S1</option>
-                                                <option>S2</option>
                                             </select>
                                         </div>
                                     </div>
@@ -362,13 +360,13 @@
                 </div>
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white adjusted_footer">
+            <!-- <footer class="sticky-footer bg-white adjusted_footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>GE v2.0</span>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
             <!-- End of Footer -->
 
         </div>
@@ -401,6 +399,16 @@
             let print_lastname = '';
             for (i=0; i<lastname.length; i++) print_lastname += `<option>${lastname[i]}</option>`
             $('#prenom').append(print_lastname);
+        };
+    </script>
+
+<!-- affichage SEMESTRE dans select -->
+    <script>
+        eel.get_semestre('recup_semestre')(print_select_semestre)
+        function print_select_semestre(semestre) {
+            let print_semestre = '';
+            for (i=0; i<semestre.length; i++) print_semestre += `<option>${semestre[i]}</option>`
+            $('#semestre_selected').append(print_semestre);
         };
     </script>
 

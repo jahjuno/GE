@@ -324,7 +324,17 @@ def get_module(module_got):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_module_ensg = cur.execute ('''
-	SELECT module FROM enseignant
+	SELECT nom FROM module WHERE archive=0
+	''')
+	return cur.fetchall()
+
+#AFFICHER TOUS LES SEMESTRE dans la selection 
+@eel.expose
+def get_semestre(semestre_got):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_semestre = cur.execute('''
+	SELECT DISTINCT semestre FROM module ORDER BY semestre
 	''')
 	return cur.fetchall()
 
