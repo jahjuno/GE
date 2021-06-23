@@ -397,7 +397,7 @@
         eel.get_lastname('recup_prenom')(print_select_lastnanme);
         function print_select_lastnanme(lastname) {
             let print_lastname = '';
-            for (i=0; i<lastname.length; i++) print_lastname += `<option>${lastname[i]}</option>`
+            for (i=0; i<lastname.length; i++) print_lastname += `<option value="${lastname[i][1]}">${lastname[i]}</option>`
             $('#prenom').append(print_lastname);
         };
     </script>
@@ -417,7 +417,7 @@
         eel.get_module('recup_module')(print_select_module);
         function print_select_module(module) {
             let print_module = '';
-            for (i=0; i<module.length; i++) print_module += `<option>${module[i]}</option>`
+            for (i=0; i<module.length; i++) print_module += `<option value="${module[i][1]}">${module[i]}</option>`
             $('#module').append(print_module);
         };
     </script>

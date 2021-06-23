@@ -73,6 +73,7 @@ def createBDD():
 			reference			TEXT			NOT NULL,
 			semestre 			TEXT 			NOT NULL,
 			matricule_ensg		TEXT			NOT NULL,
+			credit_obtenu		INTEGER		NOT NULL,
 			archive				INTEGER		NOT NULL 	DEFAULT 0,	
 			CONSTRAINT	module_ensg_fk	FOREIGN KEY	(matricule_ensg)	REFERENCES	ENSEIGNANT(matricule_ensg)
 		)
@@ -85,7 +86,6 @@ def createBDD():
 			id_module			INTEGER	NOT NULL,
 			TYPE					TEXT		NOT NULL,
 			coeff					INTEGER	NOT NULL,
-			credit_obtenu		INTEGER	NOT NULL,
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
 		)
@@ -156,8 +156,8 @@ def setData(d, e):
 
 		elif e == 'module':
 			donnee_module = '''
-			INSERT INTO MODULE(nom, reference, semestre, matricule_ensg)
-			VALUES(?, ?, ?, ?)
+			INSERT INTO MODULE(nom, reference, semestre, matricule_ensg, credit_obtenu)
+			VALUES(?, ?, ?, ?, ?)
 			'''
 			cur.execute(donnee_module, d)
 			
@@ -314,7 +314,7 @@ def get_lastname(data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_lastname_student = cur.execute('''
-	SELECT prenom FROM etudiant
+	SELECT prenom, matricule_etud FROM etudiant
 	''')
 	return cur.fetchall()
 
@@ -324,7 +324,7 @@ def get_module(module_got):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_module_ensg = cur.execute ('''
-	SELECT nom FROM module WHERE archive=0
+	SELECT nom, id_module FROM module WHERE archive=0
 	''')
 	return cur.fetchall()
 
