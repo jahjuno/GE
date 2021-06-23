@@ -86,6 +86,7 @@ def createBDD():
 			id_module			INTEGER	NOT NULL,
 			TYPE					TEXT		NOT NULL,
 			coeff					INTEGER	NOT NULL,
+			note					FLOAT		NOT NULL,
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
 		)
@@ -161,8 +162,8 @@ def setData(d, e):
 		cur.execute(donnee_module, d)
 	elif e == 'note':
 		donnee_note = ''' 
-		INSERT INTO NOTE(matricule_etud, id_module, type, coeff)
-		VALUES(?, ?, ?, ?)
+		INSERT INTO NOTE(matricule_etud, id_module, type, coeff, note)
+		VALUES(?, ?, ?, ?, ?)
 		'''
 		cur.execute(donnee_note, d)
 			

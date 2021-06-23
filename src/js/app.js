@@ -134,10 +134,44 @@ function add_note_1(){
   //let bonus_1 = $("#bonus_1").val();
   //let malus_1 = $("#malus_1").val();
 
-  let note_info1 = [matricule_etud, module_id, type_1, coeff_1];
+  let note_info1 = [matricule_etud, module_id, type_1, coeff_1, note_1];
   //let bonus_info = []
   let set_to_note = eel.setData(note_info1, 'note');
-  alert('Note insérée');
+  alert('Note 1 insérée');
+ }
+
+ function add_note_2(){
+  //selection recuperation
+  let matricule_etud = $("#prenom :selected").val();
+  let module_id = $("#module :selected").val();
+  //input recuperation
+  let note_2 = $("#note_2").val();
+  let type_2 = $("#type_2 :selected").val();
+  let coeff_2 = $("#coeff_2").val();
+  //let bonus_2 = $("#bonus_2").val();
+  //let malus_2 = $("#malus_2").val();
+
+  let note_info2 = [matricule_etud, module_id, type_2, coeff_2, note_2];
+  //let bonus_info = []
+  let set_to_note = eel.setData(note_info2, 'note');
+  alert('Note 2 insérée');
+ }
+
+ function add_note_3(){
+  //selection recuperation
+  let matricule_etud = $("#prenom :selected").val();
+  let module_id = $("#module :selected").val();
+  //input recuperation
+  let note_3 = $("#note_3").val();
+  let type_3 = $("#type_3 :selected").val();
+  let coeff_3 = $("#coeff_3").val();
+  //let bonus_3 = $("#bonus_3").val();
+  //let malus_3 = $("#malus_3").val();
+
+  let note_info3 = [matricule_etud, module_id, type_3, coeff_3, note_3];
+  //let bonus_info = []
+  let set_to_note = eel.setData(note_info3, 'note');
+  alert('Note 3 insérée');
  }
 
 /* Exporter les données en CSV */
