@@ -72,6 +72,7 @@ function recup_info_etudiant(){
   let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau];
   x = eel.setData(data, 'etud');
   alert('Inscription terminée');
+  location.reload();
 };
 
 /* RECUPERATION DES INFOS PROFS */
@@ -90,6 +91,7 @@ function recup_info_prof(){
   let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp];
   x = eel.setData(data, 'ensg');
   alert('Inscription terminée');
+  location.reload();
 };
 
 /* RECUPERATION DES INFOS PERSONNEL ADMINISTRATIF */
@@ -107,6 +109,7 @@ function recup_info_perso_admin() {
   let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe];
   x = eel.setData(donnee, 'perso_admin');
   alert('Inscription terminée');
+  location.reload();
 
 }
 
@@ -120,6 +123,7 @@ function recup_module(){
   let data = [module_name, ref_module, semestre, prof_matricule, credit_btenu];
   set_data = eel.setData(data, 'module');
   alert('Module Enregistré');
+  location.reload();
 }
 
 //AJOUT NOTE
@@ -131,11 +135,9 @@ function add_note_1(){
   let note_1 = $("#note_1").val();
   let type_1 = $("#type_1 :selected").val();
   let coeff_1 = $("#coeff_1").val();
-  //let bonus_1 = $("#bonus_1").val();
-  //let malus_1 = $("#malus_1").val();
+  let bonus_1 = $("#bonus_1").val();
 
-  let note_info1 = [matricule_etud, module_id, type_1, coeff_1, note_1];
-  //let bonus_info = []
+  let note_info1 = [matricule_etud, module_id, type_1, coeff_1, note_1, bonus_1];
   let set_to_note = eel.setData(note_info1, 'note');
   alert('Note 1 insérée');
  }
@@ -148,11 +150,9 @@ function add_note_1(){
   let note_2 = $("#note_2").val();
   let type_2 = $("#type_2 :selected").val();
   let coeff_2 = $("#coeff_2").val();
-  //let bonus_2 = $("#bonus_2").val();
-  //let malus_2 = $("#malus_2").val();
+  let bonus_2 = $("#bonus_2").val();
 
-  let note_info2 = [matricule_etud, module_id, type_2, coeff_2, note_2];
-  //let bonus_info = []
+  let note_info2 = [matricule_etud, module_id, type_2, coeff_2, note_2, bonus_2];
   let set_to_note = eel.setData(note_info2, 'note');
   alert('Note 2 insérée');
  }
@@ -165,11 +165,9 @@ function add_note_1(){
   let note_3 = $("#note_3").val();
   let type_3 = $("#type_3 :selected").val();
   let coeff_3 = $("#coeff_3").val();
-  //let bonus_3 = $("#bonus_3").val();
-  //let malus_3 = $("#malus_3").val();
+  let bonus_3 = $("#bonus_3").val();
 
-  let note_info3 = [matricule_etud, module_id, type_3, coeff_3, note_3];
-  //let bonus_info = []
+  let note_info3 = [matricule_etud, module_id, type_3, coeff_3, note_3, bonus_3];
   let set_to_note = eel.setData(note_info3, 'note');
   alert('Note 3 insérée');
  }

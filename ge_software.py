@@ -87,19 +87,12 @@ def createBDD():
 			TYPE					TEXT		NOT NULL,
 			coeff					INTEGER	NOT NULL,
 			note					FLOAT		NOT NULL,
+			bonus					REAL		NOT NULL		DEFAULT 0,
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
 		)
 		''')
 
-		t_bonus_malus = cur.execute('''
-		CREATE TABLE IF NOT EXISTS BONUS_MALUS (
-			id_bonus_malus		INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			id_note				INTEGER	NOT NULL,
-			bonus_malus			REAL	NOT NULL,
-			CONSTRAINT	note_etud_bm_fk FOREIGN KEY (id_note) REFERENCES NOTE(id_note)
-		)
-		''')
 
 		t_etudier = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ETUDIER (
@@ -162,8 +155,8 @@ def setData(d, e):
 		cur.execute(donnee_module, d)
 	elif e == 'note':
 		donnee_note = ''' 
-		INSERT INTO NOTE(matricule_etud, id_module, type, coeff, note)
-		VALUES(?, ?, ?, ?, ?)
+		INSERT INTO NOTE(matricule_etud, id_module, type, coeff, note, bonus)
+		VALUES(?, ?, ?, ?, ?, ?)
 		'''
 		cur.execute(donnee_note, d)
 			
