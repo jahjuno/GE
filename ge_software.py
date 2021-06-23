@@ -137,57 +137,45 @@ insert_admin_account()
 def setData(d, e):
 	global data
 	data = d
-	try : 
-		connect_to_bdd = sqlite3.connect('donnee.db')
-		cur = connect_to_bdd.cursor()
-		if e == 'etud':
-			donnee_etudiant = ''' 
-			INSERT INTO ETUDIANT(matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-			'''		
-			cur.execute(donnee_etudiant, d)
+	
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	if e == 'etud':
+		donnee_etudiant = ''' 
+		INSERT INTO ETUDIANT(matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		'''		
+		cur.execute(donnee_etudiant, d)
+	elif e == 'perso_admin':
+		donnee_perso_admin = '''
+		INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe)
+		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		'''
+		cur.execute(donnee_perso_admin, d)
 
-		elif e == 'perso_admin':
-			donnee_perso_admin = '''
-			INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe)
-			VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-			'''
-			cur.execute(donnee_perso_admin, d)
-
-		elif e == 'module':
-			donnee_module = '''
-			INSERT INTO MODULE(nom, reference, semestre, matricule_ensg, credit_obtenu)
-			VALUES(?, ?, ?, ?, ?)
-			'''
-			cur.execute(donnee_module, d)
+	elif e == 'module':
+		donnee_module = '''
+		INSERT INTO MODULE(nom, reference, semestre, matricule_ensg, credit_obtenu)
+		VALUES(?, ?, ?, ?, ?)
+		'''
+		cur.execute(donnee_module, d)
+	elif e == 'note':
+		donnee_note = ''' 
+		INSERT INTO NOTE(matricule_etud, id_module, type, coeff)
+		VALUES(?, ?, ?, ?)
+		'''
+		cur.execute(donnee_note, d)
 			
-		else :
-			donnee_enseignant = ''' 
-			INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-			'''
-			cur.execute(donnee_enseignant, d)
+	else :
+		donnee_enseignant = ''' 
+		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		'''
+		cur.execute(donnee_enseignant, d)
 
-		connect_to_bdd.commit()
-		cur.close()
-		connect_to_bdd.close()
-	except sqlite3.Error as error: 
-		print(error)
-
-#INSERTION NOTES
-""" @eel.expose
-def insert_notes(note_recup):
-	try:
-		connect_to_bdd = sqlite3.connect('donnee.db')
-		cur = connect_to_bdd.cursor()
-		note_insert = cur.execute('''
-		INSERT INTO NOTE(note_sur20, note_sur10, bonus, malus)
-		VALUES (?, ?, ?, ?)
-		''')
-		connect_to_bdd.commit()
-	except sqlite3.Error as erro:
-		print(error) """
-
+	connect_to_bdd.commit()
+	cur.close()
+	connect_to_bdd.close()
 
 
 #EXPORTATION DONNEES EN CSV 
@@ -320,7 +308,6 @@ def get_selected_module(data):
 	WHERE semestre = ?
 	''', (data,))
 	resu = cur.fetchall()
-	print(resu)
 	return resu
 	
 

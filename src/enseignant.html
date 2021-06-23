@@ -184,23 +184,24 @@
 
                                     </div>
                                     <hr>
+                                    <!-- PREMIERE NOTE -->
                                     <div class="row justify-content-between">
                                         <div class="form-group col-2">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Note 1" id="note" value="" />
+                                                <input type="text" class="form-control" placeholder="Note 1" id="note_1" value="" />
                                             </div>
                                         </div>
 
                                         <div class="form-group col-2">
-                                                <select class="form-control" id="niveau">
-                                                    <option class="hidden"  selected disabled>Sur (/)</option>
-                                                    <option>/20</option>
-                                                    <option>/10</option>
+                                                <select class="form-control" id="coeff_1">
+                                                    <option class="hidden"  selected disabled>Coefficient</option>
+                                                    <option>2</option>
+                                                    <option>1</option>
                                                 </select>                         
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <select class="form-control" id="niveau">
+                                            <select class="form-control" id="type_1">
                                                 <option class="hidden"  selected disabled>Types</option>
                                                 <option>Examen</option>
                                                 <option>Contrôle Continue</option>
@@ -209,24 +210,25 @@
 
                                         <div class="form-group col-2">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Bonus" id="bonus" value="" />
+                                                <input type="text" class="form-control" placeholder="Bonus" id="bonus_1" value="" />
                                             </div>
                                         </div>
 
                                         <div class="form-group col-2">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Malus" id="malus" value="" />
+                                                <input type="text" class="form-control" placeholder="Malus" id="malus_1" value="" />
                                             </div>
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note note_1_btn" onclick="add_note_1()">
                                                 <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                             </button>
                                         </div>
                                     </div>
 
 
+                                    <!-- DEUXIEME NOTE -->
                                     <div class="row justify-content-between add_notes">
                                         <div class="form-group col-2">
                                             <div class="form-group">
@@ -269,6 +271,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- TROISIEME NOTE -->
                                     <div class="row justify-content-between add_notes">
                                         <div class="form-group col-2">
                                             <div class="form-group">

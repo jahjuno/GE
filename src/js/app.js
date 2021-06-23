@@ -122,6 +122,24 @@ function recup_module(){
   alert('Module Enregistré');
 }
 
+//AJOUT NOTE
+function add_note_1(){
+  //selection recuperation
+  let matricule_etud = $("#prenom :selected").val();
+  let module_id = $("#module :selected").val();
+  //input recuperation
+  let note_1 = $("#note_1").val();
+  let type_1 = $("#type_1 :selected").val();
+  let coeff_1 = $("#coeff_1").val();
+  //let bonus_1 = $("#bonus_1").val();
+  //let malus_1 = $("#malus_1").val();
+
+  let note_info1 = [matricule_etud, module_id, type_1, coeff_1];
+  //let bonus_info = []
+  let set_to_note = eel.setData(note_info1, 'note');
+  alert('Note insérée');
+ }
+
 /* Exporter les données en CSV */
 function export_data(val_bdd) {
   eel.export_data_csv(val_bdd);
