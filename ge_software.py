@@ -310,6 +310,20 @@ def get_name_student(data):
 	resu = cur.fetchall()
 	return resu
 
+#AFFICHAGE SEULEMENT LES MODULES DANS LE SEMESTRE SELECTIONNE
+@eel.expose
+def get_selected_module(data):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_selected_module_semestre = cur.execute('''
+	SELECT nom, id_module FROM MODULE
+	WHERE semestre = ?
+	''', (data,))
+	resu = cur.fetchall()
+	print(resu)
+	return resu
+	
+
 
 
 #AFFICHER TOUS LES NIVEAUX DANS la selection espace_prof

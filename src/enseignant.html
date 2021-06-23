@@ -169,22 +169,19 @@
                                         </div>
 
                                         <div class="form-group col-3">
-                                            <select class="form-control" id="prenom">
-                            
-                                            </select>
+                                            <select class="form-control" id="prenom"></select>
                                         </div>
 
                                         <div class="form-group col-3">
-                                            <select class="form-control" id="module">
-                                                <option class="hidden"  selected disabled>MODULE</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-3">
-                                            <select class="form-control" id="semestre_selected">
+                                            <select class="form-control" id="semestre_selected" onchange="change_module_to_semestre_selected()">
                                                 <option class="hidden"  selected disabled>SEMESTRE</option>
                                             </select>
                                         </div>
+
+                                        <div class="form-group col-3">
+                                            <select class="form-control" id="module"></select>
+                                        </div>
+
                                     </div>
                                     <hr>
                                     <div class="row justify-content-between">
@@ -391,24 +388,24 @@
             $('#niveau').append(print_select); 
         };                                  
     </script>
-    
+
 
 <!-- affichage PRENOM APRES SELECTION NIVEAU dans select -->
     <script>
         eel.get_lastname('recup_prenom')(print_select_lastnanme);
+
         function print_select_lastnanme(lastname) {
             let print_lastname = '<option class="hidden"  selected disabled>Prénoms Etudiants</option>';
             for (i=0; i<lastname.length; i++) print_lastname += `<option value="${lastname[i][1]}"> ${lastname[i][0]} </option>`
             $('#prenom').html(print_lastname);
         };
-    </script>
 
-    <script>
         function change_name_to_niveau() {
             let niveau_got = $("#niveau").val();
             let set_data = eel.get_name_student(niveau_got)(print_select_lastnanme);
-        }  
+        };
     </script>
+<!-- -------------------------------------------------------------------------------------------------------------------------- -->
 
 
 <!-- affichage SEMESTRE dans select -->
@@ -425,9 +422,14 @@
     <script>
         eel.get_module('recup_module')(print_select_module);
         function print_select_module(module) {
-            let print_module = '';
+            let print_module = '<option class="hidden"  selected disabled>MODULE</option>';
             for (i=0; i<module.length; i++) print_module += `<option value="${module[i][1]}"> ${module[i][0]} </option>`
-            $('#module').append(print_module);
+            $('#module').html(print_module);
+        };
+
+        function change_module_to_semestre_selected() {
+            let semestre_got = $("#semestre_selected").val();
+            let set_data = eel.get_selected_module(semestre_got)(print_select_module);
         };
     </script>
     
