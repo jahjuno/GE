@@ -298,6 +298,20 @@ def delete_person(type_person, data_perso) :
 		''', (data_perso,))
 		connect_to_bdd.commit()
 
+#AFFICHAGE SEULEMENT LES ETUDIANTS DANS LES NIVEAUX SELECTIONNEES
+
+@eel.expose
+def get_name_student(data):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_selected_niveau_name = cur.execute(''' 
+	SELECT prenom, matricule_etud FROM ETUDIANT WHERE niveau = ?
+	''', (data,))
+	resu = cur.fetchall()
+	return resu
+
+
+
 #AFFICHER TOUS LES NIVEAUX DANS la selection espace_prof
 @eel.expose
 def get_niveau(data) :
