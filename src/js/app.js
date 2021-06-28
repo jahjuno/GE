@@ -419,28 +419,28 @@ function printData_perso_admin(data_recupered) {
                 
                     <div class="card-body card_profil">
                         <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                        <span>${data_profil_prof[i][0]}</span><br>
+                        <span>${data_profil_prof[i][1]}</span><br>
 
                         <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
-                        <span>${data_profil_prof[i][2]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
                         <span>${data_profil_prof[i][3]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="email">TEL:</span>
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
                         <span>${data_profil_prof[i][4]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
+                        <span class="font-weight-bold text-primary" id="email">TEL:</span>
                         <span>${data_profil_prof[i][5]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                        <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
                         <span>${data_profil_prof[i][6]}</span><br>
 
+                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                        <span>${data_profil_prof[i][7]}</span><br>
+
                         <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUEL: </span>
-                        <span>${data_profil_prof[i][8]}</span><br>
+                        <span>${data_profil_prof[i][9]}</span><br>
 
                         <span class="font-weight-bold text-primary">MODULE: </span>
-                        <span>${data_profil_prof[i][9]}</span><br>
+                        <span>${data_profil_prof[i][10]}</span><br>
 
                         
                     </div>

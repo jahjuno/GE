@@ -280,7 +280,6 @@ def get_note():
 		WHERE E.matricule_etud=?
 	''', (storage_get_profil_data[0][1],))
 	resu = cur.fetchall()
-	print(resu)
 	return resu
 
 #SUPPRESSION LIGNE DANS LA LISTE_ETUD, LISTE_PROF et LISTE PERSONNNEL ADMINISTRATIF
