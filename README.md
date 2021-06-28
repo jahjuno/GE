@@ -16,12 +16,14 @@ GE est un logiciel conçu pour gérer les grandes écoles ou des universités
 - Voir les notes
 - Exportation des listes étudiante et prof en CSV
 - Exportation du profil en PDF
+- Ajout des photos sur le profil
 
 ![Capture Espace Admin](/src/dist/img/admin.png "Admin Interface")
 
 
 ## Pour les profs :
-- Ajout note et calcul automatique de la moyenne
+- Ajout note
+- Calcul automatique de la moyenne
 - Modification des notes
 
 ![Capture Espace Enseignant](/src/dist/img/prof.png "Enseignant Interface")
