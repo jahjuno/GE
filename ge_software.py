@@ -267,6 +267,8 @@ def note_got():
 #afficher les notes
 @eel.expose
 def get_note():
+	if not storage_get_profil_data:
+		return []
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	print(storage_get_profil_data)
