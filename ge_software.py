@@ -1,5 +1,6 @@
 import eel, csv
 import sqlite3, os
+import hashlib
 from os import environ
 from psutil import net_connections
 
@@ -162,6 +163,7 @@ def setData(d, e):
 		cur.execute(donnee_note, d)
 			
 	else :
+		d[10] = hashlib.sha1(d[10].encode()).hexdigest()
 		donnee_enseignant = ''' 
 		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -260,10 +262,7 @@ def getdata_profil(type_profil, profil_data):
 		''', (profil_data,))
 		storage_get_profil_data = cur.fetchall()
 
-""" @eel.expose
-def note_got():
-	print(resultat_note)
-	return resultat_note """
+
 #afficher les notes
 @eel.expose
 def get_note():
@@ -384,6 +383,7 @@ def get_prof(prof_got):
 #CONNECTION EN TANT ADMIN
 @eel.expose
 def connect_admin(usr, mdp) :
+	mdp = hashlib.sha1(mdp.encode()).hexdigest()
 	try :
 		connect_to_bdd = sqlite3.connect('donnee.db')
 		cur = connect_to_bdd.cursor()
@@ -403,6 +403,7 @@ def connect_admin(usr, mdp) :
 #CONNECTION EN TANT QU'ENSEIGNANT
 @eel.expose
 def connect_ensg(usr, mdp):
+	mdp = hashlib.sha1(mdp.encode()).hexdigest()
 	try:
 		connect_to_bdd = sqlite3.connect("donnee.db")
 		cur = connect_to_bdd.cursor()
