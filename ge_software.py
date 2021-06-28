@@ -121,7 +121,7 @@ def insert_admin_account():
 	cur = connect_to_bdd.cursor()
 	add_admin_account = cur.execute('''
 	INSERT OR IGNORE INTO PERSONNEL_ADMINISTRATIF (matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, mdp, sexe) 
-	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','admin', 'sexe')
+	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','d033e22ae348aeb5660fc2140aec35850c4da997', 'sexe')
 	''')
 	connect_to_bdd.commit()
 	connect_to_bdd.close()
@@ -270,7 +270,6 @@ def get_note():
 		return []
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
-	print(storage_get_profil_data)
 	requete = cur.execute(''' 
 		SELECT M.nom, N.note, N.coeff, N.bonus
 		FROM MODULE M
