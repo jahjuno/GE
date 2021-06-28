@@ -17,7 +17,13 @@
 }
 
 #card_notes_espace_ensg{
+   margin-top: -350px !important;
    width: 150% !important;
+}
+
+#card_notes{
+   margin-top: -50px !important;
+   margin-left: -11px !important;
 }
 
 #button_add_note{

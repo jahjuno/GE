@@ -147,7 +147,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle"
-                                    src="dist/img/undraw_profile.png">
+                                    src="dist/img/admin_logo.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -219,12 +219,23 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">LES NOTES</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary justify-content-center">LES NOTES</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                        <table class="table table_bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>MODULE</th>
+                                                    <th>NOTE</th>
+                                                    <th>COEFFICIENT</th>
+                                                    <th>BONUS_MALUS</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody id="note_info"></tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -234,13 +245,13 @@
             <!-- Ending Body -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white adjusted_footer">
+            <!-- <footer class="sticky-footer bg-white adjusted_footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>GE v2.0</span>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
             <!-- End of Footer -->
 
         </div>

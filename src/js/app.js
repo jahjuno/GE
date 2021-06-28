@@ -279,7 +279,7 @@ function printData_etud(data_recupered) {
             <td id="t_niveau">${data_recupered[i][10]}</td>
             <td>
                 <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}"); print_note()' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
                 <a class="edit" title="Supprimer" type="button" onclick='delete_student("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>
         </tr>
@@ -353,45 +353,63 @@ function printData_perso_admin(data_recupered) {
         else if (arg_print_profile == 'person_admin') eel.new_data_profil()(print_admin_profil);
         
         function print_student_profil(data_profil_student){
-            for (i=0; i < data_profil_student.length; i++) {
+            for (i=0; i < data_profil_student.length; i++) 
+            {
                 let print_profil = `
                 
                     <div class="card-body card_profil">
                         <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                        <span>${data_profil_student[i][0]}</span><br>
+                        <span>${data_profil_student[i][1]}</span><br>
 
                         <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
-                        <span>${data_profil_student[i][2]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
                         <span>${data_profil_student[i][3]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="email">DATE DE NAISSANCE:</span>
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
                         <span>${data_profil_student[i][4]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
+                        <span class="font-weight-bold text-primary" id="email">DATE DE NAISSANCE:</span>
                         <span>${data_profil_student[i][5]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="date_naiss">EMAIL: </span>
+                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
                         <span>${data_profil_student[i][6]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="cin">CIN: </span>
+                        <span class="font-weight-bold text-primary" id="date_naiss">EMAIL: </span>
                         <span>${data_profil_student[i][7]}</span><br>
 
+                        <span class="font-weight-bold text-primary" id="cin">CIN: </span>
+                        <span>${data_profil_student[i][8]}</span><br>
+
                         <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
-                        <span>${data_profil_student[i][9]}</span><br>
+                        <span>${data_profil_student[i][10]}</span><br>
 
                         <span class="font-weight-bold text-primary">NIVEAU: </span>
-                        <span>${data_profil_student[i][10]}</span>
+                        <span>${data_profil_student[i][11]}</span>
                     </div>
                 </div>
                 `
                 $('#info').append(print_profil);
-                };
+            };
                 let title_profil = `PROFIL ETUDIANT`
                 let title_left = `PROFIL_ETUDIANT`
                 $('#title_profil_var').append(title_profil);  
-                $('#side_title').append(title_left);                                                       
+                $('#side_title').append(title_left);   
+
+                                                            
+          }
+        
+        eel.get_note()(print_note);
+        function print_note(data_note){
+          for(i=0; i<data_note.length; i++){
+            let resultat = `
+            <tr>
+              <td>${data_note[i][0]}</td>
+              <td>${data_note[i][1]}</td>
+              <td>${data_note[i][2]}</td>
+              <td>${data_note[i][3]}</td>
+            </tr>
+            ` 
+            $('#note_info').append(resultat);
+          }
         }
 
         function print_prof_profil(data_profil_prof){

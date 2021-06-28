@@ -7,6 +7,7 @@ eel.init('src')
 
 data = []
 storage_get_profil_data=None
+#resultat_note=None
 
 #CREATE DE LA BASE DE DONNEE
 def createBDD():
@@ -242,7 +243,7 @@ def getdata_profil(type_profil, profil_data):
 	cur = connect_to_bdd.cursor()
 	if type_profil == 'student_profil':
 		search_profil = cur.execute('''
-		SELECT * FROM etudiant WHERE matricule_etud=?
+		SELECT * FROM etudiant WHERE matricule_etud=?;
 		''', (profil_data,))
 		global storage_get_profil_data
 		storage_get_profil_data=cur.fetchall()
@@ -252,12 +253,33 @@ def getdata_profil(type_profil, profil_data):
 		SELECT * FROM enseignant WHERE matricule_ensg=?
 		''', (profil_data,))
 		storage_get_profil_data=cur.fetchall()
+		
 	elif type_profil == 'admin_perso_profil':
 		search_profil = cur.execute('''
 		SELECT * FROM personnel_administratif WHERE matricule_perso_admin=?
 		''', (profil_data,))
 		storage_get_profil_data = cur.fetchall()
 
+""" @eel.expose
+def note_got():
+	print(resultat_note)
+	return resultat_note """
+#afficher les notes
+@eel.expose
+def get_note():
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	print(storage_get_profil_data)
+	requete = cur.execute(''' 
+		SELECT M.nom, N.note, N.coeff, N.bonus
+		FROM MODULE M
+		INNER JOIN NOTE N ON N.id_module=M.id_module
+		INNER JOIN ETUDIANT E ON E.matricule_etud=N.matricule_etud
+		WHERE E.matricule_etud=?
+	''', (storage_get_profil_data[0][1],))
+	resu = cur.fetchall()
+	print(resu)
+	return resu
 
 #SUPPRESSION LIGNE DANS LA LISTE_ETUD, LISTE_PROF et LISTE PERSONNNEL ADMINISTRATIF
 @eel.expose
