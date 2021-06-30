@@ -255,8 +255,17 @@ function printData_prof(data_recupered) {
   };
   let titre_left =  `LISTE DES PROFS INSCRITS`
   let grand_titre_left = `LISTE_PROF`
+  let btn_exporte = `
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('prof')">
+               <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
+          </button>
+      </div>
+    `
   $('#h1_liste').append(titre_left);
   $('#list_title').append(grand_titre_left);
+  $('#btn_export').append(btn_exporte);
 };
 
 //AFFICHAGE LISTE ETUDIANT
@@ -288,8 +297,17 @@ function printData_etud(data_recupered) {
     };
     let titre_left =  `LISTE DES ETUDIANTS INSCRITS`
     let grand_titre_left = `LISTE_ETUDIANT`
+    let btn_exporte = `
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('student')">
+               <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
+          </button>
+      </div>
+    `
     $('#h1_liste').append(titre_left);
     $('#list_title').append(grand_titre_left);
+    $('#btn_export').append(btn_exporte);
 };
 
 //AFFICHAGE LISTE PERSONNEL ADMINISTRATIF
@@ -321,8 +339,17 @@ function printData_perso_admin(data_recupered) {
   };
   let titre_left =  `LES PERSONNELS ADMINISTRATIFS INSCRITS`
   let grand_titre_left = `PERSO_ADMIN`
+  let btn_exporte = `
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('perso_admin')">
+               <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
+          </button>
+      </div>
+    `
   $('#h1_liste').append(titre_left);
   $('#list_title').append(grand_titre_left);
+  $('#btn_export').append(btn_exporte);
 
 }
 
