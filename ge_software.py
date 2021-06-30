@@ -2,8 +2,10 @@ import eel, csv
 import sqlite3, os
 import hashlib
 from os import environ
-from xlsxwriter.workbook import Workbook
 from psutil import net_connections
+from docxtpl import DocxTemplate, RichText
+from docx2pdf import convert
+from tempfile import gettempdir
 
 eel.init('src')
 
@@ -431,8 +433,8 @@ def connect_ensg(usr, mdp):
 	except sqlite3.Error as e:
 		print(e)
 
-
-
+#EXPORTATION EN PDF DU PROFIL
+#def export_to_pdf(data):
 
 
 

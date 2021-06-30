@@ -117,7 +117,8 @@ function recup_info_perso_admin() {
 function recup_module(){
   let module_name = $("#module_name").val();
   let ref_module = $("#ref_module").val();
-  let semestre = $("#semestre").val();
+  let semestre_azo = $("#semestre").val();
+  let semestre = semestre_azo.toUpperCase();
   let prof_matricule = $("#nom_prof_select :selected").val()
   let credit_btenu = $("#credit_obt").val()
   let data = [module_name, ref_module, semestre, prof_matricule, credit_btenu];
