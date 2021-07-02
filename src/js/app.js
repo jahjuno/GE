@@ -422,9 +422,11 @@ function printData_perso_admin(data_recupered) {
                 $('#info').append(print_profil);
             };
                 let button_export = `
-                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_student()">
-                  <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
-                </button>
+                <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
+                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_student()">
+                    <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
+                  </button>
+                </div>
                 `
                 let title_profil = `PROFIL ETUDIANT`
                 let title_left = `PROFIL_ETUDIANT`
@@ -487,9 +489,11 @@ function printData_perso_admin(data_recupered) {
                 $('#info').append(print_profil);
                 }; 
                 let button_export = `
-                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
-                  <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
-                </button>
+                <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
+                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
+                    <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
+                  </button>
+                </div>
                 `
                 let title_profil = `PROFIL PROFESSEUR`
                 let title_left = `PROFIL_PROF`
@@ -534,9 +538,17 @@ function printData_perso_admin(data_recupered) {
                 `
                 $('#info').append(print_profil);
                 }; 
+                let button_export = `
+                <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
+                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
+                    <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
+                  </button>
+                </div>
+                `
                 let title_profil = `PROFIL PERSONNEL ADMINISTRATIF`
                 let title_left = `PROFIL_ADMIN`
                 $('#title_profil_var').append(title_profil);
+                $('#card_ohter_info').append(button_export);
                 $('#side_title').append(title_left);
 
         }
