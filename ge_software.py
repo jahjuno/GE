@@ -435,6 +435,7 @@ def connect_ensg(usr, mdp):
 
 #EXPORTATION EN PDF DU PROFIL
 @eel.expose
+#profil_etudiant
 def pdf_profil_student(data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
@@ -473,6 +474,7 @@ def pdf_profil_student(data):
 
 
 @eel.expose
+#profil_prof
 def pdf_profil_prof(data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
@@ -495,6 +497,44 @@ def pdf_profil_prof(data):
 
 	#get tamplate
 	document = DocxTemplate(f"template/profil_prof_template.docx")
+
+	#creation template
+	document.render(info)
+	name = "Profil_" + resu[0][1] + "_" + resu[0][2]
+
+	#save doc created
+	document.save(f"{gettempdir()}\\{name}.docx")
+	
+	#convertion template to pdf
+	dirpath = os.environ.get('USERPROFILE') + "\\Desktop"
+	pdf_got = f"{dirpath}\\{name}.pdf"
+	convert(f"{gettempdir()}\\{name}.docx", pdf_got)
+	return pdf_got
+
+@eel.expose
+#profil personnel administratif
+def pdf_profil_person_admin(data):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_profil_perso_admin = cur.execute(''' 
+	SELECT matricule_perso_admin, nom, prenom, fonction, tel, cin, email, adresse FROM PERSONNEL_ADMINISTRATIF
+	WHERE matricule_perso_admin=?
+	''', (data,))
+	resu = get_profil_perso_admin.fetchall()
+
+	info = {
+		'num_matricule' : RichText(resu[0][0], font='Arial', bold=False, size=24),
+		'nom' : RichText(resu[0][1], font='Arial', bold=False, size= 24),
+		'prenom' : RichText(resu[0][2], font='Arial', bold=False, size= 24),
+		'fonction' : RichText(resu[0][3], font='Arial', bold=False, size= 24),
+		'tel' : RichText(resu[0][4], font='Arial', bold=False, size= 24),
+		'cin' : RichText(resu[0][5], font='Arial', bold=False, size= 24),
+		'email' : RichText(resu[0][6], font='Arial', bold=False, size= 24),
+		'adresse' : RichText(resu[0][7], font='Arial', bold=False, size= 24)
+	}
+
+	#get tamplate
+	document = DocxTemplate(f"template/profil_person_admin.docx")
 
 	#creation template
 	document.render(info)

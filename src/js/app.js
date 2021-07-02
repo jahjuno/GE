@@ -319,7 +319,7 @@ function printData_perso_admin(data_recupered) {
   $("#naissance").hide();
   $("#niveau").hide();
   $("#module").hide();
-  for (i=0; i<data_recupered.length; i++) {
+  for (i=1; i<data_recupered.length; i++) {
     let line = `
             <tr>
             <td id="t_matricule">${data_recupered[i][0]}</td>
@@ -508,29 +508,29 @@ function printData_perso_admin(data_recupered) {
                 let print_profil = `
                 
                     <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                        <span>${data_profil_admin[i][0]}</span><br>
+                        <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE : </span>
+                        <span id="matricule_person_admin">${data_profil_admin[i][1]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
-                        <span>${data_profil_admin[i][1]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
+                        <span class="font-weight-bold text-primary" id="nom">NOM:</span>
                         <span>${data_profil_admin[i][2]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="email">FONCTION:</span>
+                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
                         <span>${data_profil_admin[i][3]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
-                        <span>${data_profil_admin[i][5]}</span><br>
+                        <span class="font-weight-bold text-primary" id="email">FONCTION:</span>
+                        <span>${data_profil_admin[i][4]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
+                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
                         <span>${data_profil_admin[i][6]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="cin">EMAIL: </span>
+                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
                         <span>${data_profil_admin[i][7]}</span><br>
 
-                        <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                        <span class="font-weight-bold text-primary" id="cin">EMAIL: </span>
                         <span>${data_profil_admin[i][8]}</span><br>
+
+                        <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                        <span>${data_profil_admin[i][9]}</span><br>
 
                         
                     </div>
@@ -540,7 +540,7 @@ function printData_perso_admin(data_recupered) {
                 }; 
                 let button_export = `
                 <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
-                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
+                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_perso_admin()">
                     <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
                   </button>
                 </div>
@@ -568,4 +568,9 @@ function exported_pdf_finished(lien_file){
 function export_pdf_student(){
   let got_matricule = $('#matricule_num').text();
   eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
+}
+
+function export_pdf_perso_admin(){
+  let got_matricule = $('#matricule_person_admin').text();
+  eel.pdf_profil_person_admin(got_matricule)(exported_pdf_finished);
 }
