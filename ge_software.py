@@ -434,7 +434,41 @@ def connect_ensg(usr, mdp):
 		print(e)
 
 #EXPORTATION EN PDF DU PROFIL
-#def export_to_pdf(data):
+@eel.expose
+def export_to_pdf(data):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	get_profil_prof = cur.execute(''' 
+	SELECT matricule_ensg, nom, prenom, tel, email, cin, adresse, module  FROM ENSEIGNANT
+	''')
+	resu = get_profil_prof.fetchall()
+
+	info = {
+		'num_matricule' : RichText(resu[0][0], font='Arial', bold=False, size=18),
+		'nom' : RichText(resu[0][1], font='Arial', bold=False, size= 18),
+		'prenom' : RichText(resu[0][2], font='Arial', bold=False, size= 18),
+		'tel' : RichText(resu[0][3], font='Arial', bold=False, size= 18),
+		'email' : RichText(resu[0][4], font='Arial', bold=False, size= 18),
+		'cin' : RichText(resu[0][5], font='Arial', bold=False, size= 18),
+		'adresse' : RichText(resu[0][6], font='Arial', bold=False, size= 18),
+		'module' : RichText(resu[0][7], font='Arial', bold=False, size= 18)
+	}
+
+	#get tamplate
+	document = DocxTemplate(f"template/profil_prof_template.docx")
+
+	#creation template
+	document.render(info)
+	name = "Profil_" + resu[0][1] + "_" + resu[0][2]
+
+	#save doc created
+	document.save(f"{gettempdir()}\\{name}.docx")
+	
+	#convertion template to pdf
+	dirpath = os.environ.get('USERPROFILE') + "\\Desktop"
+	pdf_got = f"{dirpath}\\{name}.pdf"
+	convert(f"{gettempdir()}\\{name}.docx", pdf_got)
+	return vita
 
 
 

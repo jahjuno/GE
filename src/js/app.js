@@ -247,8 +247,8 @@ function printData_prof(data_recupered) {
           <td id="t_module">${data_recupered[i][9]}</td>
           <td>
               <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-              <a class="edit" title="Voir Profil" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-              <a class="edit" title="Supprimer"  onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+              <a class="see_profil" title="Voir Profil" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+              <a class="delete" title="Supprimer"  onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
           </td>
       </tr>
           `
@@ -265,9 +265,11 @@ function printData_prof(data_recupered) {
       </div>
     `
   $('#h1_liste').append(titre_left);
+  $('#titre_table').append(titre_left);
   $('#list_title').append(grand_titre_left);
   $('#btn_export').append(btn_exporte);
 };
+
 
 //AFFICHAGE LISTE ETUDIANT
 function printData_etud(data_recupered) {
@@ -307,6 +309,7 @@ function printData_etud(data_recupered) {
       </div>
     `
     $('#h1_liste').append(titre_left);
+    $('#titre_table').append(titre_left);
     $('#list_title').append(grand_titre_left);
     $('#btn_export').append(btn_exporte);
 };
@@ -349,6 +352,7 @@ function printData_perso_admin(data_recupered) {
       </div>
     `
   $('#h1_liste').append(titre_left);
+  $('#titre_table').append(titre_left);
   $('#list_title').append(grand_titre_left);
   $('#btn_export').append(btn_exporte);
 
@@ -417,8 +421,14 @@ function printData_perso_admin(data_recupered) {
                 `
                 $('#info').append(print_profil);
             };
+                let button_export = `
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('perso_admin')">
+                  <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
+                </button>
+                `
                 let title_profil = `PROFIL ETUDIANT`
                 let title_left = `PROFIL_ETUDIANT`
+                $('#card_ohter_info').append(button_export);
                 $('#title_profil_var').append(title_profil);  
                 $('#side_title').append(title_left);   
 
@@ -476,13 +486,22 @@ function printData_perso_admin(data_recupered) {
                 `
                 $('#info').append(print_profil);
                 }; 
-                
+                let button_export = `
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
+                  <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
+                </button>
+                `
                 let title_profil = `PROFIL PROFESSEUR`
                 let title_left = `PROFIL_PROF`
+                $('#card_ohter_info').append(button_export);
                 $('#title_profil_var').append(title_profil);
                 $('#side_title').append(title_left);
         }
-
+//TESTESTSTEST
+function export_pdf_prof(data){
+  eel.export_to_pdf(data);
+  alert('exportation terminée');
+}
         function print_admin_profil(data_profil_admin) {
           $(".notes").hide();
             for (i=0; i < data_profil_admin.length; i++) {
