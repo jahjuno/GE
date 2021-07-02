@@ -334,8 +334,8 @@ function printData_perso_admin(data_recupered) {
             <td id="t_sexe">${data_recupered[i][9]}</td>
             <td>
                 <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
-                <a class="edit" type="button" onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-                <a class="edit" title="Supprimer" type="button" onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                <a class="profil" type="button" onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="delete" title="Supprimer" type="button" onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>
         </tr>
             `
@@ -390,10 +390,10 @@ function printData_perso_admin(data_recupered) {
                 let print_profil = `
                 
                     <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                        <span>${data_profil_student[i][1]}</span><br>
+                        <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE : </span>
+                        <span id="matricule_num">${data_profil_student[i][1]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                        <span class="font-weight-bold text-primary" id="nom">NOM:</span>
                         <span>${data_profil_student[i][3]}</span><br>
 
                         <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
@@ -422,7 +422,7 @@ function printData_perso_admin(data_recupered) {
                 $('#info').append(print_profil);
             };
                 let button_export = `
-                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('perso_admin')">
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_student()">
                   <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
                 </button>
                 `
@@ -456,10 +456,10 @@ function printData_perso_admin(data_recupered) {
                 let print_profil = `
                 
                     <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" id="nom">N° MATRICULE : </span>
-                        <span>${data_profil_prof[i][1]}</span><br>
+                        <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE : </span>
+                        <span id="val_matricule">${data_profil_prof[i][1]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="matricule">NOM:</span>
+                        <span class="font-weight-bold text-primary" id="nom">NOM:</span>
                         <span>${data_profil_prof[i][3]}</span><br>
 
                         <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
@@ -497,11 +497,7 @@ function printData_perso_admin(data_recupered) {
                 $('#title_profil_var').append(title_profil);
                 $('#side_title').append(title_left);
         }
-//TESTESTSTEST
-function export_pdf_prof(data){
-  eel.export_to_pdf(data);
-  alert('exportation terminée');
-}
+
         function print_admin_profil(data_profil_admin) {
           $(".notes").hide();
             for (i=0; i < data_profil_admin.length; i++) {
@@ -544,3 +540,20 @@ function export_pdf_prof(data){
                 $('#side_title').append(title_left);
 
         }
+
+
+
+//EXPORTATION DES PROFILS EN PDF
+function export_pdf_prof(){
+  let got_matricule = $('#val_matricule').text();
+  eel.pdf_profil_prof(got_matricule)(exported_pdf_finished);
+}
+
+function exported_pdf_finished(lien_file){
+  alert('Exportation: \n' + lien_file + '\nterminée.');
+}
+
+function export_pdf_student(){
+  let got_matricule = $('#matricule_num').text();
+  eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
+}
