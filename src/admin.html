@@ -273,7 +273,7 @@
                                                         <input type="text" class="form-control" placeholder="Adresse actuel *" id="addr" value="" />
                                                     </div>
                                                     <div class="form-control">
-                                                        <input type="file" value="Choisir une image">
+                                                        <input type="file" accept="image/jpg, .png, image/jpeg" value="Choisir une image">
                                                     </div>
                                                         <hr>
                                                         <input type="button" id="insc_etud" class="btn btn-primary btn_admin" onclick="recup_info_etudiant()" value="Inscrire"/>
@@ -292,6 +292,7 @@
                                                         <input type="text" class="form-control" placeholder="n° matricule *" id="matricule_prof" value="" />
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="form-group col-4">
                                                     <select class="form-control" id="annee_prof">
                                                         <option class="hidden"  selected disabled>Année Universitaire</option>
@@ -299,6 +300,12 @@
                                                         <option>2020-2021</option>
                                                         <option>2021-2022</option>
                                                     </select>
+                                                </div>
+
+                                                <div class="form-group col-4">
+                                                    <div class="form-group">
+                                                        <input type="file" accept="image/jpg, .png, image/jpeg" value="Choisir une image">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row register-form">
@@ -403,7 +410,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-control">
-                                                            <input type="file" value="image" placeholder="Photo de profil">
+                                                            <input type="file" value="image" accept="image/jpg, .png, image/jpeg" placeholder="Photo de profil">
                                                         </div>                                                    
                                                     </div>
                                                     <div class="form-group">

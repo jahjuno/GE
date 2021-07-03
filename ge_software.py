@@ -21,36 +21,36 @@ def createBDD():
 		
 		t_admin = cur.execute(''' 
 		CREATE TABLE IF NOT EXISTS PERSONNEL_ADMINISTRATIF (
-			id_admin		INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			matricule_perso_admin	TEXT	NOT NULL UNIQUE,
-			nom			TEXT	NOT 	NULL,
-			prenom		TEXT 	NOT 	NULL,
-			fonction 	TEXT 	NOT 	NULL,
-			annee_univ	TEXT 	NOT 	NULL,
-			tel			TEXT	NOT 	NULL,
-			cin			INTEGER NOT NULL,
-			email			TEXT	NOT 	NULL,
-			adresse		TEXT	NOT	NULL,
-			mdp			TEXT	,
-			sexe			TEXT	NOT	NULL
+			id_admin						INTEGER		NOT 	NULL	PRIMARY KEY AUTOINCREMENT,
+			matricule_perso_admin	TEXT			NOT 	NULL 	UNIQUE,
+			nom							TEXT			NOT 	NULL,
+			prenom						TEXT 			NOT 	NULL,
+			fonction 					TEXT 			NOT 	NULL,
+			annee_univ					TEXT 			NOT 	NULL,
+			tel							TEXT			NOT 	NULL,
+			cin							INTEGER 		NOT 	NULL,
+			email							TEXT			NOT 	NULL,
+			adresse						TEXT			NOT	NULL,
+			mdp							TEXT	,
+			sexe							TEXT			NOT	NULL
 		)
 		''')
 
 
 		t_ensg = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ENSEIGNANT (
-			id_prof			INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
-			matricule_ensg	TEXT	NOT NULL	UNIQUE,
-			annee_univ		TEXT	NOT NULL,
-			nom				TEXT	NOT NULL,
-			prenom			TEXT	NOT NULL,
-			tel				TEXT	NOT NULL,
-			email			TEXT	NOT NULL,
-			cin				INTEGER	NOT NULL,
-			sexe			TEXT	NOT NULL,
-			adresse			TEXT	NOT NULL,
-			module			TEXT	NOT NULL,
-			mdp				TEXT	NOT NULL
+			id_prof				INTEGER	NOT NULL	PRIMARY KEY AUTOINCREMENT,
+			matricule_ensg		TEXT		NOT NULL	UNIQUE,
+			annee_univ			TEXT		NOT NULL,
+			nom					TEXT		NOT NULL,
+			prenom				TEXT		NOT NULL,
+			tel					TEXT		NOT NULL,
+			email					TEXT		NOT NULL,
+			cin					INTEGER	NOT NULL,
+			sexe					TEXT		NOT NULL,
+			adresse				TEXT		NOT NULL,
+			module				TEXT		NOT NULL,
+			mdp					TEXT		NOT NULL
 			);
 		''')
 
@@ -87,12 +87,12 @@ def createBDD():
 		t_note = cur.execute('''
 		CREATE TABLE IF NOT EXISTS NOTE (
 			id_note				INTEGER		NOT NULL PRIMARY KEY AUTOINCREMENT,
-			matricule_etud		TEXT		NOT NULL,
-			id_module			INTEGER	NOT NULL,
-			TYPE					TEXT		NOT NULL,
-			coeff					INTEGER	NOT NULL,
-			note					FLOAT		NOT NULL,
-			bonus					REAL		NOT NULL		DEFAULT 0,
+			matricule_etud		TEXT			NOT NULL,
+			id_module			INTEGER		NOT NULL,
+			TYPE					TEXT			NOT NULL,
+			coeff					INTEGER		NOT NULL,
+			note					FLOAT			NOT NULL,
+			bonus					REAL			NOT NULL		DEFAULT 0,
 			CONSTRAINT note_etud_fk	FOREIGN	KEY (matricule_etud)	REFERENCES	ETUDIANT(matricule_etud),
 			CONSTRAINT	note_module_fk	FOREIGN KEY	(id_module) REFERENCES MODULE(id_module)
 		)
@@ -101,7 +101,7 @@ def createBDD():
 
 		t_etudier = cur.execute('''
 		CREATE TABLE IF NOT EXISTS ETUDIER (
-			matricule_etud	TEXT	NOT NULL,
+			matricule_etud	TEXT		NOT NULL,
 			id_module		INTEGER	NOT NULL,
 			CONSTRAINT	etudier_pk	PRIMARY KEY (matricule_etud, id_module),
 			CONSTRAINT	etudier_fk	FOREIGN KEY (matricule_etud)	REFERENCES ETUDIANT(matricule_etud),
@@ -453,7 +453,7 @@ def pdf_profil_student(data):
 		'email' : RichText(resu[0][5], font='Arial', bold=False, size= 24),
 		'cin' : RichText(resu[0][6], font='Arial', bold=False, size= 24),
 		'adresse' : RichText(resu[0][7], font='Arial', bold=False, size= 24),
-		'niveau' : RichText(resu[0][7], font='Arial', bold=False, size= 24)
+		'niveau' : RichText(resu[0][7], font='Arial', bold=False, size=24)
 	}
 
 	#get tamplate
