@@ -31,8 +31,9 @@ def createBDD():
 			cin							INTEGER 		NOT 	NULL,
 			email							TEXT			NOT 	NULL,
 			adresse						TEXT			NOT	NULL,
-			mdp							TEXT	,
-			sexe							TEXT			NOT	NULL
+			mdp							TEXT						 ,
+			sexe							TEXT			NOT	NULL,
+			pdp_name						TEXT			NOT NULL
 		)
 		''')
 
@@ -50,7 +51,8 @@ def createBDD():
 			sexe					TEXT		NOT NULL,
 			adresse				TEXT		NOT NULL,
 			module				TEXT		NOT NULL,
-			mdp					TEXT		NOT NULL
+			mdp					TEXT		NOT NULL,
+			pdp_name				TEXT		NOT NULL
 			);
 		''')
 
@@ -67,7 +69,8 @@ def createBDD():
 			cin						INTEGER	NOT NULL,
 			sexe						TEXT	NOT NULL,
 			adresse					TEXT	NOT NULL,
-			niveau					TEXT	NOT NULL
+			niveau					TEXT	NOT NULL,
+			pdp_name					TEXT	NOT NULL
 		)
 		''')
 
@@ -123,8 +126,8 @@ def insert_admin_account():
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	add_admin_account = cur.execute('''
-	INSERT OR IGNORE INTO PERSONNEL_ADMINISTRATIF (matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, mdp, sexe) 
-	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','d033e22ae348aeb5660fc2140aec35850c4da997', 'sexe')
+	INSERT OR IGNORE INTO PERSONNEL_ADMINISTRATIF (matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, mdp, sexe, pdp_name) 
+	VALUES ('001_ADMIN', 'ADMIN', 'Admin', 'Administrateur', '2021','+261342404256', 1, 'admin', 'ambatoroka','d033e22ae348aeb5660fc2140aec35850c4da997', 'sexe', 'avatar_admin.jpg')
 	''')
 	connect_to_bdd.commit()
 	connect_to_bdd.close()
@@ -141,14 +144,14 @@ def setData(d, e):
 	cur = connect_to_bdd.cursor()
 	if e == 'etud':
 		donnee_etudiant = ''' 
-		INSERT INTO ETUDIANT(matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO ETUDIANT(matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, pdp_name)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		'''		
 		cur.execute(donnee_etudiant, d)
 	elif e == 'perso_admin':
 		donnee_perso_admin = '''
-		INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe)
-		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe, pdp_name)
+		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		'''
 		cur.execute(donnee_perso_admin, d)
 
@@ -168,8 +171,8 @@ def setData(d, e):
 	else :
 		d[10] = hashlib.sha1(d[10].encode()).hexdigest()
 		donnee_enseignant = ''' 
-		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, pdp_name)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		'''
 		cur.execute(donnee_enseignant, d)
 

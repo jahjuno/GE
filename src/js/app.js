@@ -58,6 +58,9 @@ function verify_mdp_ensg(data) {
 /* RECUPERATION DES INFOS ETUDIANTS */
 
 function recup_info_etudiant(){
+  //const fs = require('fs');
+  let got_file = document.getElementById('student_image').files[0];
+  var got_file_size =  document.getElementById('student_image').files[0].size;
   let matricule_etud = $("#matricule_etud").val();
   let nom = $("#nom").val();
   let prenom = $("#prenom").val();
@@ -69,7 +72,8 @@ function recup_info_etudiant(){
   let niveau = $("#niveau :selected").text();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
-  let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau];
+  let got_file_name = document.getElementById('student_image').files[0].name;
+  let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_name];
   x = eel.setData(data, 'etud');
   alert('Inscription terminée');
   location.reload();
@@ -77,6 +81,7 @@ function recup_info_etudiant(){
 
 /* RECUPERATION DES INFOS PROFS */
 function recup_info_prof(){
+  let got_file_name = document.getElementById('prof_image').files[0].name;
   let matricule_prof = $("#matricule_prof").val();
   let nom = $("#nom_prof").val();
   let prenom = $("#prenom_prof").val();
@@ -88,7 +93,7 @@ function recup_info_prof(){
   let tel = $("#tel_prof").val();
   let cin = $("#cin_prof").val();
   let mdp = $("#mdp_prof").val();
-  let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp];
+  let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_name];
   x = eel.setData(data, 'ensg');
   alert('Inscription terminée');
   location.reload();
@@ -96,6 +101,7 @@ function recup_info_prof(){
 
 /* RECUPERATION DES INFOS PERSONNEL ADMINISTRATIF */
 function recup_info_perso_admin() {
+  let got_file_name = document.getElementById('admin_image').files[0].name;
   let matri_perso_admin = $("#matricule_perso").val();
   let annee_univ = $("#annee_univ_admin :selected").text();
   let nom = $("#nom_perso_admin").val();
@@ -106,7 +112,7 @@ function recup_info_perso_admin() {
   let fonction = $("#asa").val();
   let cin = $("#cin_perso_admin").val();
   let sexe = $("input[name=genre_perso_admin]:checked").val();
-  let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe];
+  let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_name];
   x = eel.setData(donnee, 'perso_admin');
   alert('Inscription terminée');
   location.reload();
