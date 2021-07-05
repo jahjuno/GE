@@ -1,3 +1,6 @@
+//const fs = require('fs');
+//const path = require('path');
+
 
 /* CACHER/APPARAITRE un élément input password ADMIN */
 $(".hideDiv_admin").hide();
