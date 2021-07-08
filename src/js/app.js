@@ -62,8 +62,6 @@ function verify_mdp_ensg(data) {
 
 function recup_info_etudiant(){
   //const fs = require('fs');
-  let got_file = document.getElementById('student_image').files[0];
-  var got_file_size =  document.getElementById('student_image').files[0].size;
   let matricule_etud = $("#matricule_etud").val();
   let nom = $("#nom").val();
   let prenom = $("#prenom").val();
@@ -75,16 +73,17 @@ function recup_info_etudiant(){
   let niveau = $("#niveau :selected").text();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
-  let got_file_name = document.getElementById('student_image').files[0].name;
-  let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_name];
+  let got_file_path = document.getElementById('student_image').files[0].path;
+  let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_path];
   x = eel.setData(data, 'etud');
   alert('Inscription terminée');
   location.reload();
 };
 
+
 /* RECUPERATION DES INFOS PROFS */
 function recup_info_prof(){
-  let got_file_name = document.getElementById('prof_image').files[0].name;
+  let got_file_path = document.getElementById('prof_image').files[0].path;
   let matricule_prof = $("#matricule_prof").val();
   let nom = $("#nom_prof").val();
   let prenom = $("#prenom_prof").val();
@@ -96,7 +95,7 @@ function recup_info_prof(){
   let tel = $("#tel_prof").val();
   let cin = $("#cin_prof").val();
   let mdp = $("#mdp_prof").val();
-  let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_name];
+  let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
   x = eel.setData(data, 'ensg');
   alert('Inscription terminée');
   location.reload();
@@ -104,7 +103,7 @@ function recup_info_prof(){
 
 /* RECUPERATION DES INFOS PERSONNEL ADMINISTRATIF */
 function recup_info_perso_admin() {
-  let got_file_name = document.getElementById('admin_image').files[0].name;
+  let got_file_path = document.getElementById('admin_image').files[0].path;
   let matri_perso_admin = $("#matricule_perso").val();
   let annee_univ = $("#annee_univ_admin :selected").text();
   let nom = $("#nom_perso_admin").val();
@@ -115,7 +114,7 @@ function recup_info_perso_admin() {
   let fonction = $("#asa").val();
   let cin = $("#cin_perso_admin").val();
   let sexe = $("input[name=genre_perso_admin]:checked").val();
-  let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_name];
+  let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_path];
   x = eel.setData(donnee, 'perso_admin');
   alert('Inscription terminée');
   location.reload();
@@ -146,9 +145,8 @@ function add_note_1(){
   let type_1 = $("#type_1 :selected").val();
   let coeff_1 = $("#coeff_1").val();
   let bonus_1 = $("#bonus_1").val();
-
   let note_info1 = [matricule_etud, module_id, type_1, coeff_1, note_1, bonus_1];
-  let set_to_note = eel.setData(note_info1, 'note');
+  set_to_note = eel.setData(note_info1, 'note');
   alert('Note 1 insérée');
  }
 
@@ -161,9 +159,8 @@ function add_note_1(){
   let type_2 = $("#type_2 :selected").val();
   let coeff_2 = $("#coeff_2").val();
   let bonus_2 = $("#bonus_2").val();
-
   let note_info2 = [matricule_etud, module_id, type_2, coeff_2, note_2, bonus_2];
-  let set_to_note = eel.setData(note_info2, 'note');
+  set_to_note = eel.setData(note_info2, 'note');
   alert('Note 2 insérée');
  }
 
@@ -176,9 +173,8 @@ function add_note_1(){
   let type_3 = $("#type_3 :selected").val();
   let coeff_3 = $("#coeff_3").val();
   let bonus_3 = $("#bonus_3").val();
-
   let note_info3 = [matricule_etud, module_id, type_3, coeff_3, note_3, bonus_3];
-  let set_to_note = eel.setData(note_info3, 'note');
+  set_to_note = eel.setData(note_info3, 'note');
   alert('Note 3 insérée');
  }
 
@@ -428,7 +424,12 @@ function printData_perso_admin(data_recupered) {
                     </div>
                 </div>
                 `
+                let profil_image = `
+                <img class="avatar" src="dist/img/pdp/${data_profil_student[i][12]}" style="width: 150%; height: 85%;">
+                `
+                $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
+                
             };
                 let button_export = `
                 <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
@@ -439,6 +440,7 @@ function printData_perso_admin(data_recupered) {
                 `
                 let title_profil = `PROFIL ETUDIANT`
                 let title_left = `PROFIL_ETUDIANT`
+                
                 $('#card_ohter_info').append(button_export);
                 $('#title_profil_var').append(title_profil);  
                 $('#side_title').append(title_left);   
@@ -495,6 +497,11 @@ function printData_perso_admin(data_recupered) {
                     </div>
                 </div>
                 `
+                let profil_image = `
+                <img class="avatar" src="dist/img/pdp/${data_profil_prof[i][12]}" style="width: 150%; height: 85%;">
+                `
+             
+                $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
                 }; 
                 let button_export = `
@@ -545,6 +552,10 @@ function printData_perso_admin(data_recupered) {
                     </div>
                 </div>
                 `
+                let profil_image = `
+                <img class="avatar" src="dist/img/pdp/${data_profil_admin[i][12]}" style="width: 150%; height: 85%;">
+                `
+                $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
                 }; 
                 let button_export = `
