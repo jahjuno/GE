@@ -466,11 +466,15 @@ def pdf_profil_student(data):
 		'email' : RichText(resu[0][5], font='Arial', bold=False, size= 24),
 		'cin' : RichText(resu[0][6], font='Arial', bold=False, size= 24),
 		'adresse' : RichText(resu[0][7], font='Arial', bold=False, size= 24),
-		'niveau' : RichText(resu[0][7], font='Arial', bold=False, size=24)
+		'niveau' : RichText(resu[0][8], font='Arial', bold=False, size=24)
 	}
 
 	#get tamplate
-	document = DocxTemplate(f"template/profil_student_template.docx")
+	document = DocxTemplate(f"template/template_etudiant.docx")
+
+	#change image in the template
+	if resu[0][9] != '' :
+		document.replace_pic('face0.png', os.getcwd() + f"\\src\\dist\\img\\pdp\\{resu[0][9]}")
 
 	#creation template
 	document.render(info)
@@ -493,7 +497,7 @@ def pdf_profil_prof(data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_profil_prof = cur.execute(''' 
-	SELECT matricule_ensg, nom, prenom, tel, email, cin, adresse, module  FROM ENSEIGNANT
+	SELECT matricule_ensg, nom, prenom, tel, email, cin, adresse, module, pdp_name  FROM ENSEIGNANT
 	WHERE matricule_ensg=?
 	''', (data,))
 	resu = get_profil_prof.fetchall()
@@ -510,7 +514,11 @@ def pdf_profil_prof(data):
 	}
 
 	#get tamplate
-	document = DocxTemplate(f"template/profil_prof_template.docx")
+	document = DocxTemplate(f"template/template_prof.docx")
+
+	#change image in the template
+	if resu[0][8] != '' :
+		document.replace_pic('face0.png', os.getcwd() + f"\\src\\dist\\img\\pdp\\{resu[0][8]}")
 
 	#creation template
 	document.render(info)
@@ -531,7 +539,7 @@ def pdf_profil_person_admin(data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_profil_perso_admin = cur.execute(''' 
-	SELECT matricule_perso_admin, nom, prenom, fonction, tel, cin, email, adresse FROM PERSONNEL_ADMINISTRATIF
+	SELECT matricule_perso_admin, nom, prenom, fonction, tel, cin, email, adresse, pdp_name FROM PERSONNEL_ADMINISTRATIF
 	WHERE matricule_perso_admin=?
 	''', (data,))
 	resu = get_profil_perso_admin.fetchall()
@@ -548,7 +556,10 @@ def pdf_profil_person_admin(data):
 	}
 
 	#get tamplate
-	document = DocxTemplate(f"template/profil_person_admin.docx")
+	document = DocxTemplate(f"template/template_person_admin.docx")
+	#change image in the template
+	if resu[0][8] != '' :
+		document.replace_pic('face0.png', os.getcwd() + f"\\src\\dist\\img\\pdp\\{resu[0][8]}")
 
 	#creation template
 	document.render(info)
