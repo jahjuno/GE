@@ -395,8 +395,8 @@ function printData_perso_admin(data_recupered) {
                 let print_profil = `
                 
                     <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE : </span>
-                        <span id="matricule_num">${data_profil_student[i][1]}</span><br>
+                        <span class="font-weight-bold text-primary" >N° MATRICULE : </span>
+                        <span id="matricule_etud">${data_profil_student[i][1]}</span><br>
 
                         <span class="font-weight-bold text-primary" id="nom">NOM:</span>
                         <span>${data_profil_student[i][3]}</span><br>
@@ -443,25 +443,26 @@ function printData_perso_admin(data_recupered) {
                 
                 $('#card_ohter_info').append(button_export);
                 $('#title_profil_var').append(title_profil);  
-                $('#side_title').append(title_left);   
-
+                $('#side_title').append(title_left);
+                   
+                eel.get_note()(print_note);
+                function print_note(data_note){
+                  for(i=0; i<data_note.length; i++){
+                    let resultat = `
+                    <tr>
+                      <td>${data_note[i][0]}</td>
+                      <td>${data_note[i][1]}</td>
+                      <td>${data_note[i][2]}</td>
+                      <td>${data_note[i][3]}</td>
+                    </tr>
+                    ` 
+                    $('#note_info').append(resultat);
+                  }
+                }
                                                             
           }
         
-        eel.get_note()(print_note);
-        function print_note(data_note){
-          for(i=0; i<data_note.length; i++){
-            let resultat = `
-            <tr>
-              <td>${data_note[i][0]}</td>
-              <td>${data_note[i][1]}</td>
-              <td>${data_note[i][2]}</td>
-              <td>${data_note[i][3]}</td>
-            </tr>
-            ` 
-            $('#note_info').append(resultat);
-          }
-        }
+      
 
         function print_prof_profil(data_profil_prof){
             $(".notes").hide();
@@ -586,7 +587,7 @@ function exported_pdf_finished(lien_file){
 }
 
 function export_pdf_student(){
-  let got_matricule = $('#matricule_num').text();
+  let got_matricule = $('#matricule_etud').text();
   eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
 }
 

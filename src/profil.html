@@ -56,7 +56,6 @@
                         <h6 class="collapse-header">Gestion des profs :</h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
                         <a class="collapse-item" href="liste.html?prof">Liste Enseignant</a>
-                        <a class="collapse-item" href="#">Emploi du temps</a>
                     </div>
                 </div>
             </li>
@@ -89,8 +88,6 @@
                         <h6 class="collapse-header">Gestion des étudiants :</h6>
                         <a class="collapse-item" href="admin.html">Inscription</a>
                         <a class="collapse-item" href="liste.html?student_list">Liste Etudiant</a>
-                        <a class="collapse-item" href="#">Présence</a>
-                        <a class="collapse-item" href="#">Emploi du temps</a>
                     </div>
                 </div>
             </li>
@@ -194,6 +191,16 @@
                         <div class="card border-left-warning shadow h-100 py-2" id="card_ohter_info">
                             <div class="card-body">
                                 <h3>Autres INFOS</h3>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="moyenne()">
+                                            <i class="fas fa-file-export fa-sm text-white-50"></i> Voir Moyenne 
+                                        </button>
+                                    </div>
+                                    <div class="form-group" id="moy">
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -268,7 +275,25 @@
     </a>
 
 
-    
+    <script>
+
+        function moyenne(){
+            let matricule_etudiant = $('#matricule_etud').text();
+            eel.moyenne_calcul(matricule_etudiant)(print__moyenne);
+        }
+        function print__moyenne(moy_got){
+            if (moy_got[0] == null) {
+                let a = `<p>Pas des notes disponibles</p>`;
+                $('#moy').append(a);
+            }
+            else{
+                console.log(moy_got);
+                $('#moy').append(moy_got);
+            }
+            
+            
+        }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

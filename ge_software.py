@@ -34,7 +34,7 @@ def createBDD():
 			adresse						TEXT			NOT	NULL,
 			mdp							TEXT						 ,
 			sexe							TEXT			NOT	NULL,
-			pdp_name						TEXT			NOT NULL
+			pdp_name						TEXT			NULL
 		)
 		''')
 
@@ -53,7 +53,7 @@ def createBDD():
 			adresse				TEXT		NOT NULL,
 			module				TEXT		NOT NULL,
 			mdp					TEXT		NOT NULL,
-			pdp_name				TEXT		NOT NULL
+			pdp_name				TEXT		NULL
 			);
 		''')
 
@@ -71,7 +71,7 @@ def createBDD():
 			sexe						TEXT	NOT NULL,
 			adresse					TEXT	NOT NULL,
 			niveau					TEXT	NOT NULL,
-			pdp_name					TEXT	NOT NULL
+			pdp_name					TEXT	NULL
 		)
 		''')
 
@@ -365,6 +365,20 @@ def get_niveau(data) :
 	SELECT DISTINCT niveau FROM etudiant ORDER BY niveau
 	''')
 	return cur.fetchall()
+
+#CALCUL MOYENNE
+@eel.expose
+def moyenne_calcul(moyenne):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	calcule = cur.execute(''' 
+		SELECT (SUM(NOTE * coeff) / SUM(coeff)) 
+		FROM NOTE 
+		WHERE matricule_etud=?
+	''', (moyenne,))
+	resu = cur.fetchone()
+	return resu
+
 
 #AFFICHER TOUS LES PRENOMS des etudiants dans la selection espace_prof
 @eel.expose
