@@ -199,7 +199,7 @@
                                         </div>
 
                                         <div class="form-group col-2">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note note_1_btn" onclick="add_note_1()">
+                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary dropdown-item shadow-sm btn_note note_1_btn" href="#" data-toggle="modal" data-target="#modal_note">
                                                 <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                             </button>
                                         </div>
@@ -322,6 +322,24 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="modal_note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="color: blue; text-align: center;">INSERTION NOTE</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="reload_close()">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="note_insert"></div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                                <a class="btn btn-primary" onclick="add_note_1()">Enregistrer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             <!-- Footer -->
             <!-- <footer class="sticky-footer bg-white adjusted_footer">
                 <div class="container my-auto">
@@ -344,6 +362,17 @@
     </a>
 
 
+    <!-- RELOAD CONTENT MODAL AFTER CLOSE -->
+    <script>
+
+        function reload_close(){
+            
+            /* $(document).on("hidden.bs.modal", "#modal_note", function () {
+                $(this).find("#note_insert").remove(); // Simab ny modal body
+            }); */
+            $('#note_insert').html(' ');
+        }
+    </script>
 
 <!--  affichage NIVEAU dans select -->
     <script>

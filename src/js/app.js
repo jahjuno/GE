@@ -69,7 +69,7 @@ function recup_info_etudiant(){
   let adresse = $("#addr").val();
   let email = $("#email").val();
   let sexe = $("input[name=genre]:checked").val();
-  let annee_univ = $("#annee :selected").text();
+  let annee_univ = $("#annee").val();
   let niveau = $("#niveau :selected").text();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
@@ -145,9 +145,19 @@ function add_note_1(){
   let type_1 = $("#type_1 :selected").val();
   let coeff_1 = $("#coeff_1").val();
   let bonus_1 = $("#bonus_1").val();
-  let note_info1 = [matricule_etud, module_id, type_1, coeff_1, note_1, bonus_1];
-  set_to_note = eel.setData(note_info1, 'note');
-  alert('Note 1 insérée');
+  if (note_1 <= 20){
+    let note_info1 = [matricule_etud, module_id, type_1, coeff_1, note_1, bonus_1];
+    set_to_note = eel.setData(note_info1, 'note');
+    
+    $('#modal_note').modal('show');
+    let confirm = `Note inserée <i class="fas fa-check fa-sm">`;
+    $('#note_insert').append(confirm);
+    
+  }
+  else{
+    alert('Note doit être /20');
+  }
+  
  }
 
  function add_note_2(){
