@@ -76,8 +76,9 @@ function recup_info_etudiant(){
   let got_file_path = document.getElementById('student_image').files[0].path;
   let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_path];
   x = eel.setData(data, 'etud');
-  alert('Inscription terminée');
-  location.reload();
+  $('#insert_etud').html('Etudiant inscrit <i class="fas fa-check fa-sm"></i>')
+  $('#foot_modal').hide();
+
 };
 
 
@@ -150,12 +151,13 @@ function add_note_1(){
     set_to_note = eel.setData(note_info1, 'note');
     
     $('#modal_note').modal('show');
-    let confirm = `Note inserée <i class="fas fa-check fa-sm">`;
+    let confirm = `Note inserée <i class="fas fa-check fa-sm"></i>`;
     $('#note_insert').append(confirm);
     
   }
   else{
-    alert('Note doit être /20');
+    $('#modal_error_note').modal('show');
+    $('#modal_note').modal('hide');
   }
   
  }
@@ -261,7 +263,7 @@ function printData_prof(data_recupered) {
           <td id="t_addr">${data_recupered[i][8]}</td>
           <td id="t_module">${data_recupered[i][9]}</td>
           <td>
-              <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+              <!--<a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>-->
               <a class="see_profil" title="Voir Profil" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
               <a class="delete" title="Supprimer"  onclick='delete_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
           </td>
@@ -305,7 +307,7 @@ function printData_etud(data_recupered) {
             <td id="t_addr">${data_recupered[i][9]}</td>
             <td id="t_niveau">${data_recupered[i][10]}</td>
             <td>
-                <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+
                 <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}"); print_note()' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
                 <a class="edit" title="Supprimer" type="button" onclick='delete_student("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>
@@ -348,7 +350,7 @@ function printData_perso_admin(data_recupered) {
             <td id="t_addr">${data_recupered[i][8]}</td>
             <td id="t_sexe">${data_recupered[i][9]}</td>
             <td>
-                <a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>
+                <!--<a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>-->
                 <a class="profil" type="button" onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
                 <a class="delete" title="Supprimer" type="button" onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>

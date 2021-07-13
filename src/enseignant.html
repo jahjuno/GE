@@ -322,6 +322,7 @@
                     </div>
                 </div>
 
+                <!-- MODAL INSERTION NOTE -->
                 <div class="modal fade" id="modal_note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -335,6 +336,24 @@
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
                                 <a class="btn btn-primary" onclick="add_note_1()">Enregistrer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal_error_note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="color: red; text-align: center;">ERREUR DE L'INSERTION</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="reload_close()">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <i class="fas fa-exclamation-triangle fa-sm" style="color: red;"></i>
+                                Veuillez vérifier votre note (la note doit être /20) 
+                                <br> ou utiliser <strong>"."</strong>  pour écrire <strong>","</strong>
                             </div>
                         </div>
                     </div>

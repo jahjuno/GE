@@ -264,7 +264,7 @@
                                                         <input type="file" accept="image/jpg, .png, image/jpeg" value="Choisir une image" id="student_image">
                                                     </div>
                                                         <hr>
-                                                        <input type="button" id="insc_etud" class="btn btn-primary btn_admin" onclick="recup_info_etudiant(); teste_img()" value="Inscrire"/>
+                                                        <input type="button" id="insc_etud" class="btn btn-primary btn_admin" onclick="confirm_etud()" value="Inscrire"/>
                                                         <input type="button" id="list_etud" class="btn btn-primary btn_admin_list" onclick="window.location.href='liste.html?student_list';" value="Voir Liste" />
                                                     
                                             </div>
@@ -510,6 +510,34 @@
         </div>
     </div>
 
+    <!-- MODAL CONFIRMATION D'ENREGISTREMENT -->
+    <div class="modal fade" id="modal_student_enrg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: blue; text-align: center;">INSERTION ETUDIANT</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="close_modal()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="insert_etud">Voulez-vous enregistrer cet étudiant ?</div>
+                <div class="modal-footer" id="foot_modal">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <a class="btn btn-primary" onclick="recup_info_etudiant()">Enregistrer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- CONFIRAMTION INSCRIPTION -->
+<script>
+    function confirm_etud(){
+        $('#modal_student_enrg').modal('show');
+    }
+    function close_modal(){
+        location.reload();
+    }
+</script>
 <!-- AFFICHAGE LISTE PROF DANS LA SELECTION -->
 
      <script>
