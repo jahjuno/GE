@@ -307,9 +307,9 @@ function printData_etud(data_recupered) {
             <td id="t_addr">${data_recupered[i][9]}</td>
             <td id="t_niveau">${data_recupered[i][10]}</td>
             <td>
-
-                <a class="edit" type="button" onclick='print_profil_student("${data_recupered[i][0]}"); print_note()' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-                <a class="edit" title="Supprimer" type="button" onclick='delete_student("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                
+                <a class="see_profil" title="Voir Profil" onclick='print_profil_student("${data_recupered[i][0]}"); print_note()' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="edit" title="Supprimer" onclick='delete_student("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>
         </tr>
             `
@@ -351,8 +351,8 @@ function printData_perso_admin(data_recupered) {
             <td id="t_sexe">${data_recupered[i][9]}</td>
             <td>
                 <!--<a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>-->
-                <a class="profil" type="button" onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
-                <a class="delete" title="Supprimer" type="button" onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
+                <a class="see_profil"  onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Voir Profil" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="delete" title="Supprimer"  onclick='delete_perso_admin("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-trash"></i></a>
             </td>
         </tr>
             `
