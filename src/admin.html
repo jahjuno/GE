@@ -282,12 +282,9 @@
                                                 </div>
                                                 
                                                 <div class="form-group col-4">
-                                                    <select class="form-control" id="annee_prof">
-                                                        <option class="hidden"  selected disabled>Année Universitaire</option>
-                                                        <option>2019-2020</option>
-                                                        <option>2020-2021</option>
-                                                        <option>2021-2022</option>
-                                                    </select>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Annee (2019-2020) *" id="annee_prof" value="" />
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group col-4">
@@ -341,7 +338,7 @@
                                                         </div>
                                                     </div>
                                                         <hr>
-                                                        <button class="btn btn-primary btn_admin" id="insc_prof" onclick="recup_info_prof()">Inscrire</button>
+                                                        <button class="btn btn-primary btn_admin" id="insc_prof" onclick="confirm_prof()">Inscrire</button>
                                                         <button id="list_etud" class="btn btn-primary btn_admin_list" onclick="window.location.href='liste.html?prof_list'">Voir Liste</button>
                                                     </a>
                                                     
@@ -364,12 +361,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-4">
-                                                    <select class="form-control" id="annee_univ_admin">
-                                                        <option class="hidden"  selected disabled>Année Universitaire</option>
-                                                        <option>2019-2020</option>
-                                                        <option>2020-2021</option>
-                                                        <option>2021-2022</option>
-                                                    </select>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Annee (2019-2020) *" id="annee_univ_admin" value="" />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row register-form">
@@ -414,7 +408,7 @@
                                                         </div>
                                                     </div>
                                                         <hr>
-                                                        <button class="btn btn-primary btn_admin" id="insc_perso_admin" onclick="recup_info_perso_admin()">Inscrire</button>
+                                                        <button class="btn btn-primary btn_admin" id="insc_perso_admin" onclick="confirm_perso_admin()">Inscrire</button>
                                                         <button id="list_perso_admin" class="btn btn-primary btn_admin_list" onclick="window.location.href='liste.html?perso_admin_list';">Voir Liste</button>
                                                     </a>
                                                     
@@ -515,15 +509,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: blue; text-align: center;">INSERTION ETUDIANT</h5>
+                    <h5 class="modal-title titre_modal" id="exampleModalLabel" style="color: blue; text-align: center;"></h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="close_modal()">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body" id="insert_etud">Voulez-vous enregistrer cet étudiant ?</div>
+                <div class="modal-body" id="insert_text"></div>
                 <div class="modal-footer" id="foot_modal">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                    <a class="btn btn-primary" onclick="recup_info_etudiant()">Enregistrer</a>
+                    <a class="btn btn-primary" onclick="" id="enrg">Enregistrer</a>
                 </div>
             </div>
         </div>
@@ -532,8 +526,32 @@
 <!-- CONFIRAMTION INSCRIPTION -->
 <script>
     function confirm_etud(){
+        let titre = `INSCRIPTION ETUDIANT`;
+        let body_text = `Voulez-vous enregistrer cet étudiant ?`;
+        $('#insert_text').append(body_text);
+        $('.titre_modal').append(titre);
+        document.getElementById('enrg').setAttribute('onclick', 'recup_info_etudiant()');
         $('#modal_student_enrg').modal('show');
     }
+
+    function confirm_prof(){
+        let titre = `INSECRIPTION PROF`;
+        let body_text = `Voulez-vous enregistrer cet prof?`;
+        $('#insert_text').append(body_text);
+        $('.titre_modal').append(titre);
+        document.getElementById('enrg').setAttribute('onclick', 'recup_info_prof()');
+        $('#modal_student_enrg').modal('show');
+    }
+
+    function confirm_perso_admin(){
+        let titre = `INSECRIPTION PERSONNEL ADMINISTRATIF`;
+        let body_text = `Voulez-vous enregistrer cette personne?`;
+        $('#insert_text').append(body_text);
+        $('.titre_modal').append(titre);
+        document.getElementById('enrg').setAttribute('onclick', 'recup_info_perso_admin()');
+        $('#modal_student_enrg').modal('show');
+    }
+
     function close_modal(){
         location.reload();
     }

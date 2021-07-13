@@ -76,7 +76,7 @@ function recup_info_etudiant(){
   let got_file_path = document.getElementById('student_image').files[0].path;
   let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_path];
   x = eel.setData(data, 'etud');
-  $('#insert_etud').html('Etudiant inscrit <i class="fas fa-check fa-sm"></i>')
+  $('#insert_text').html('Etudiant inscrit <i class="fas fa-check fa-sm"></i>')
   $('#foot_modal').hide();
 
 };
@@ -91,22 +91,22 @@ function recup_info_prof(){
   let adresse = $("#addr_prof").val();
   let email = $("#email_prof").val();
   let sexe = $("input[name=genre_prof]:checked").val();
-  let annee_univ = $("#annee_prof :selected").text();
+  let annee_univ = $("#annee_prof").val();
   let module = $("#module").val();
   let tel = $("#tel_prof").val();
   let cin = $("#cin_prof").val();
   let mdp = $("#mdp_prof").val();
   let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
   x = eel.setData(data, 'ensg');
-  alert('Inscription terminée');
-  location.reload();
+  $('#insert_text').html('Prof inscrit <i class="fas fa-check fa-sm"></i>')
+  $('#foot_modal').hide();
 };
 
 /* RECUPERATION DES INFOS PERSONNEL ADMINISTRATIF */
 function recup_info_perso_admin() {
   let got_file_path = document.getElementById('admin_image').files[0].path;
   let matri_perso_admin = $("#matricule_perso").val();
-  let annee_univ = $("#annee_univ_admin :selected").text();
+  let annee_univ = $("#annee_univ_admin").val();
   let nom = $("#nom_perso_admin").val();
   let prenom = $("#prenom_perso_admin").val();
   let mail = $("#email_perso_admin").val();
@@ -117,8 +117,8 @@ function recup_info_perso_admin() {
   let sexe = $("input[name=genre_perso_admin]:checked").val();
   let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_path];
   x = eel.setData(donnee, 'perso_admin');
-  alert('Inscription terminée');
-  location.reload();
+  $('#insert_text').html('Personnel inscrit <i class="fas fa-check fa-sm"></i>')
+  $('#foot_modal').hide();
 
 }
 
