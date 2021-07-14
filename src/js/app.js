@@ -595,10 +595,17 @@ function export_pdf_prof(){
 }
 
 function exported_pdf_finished(lien_file){
-  alert('Exportation: \n' + lien_file + '\nterminée.');
+  $('#close_modal').show();
+  document.getElementById('body_modal').setAttribute('style', 'bottom: 0; left: 0; right: 0;');
+  //document.getElementById('exampleModalLabel').setAttribute('style', 'margin-left: 150px !important;');
+  $('#body_modal').html('Exportation profil terminée <i class="fas fa-check fa-sm"></i><br> CHEMIN : ' + '<strong>' + lien_file + '</strong>');
+  $('#modal_chargement').modal('show');
+  //alert('Exportation: \n' + lien_file + '\nterminée.');
 }
 
 function export_pdf_student(){
+  $('#close_modal').hide();
+  $('#modal_chargement').modal('show');
   let got_matricule = $('#matricule_etud').text();
   eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
 }

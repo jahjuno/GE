@@ -269,10 +269,23 @@
                 </div>
             </div>
         </div>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+
+        <!-- MODAL DE CHARGEMENT PENDANT EXPORTATION DU PROFIL EN PDF -->
+        <div class="modal fade" id="modal_chargement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title in" id="exampleModalLabel" style="margin-left: 150px !important;">EXPORTATION</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" id="close_modal" onclick="reload_page()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body center-block" id="body_modal" style="margin: auto ; top: 0 ; bottom: 0 ; left: 0; right: 0 ; width: 50px ; height: 100px ;">
+                        <div class="spinner-border text-primary"></div>
+                      </div>
+                </div>
+            </div>
+        </div>
 
 
     <script>
@@ -281,6 +294,7 @@
             let matricule_etudiant = $('#matricule_etud').text();
             eel.moyenne_calcul(matricule_etudiant)(print__moyenne);
         }
+
         function print__moyenne(moy_got){
             if (moy_got[0] == null) {
                 let a = `<p>Pas des notes disponibles</p>`;
@@ -292,6 +306,10 @@
             }
             
             
+        }
+
+        function reload_page(){
+            location.reload();
         }
     </script>
     <!-- Bootstrap core JavaScript-->
