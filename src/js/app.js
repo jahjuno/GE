@@ -73,18 +73,29 @@ function recup_info_etudiant(){
   let niveau = $("#niveau :selected").text();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
-  let got_file_path = document.getElementById('student_image').files[0].path;
-  let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_path];
-  x = eel.setData(data, 'etud');
-  $('#insert_text').html('Etudiant inscrit <i class="fas fa-check fa-sm"></i>')
-  $('#foot_modal').hide();
+  let value_pdp = document.getElementById('student_image').files[0];
+  if (value_pdp) {
+    let got_file_path = value_pdp.path;
+    let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_path];
+    x = eel.setData(data, 'etud');
+    $('#insert_text').html('Etudiant inscrit <i class="fas fa-check fa-sm"></i>');
+    $('#foot_modal').hide();
+  }
+  else {
+    got_file_path = "";
+    let data = [matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, got_file_path];
+    x = eel.setData(data, 'etud');
+    $('#insert_text').html('Etudiant inscrit <i class="fas fa-check fa-sm"></i>');
+  }
+  
+  
 
 };
 
 
 /* RECUPERATION DES INFOS PROFS */
 function recup_info_prof(){
-  let got_file_path = document.getElementById('prof_image').files[0].path;
+  let value_pdp= document.getElementById('prof_image').files[0];
   let matricule_prof = $("#matricule_prof").val();
   let nom = $("#nom_prof").val();
   let prenom = $("#prenom_prof").val();
@@ -96,15 +107,27 @@ function recup_info_prof(){
   let tel = $("#tel_prof").val();
   let cin = $("#cin_prof").val();
   let mdp = $("#mdp_prof").val();
-  let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
-  x = eel.setData(data, 'ensg');
-  $('#insert_text').html('Prof inscrit <i class="fas fa-check fa-sm"></i>')
-  $('#foot_modal').hide();
+  if (value_pdp) {
+    let got_file_path = value_pdp.path;
+    let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
+    x = eel.setData(data, 'ensg');
+    $('#insert_text').html('Prof inscrit <i class="fas fa-check fa-sm"></i>')
+    $('#foot_modal').hide();
+
+  }
+  else{
+    got_file_path ="";
+    let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
+    x = eel.setData(data, 'ensg');
+    $('#insert_text').html('Prof inscrit <i class="fas fa-check fa-sm"></i>')
+    $('#foot_modal').hide();
+  }
+  
 };
 
 /* RECUPERATION DES INFOS PERSONNEL ADMINISTRATIF */
 function recup_info_perso_admin() {
-  let got_file_path = document.getElementById('admin_image').files[0].path;
+  let value_pdp = document.getElementById('admin_image').files[0];
   let matri_perso_admin = $("#matricule_perso").val();
   let annee_univ = $("#annee_univ_admin").val();
   let nom = $("#nom_perso_admin").val();
@@ -115,10 +138,21 @@ function recup_info_perso_admin() {
   let fonction = $("#asa").val();
   let cin = $("#cin_perso_admin").val();
   let sexe = $("input[name=genre_perso_admin]:checked").val();
-  let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_path];
-  x = eel.setData(donnee, 'perso_admin');
-  $('#insert_text').html('Personnel inscrit <i class="fas fa-check fa-sm"></i>')
-  $('#foot_modal').hide();
+  if (value_pdp) {
+    let got_file_path = value_pdp.path;
+    let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_path];
+    x = eel.setData(donnee, 'perso_admin');
+    $('#insert_text').html('Personnel inscrit <i class="fas fa-check fa-sm"></i>')
+    $('#foot_modal').hide();
+  }
+  else {
+    got_file_path = ""
+    let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_path];
+    x = eel.setData(donnee, 'perso_admin');
+    $('#insert_text').html('Personnel inscrit <i class="fas fa-check fa-sm"></i>')
+    $('#foot_modal').hide();
+  }
+  
 
 }
 

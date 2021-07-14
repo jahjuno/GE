@@ -145,17 +145,23 @@ def setData(d, e):
 	cur = connect_to_bdd.cursor()
 	if e == 'etud':
 		save_pdp = "pdp_" + str(time.time()) + '.jpg'
-		copyfile(d[11], "src\\dist\\img\\pdp\\"+ save_pdp)
-		d[11] = save_pdp
+		if d[11] == '':
+			d[11] = "\\face0.png"
+		else:
+			copyfile(d[11], "src\\dist\\img\\pdp\\"+ save_pdp)
+			d[11] = save_pdp
 		donnee_etudiant = ''' 
 		INSERT INTO ETUDIANT(matricule_etud, annee_univ, nom, prenom, date_naissance, email, adresse, sexe, tel, cin, niveau, pdp_name)
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		'''		
 		cur.execute(donnee_etudiant, d)
 	elif e == 'perso_admin':
-		save_pdp = "pdp_" + str(time.time()) + '.jpg'
-		copyfile(d[10], "src\\dist\\img\\pdp\\"+ save_pdp)
-		d[10] = save_pdp
+		if d[10] == '':
+			d[10] = "\\face0.png"
+		else:
+			save_pdp = "pdp_" + str(time.time()) + '.jpg'
+			copyfile(d[10], "src\\dist\\img\\pdp\\"+ save_pdp)
+			d[10] = save_pdp
 		donnee_perso_admin = '''
 		INSERT INTO PERSONNEL_ADMINISTRATIF(matricule_perso_admin, nom, prenom, fonction, annee_univ, tel, cin, email, adresse, sexe, pdp_name)
 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -178,8 +184,11 @@ def setData(d, e):
 	else :
 		d[10] = hashlib.sha1(d[10].encode()).hexdigest()
 		save_pdp = "pdp_" + str(time.time()) + '.jpg'
-		copyfile(d[11], "src\\dist\\img\\pdp\\"+ save_pdp)
-		d[11] = save_pdp
+		if d[11] == '':
+			d[11] = "\\face0.png"
+		else:
+			copyfile(d[11], "src\\dist\\img\\pdp\\"+ save_pdp)
+			d[11] = save_pdp
 		donnee_enseignant = ''' 
 		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, pdp_name)
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
