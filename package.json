@@ -1,10 +1,10 @@
 {
-  "name":"ge_software",
-  "version": "2.0.0",
-  "author": "Aina Juno",
-  "description": "Logiciel de Gestion d'établissement",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  }
-}
+   "name":"ge_software",
+   "version": "2.1.0",
+   "author": "Aina Juno",
+   "description": "Logiciel de Gestion d'établissement",
+   "main": "main.js",
+   "scripts": {
+     "start": "electron ."
+   }
+ }
