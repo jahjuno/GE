@@ -195,43 +195,46 @@ def setData(d, e):
 @eel.expose
 def export_data_csv(val_bdd):
 
-	try :
-		connect_to_bdd = sqlite3.connect('donnee.db')
-		cur = connect_to_bdd.cursor()
-		if 	val_bdd == 'student' :
-			cur.execute('''SELECT matricule_etud AS MATRICULE, annee_univ AS ANNEE_UNIVERSITAIRE, nom AS NOM, prenom AS PRENOM,
-			 date_naissance DATE_DE_NAISSANCE, tel AS TELEPHONE, email AS EMAIL, cin AS CIN, sexe AS SEXE, adresse AS ADRESSE_ACTUEL, niveau AS NIVEAU
-				FROM ETUDIANT''')
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	if 	val_bdd == 'student' :
+		cur.execute('''SELECT matricule_etud AS MATRICULE, annee_univ AS ANNEE_UNIVERSITAIRE, nom AS NOM, prenom AS PRENOM,
+		 date_naissance DATE_DE_NAISSANCE, tel AS TELEPHONE, email AS EMAIL, cin AS CIN, sexe AS SEXE, adresse AS ADRESSE_ACTUEL, niveau AS NIVEAU
+			FROM ETUDIANT''')
+	#Exporting data into CSV file
+		dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
+		with open(dirpath + "liste_etudiant.csv", "w") as csv_file :
+			csv_writer = csv.writer(csv_file, delimiter = ";")
+			csv_writer.writerow([i[0] for i in cur.description])
+			csv_writer.writerows(cur)
+		name_file_export = dirpath + "liste_etudiant.csv"
+		return name_file_export
+			
+	elif val_bdd == 'prof' :
+		cur.execute('''SELECT matricule_ensg AS MATRICULE, annee_univ AS ANNEE_UNIVERSITAIRE, nom AS NOM, prenom AS PRENOM, tel AS TELEPHONE,
+			email AS EMAIL, cin AS CIN, sexe AS SEXE, adresse AS ADRESSE_ACTUELLE, module AS MODULE_ENSEIGNE 
+		FROM ENSEIGNANT''')
 		#Exporting data into CSV file
-			dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
-			with open(dirpath + "liste_etudiant.csv", "w") as csv_file :
-				csv_writer = csv.writer(csv_file, delimiter = ";")
-				csv_writer.writerow([i[0] for i in cur.description])
-				csv_writer.writerows(cur)
-			
-		elif val_bdd == 'prof' :
-			cur.execute('''SELECT matricule_ensg AS MATRICULE, annee_univ AS ANNEE_UNIVERSITAIRE, nom AS NOM, prenom AS PRENOM, tel AS TELEPHONE,
-			 email AS EMAIL, cin AS CIN, sexe AS SEXE, adresse AS ADRESSE_ACTUELLE, module AS MODULE_ENSEIGNE 
-			FROM ENSEIGNANT''')
-			#Exporting data into CSV file
-			dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
-			with open(dirpath + "liste_prof.csv", "w") as csv_file :
-				csv_writer = csv.writer(csv_file, delimiter = ";")
-				csv_writer.writerow([i[0] for i in cur.description])
-				csv_writer.writerows(cur)
+		dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
+		with open(dirpath + "liste_prof.csv", "w") as csv_file :
+			csv_writer = csv.writer(csv_file, delimiter = ";")
+			csv_writer.writerow([i[0] for i in cur.description])
+			csv_writer.writerows(cur)
+		name_file_export = dirpath + "liste_prof.csv"
+		return name_file_export
 
-		elif val_bdd == 'perso_admin' :
-			cur.execute(''' SELECT matricule_perso_admin AS MATRICULE, nom AS NOM, prenom AS PRENOM, fonction AS FONCTION, annee_univ AS ANNEE_UNIVERSITAIRE,
-			tel AS TELEPHONE, cin AS CIN, adresse AS ADRESSE_ACTUEL FROM PERSONNEL_ADMINISTRATIF ''')
-			#Exporting data into CSV file
-			dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
-			with open(dirpath + "liste_personnel_administratif.csv", "w") as csv_file :
-				csv_writer = csv.writer(csv_file, delimiter =";")
-				csv_writer.writerow([i[0] for i in cur.description])
-				csv_writer.writerow(cur)
+	elif val_bdd == 'perso_admin' :
+		cur.execute(''' SELECT matricule_perso_admin AS MATRICULE, nom AS NOM, prenom AS PRENOM, fonction AS FONCTION, annee_univ AS ANNEE_UNIVERSITAIRE,
+		tel AS TELEPHONE, cin AS CIN, adresse AS ADRESSE_ACTUEL FROM PERSONNEL_ADMINISTRATIF ''')
+		#Exporting data into CSV file
+		dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
+		with open(dirpath + "liste_personnel_administratif.csv", "w") as csv_file :
+			csv_writer = csv.writer(csv_file, delimiter =";")
+			csv_writer.writerow([i[0] for i in cur.description])
+			csv_writer.writerows(cur)
+		name_file_export = dirpath + "liste_personnel_administratif.csv"
+		return name_file_export
 			
-	except sqlite3.Error as e:
-		print(e)
 
 
 #AFFICHER LES DONNEES DANS LES TABLEAUX

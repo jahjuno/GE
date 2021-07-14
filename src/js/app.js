@@ -190,12 +190,6 @@ function add_note_1(){
   alert('Note 3 insérée');
  }
 
-/* Exporter les données en CSV */
-function export_data(val_bdd) {
-  eel.export_data_csv(val_bdd);
-  alert('Exportation terminée');
-};
-
 
 //SUPPRESSION LIGNE LISTE ETUDIANT, PROF ET PERSONNEL_ADMINISTRATIF
 function delete_student(data_recup){
@@ -276,7 +270,7 @@ function printData_prof(data_recupered) {
   let btn_exporte = `
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
-          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('prof')">
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data_to_csv('prof')">
                <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
           </button>
       </div>
@@ -320,7 +314,7 @@ function printData_etud(data_recupered) {
     let btn_exporte = `
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
-          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('student')">
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data_to_csv('student')">
                <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
           </button>
       </div>
@@ -363,7 +357,7 @@ function printData_perso_admin(data_recupered) {
   let btn_exporte = `
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
-          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data('perso_admin')">
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data_to_csv('perso_admin')">
                <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
           </button>
       </div>
@@ -478,6 +472,7 @@ function printData_perso_admin(data_recupered) {
 
         function print_prof_profil(data_profil_prof){
             $(".notes").hide();
+            $("#special_etud").hide();
             for (i=0; i < data_profil_prof.length; i++) {
                 let print_profil = `
                 
@@ -533,6 +528,7 @@ function printData_perso_admin(data_recupered) {
 
         function print_admin_profil(data_profil_admin) {
           $(".notes").hide();
+          $("#special_etud").hide();
             for (i=0; i < data_profil_admin.length; i++) {
                 let print_profil = `
                 
@@ -590,6 +586,8 @@ function printData_perso_admin(data_recupered) {
 
 //EXPORTATION DES PROFILS EN PDF
 function export_pdf_prof(){
+  $('#close_modal').hide();
+  $('#modal_chargement').modal('show');
   let got_matricule = $('#val_matricule').text();
   eel.pdf_profil_prof(got_matricule)(exported_pdf_finished);
 }
@@ -611,6 +609,18 @@ function export_pdf_student(){
 }
 
 function export_pdf_perso_admin(){
+  $('#close_modal').hide();
+  $('#modal_chargement').modal('show');
   let got_matricule = $('#matricule_person_admin').text();
   eel.pdf_profil_person_admin(got_matricule)(exported_pdf_finished);
+}
+
+/* Exporter les données en CSV */
+function export_data_to_csv(val_bdd) {
+  eel.export_data_csv(val_bdd)(export_data_csv_finished);
+};
+
+function export_data_csv_finished(file_link){
+  $('#export_csv_f').html('Exportation liste terminée <i class="fas fa-check fa-sm"></i><br> CHEMIN : ' + '<strong>' + file_link + '</strong>');
+  $('#modal_csv').modal('show');
 }
