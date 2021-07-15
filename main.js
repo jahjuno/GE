@@ -3,9 +3,14 @@ const PORT = process.env.gePORT
 
 function createWindow () {
     const win = new BrowserWindow({
-    width: 900,
-    height: 700,
+    width: 1366,
+    height: 768,
     center: true,
+    minWidth: 1366,
+    minHeight: 768,
+    show: false,
+    maxWidth: 1366,
+    maxHeight: 768,
 
     webPreferences: {
       //intégration de NodeJS dans un projet
@@ -52,7 +57,7 @@ Menu.setApplicationMenu(menu);
   win.maximize()
 
   //ouvrir un devtools
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 }
 
 app.whenReady().then(createWindow)

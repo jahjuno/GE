@@ -103,13 +103,12 @@ function recup_info_prof(){
   let email = $("#email_prof").val();
   let sexe = $("input[name=genre_prof]:checked").val();
   let annee_univ = $("#annee_prof").val();
-  let module = $("#module").val();
   let tel = $("#tel_prof").val();
   let cin = $("#cin_prof").val();
   let mdp = $("#mdp_prof").val();
   if (value_pdp) {
     let got_file_path = value_pdp.path;
-    let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
+    let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, mdp, got_file_path];
     x = eel.setData(data, 'ensg');
     $('#insert_text').html('Prof inscrit <i class="fas fa-check fa-sm"></i>')
     $('#foot_modal').hide();
@@ -117,7 +116,7 @@ function recup_info_prof(){
   }
   else{
     got_file_path ="";
-    let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, got_file_path];
+    let data = [matricule_prof, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, mdp, got_file_path];
     x = eel.setData(data, 'ensg');
     $('#insert_text').html('Prof inscrit <i class="fas fa-check fa-sm"></i>')
     $('#foot_modal').hide();
@@ -160,8 +159,7 @@ function recup_info_perso_admin() {
 function recup_module(){
   let module_name = $("#module_name").val();
   let ref_module = $("#ref_module").val();
-  let semestre_azo = $("#semestre").val();
-  let semestre = semestre_azo.toUpperCase();
+  let semestre = $("#semestre :selected").text();
   let prof_matricule = $("#nom_prof_select :selected").val()
   let credit_btenu = $("#credit_obt").val()
   let data = [module_name, ref_module, semestre, prof_matricule, credit_btenu];
@@ -196,7 +194,7 @@ function add_note_1(){
   
  }
 
- function add_note_2(){
+/*  function add_note_2(){
   //selection recuperation
   let matricule_etud = $("#prenom :selected").val();
   let module_id = $("#module :selected").val();
@@ -209,8 +207,8 @@ function add_note_1(){
   set_to_note = eel.setData(note_info2, 'note');
   alert('Note 2 insérée');
  }
-
- function add_note_3(){
+ */
+/*  function add_note_3(){
   //selection recuperation
   let matricule_etud = $("#prenom :selected").val();
   let module_id = $("#module :selected").val();
@@ -222,7 +220,7 @@ function add_note_1(){
   let note_info3 = [matricule_etud, module_id, type_3, coeff_3, note_3, bonus_3];
   set_to_note = eel.setData(note_info3, 'note');
   alert('Note 3 insérée');
- }
+ } */
 
 
 //SUPPRESSION LIGNE LISTE ETUDIANT, PROF ET PERSONNEL_ADMINISTRATIF
@@ -242,7 +240,7 @@ function delete_perso_admin(data_recup){
 }
 
 /* Ajouter autre note */
-$(".add_notes").hide();
+/* $(".add_notes").hide();
 function add_new_note(){
   let i=0;
   $(".add_notes:hidden").each(function(){
@@ -251,9 +249,9 @@ function add_new_note(){
     }
     i++;
   });
-}
+} */
 /* Suppression note */
-function remove_note() {
+/* function remove_note() {
   let i=1;
   let line_note = $(".add_notes:visible");
   line_note.each(function() {
@@ -262,7 +260,7 @@ function remove_note() {
     } 
     i++;
   });
-}
+} */
 
 
 
@@ -276,7 +274,6 @@ function printData_prof(data_recupered) {
   $("#naissance").hide();
   $("#niveau").hide();
   $("#fonction").hide();
-  $("#module").show();
   for (let i=0; i<data_recupered.length; i++){
       let line = `
           <tr>
@@ -289,7 +286,6 @@ function printData_prof(data_recupered) {
           <td id="t_cin">${data_recupered[i][6]}</td>
           <td id="t_sexe">${data_recupered[i][7]}</td>
           <td id="t_addr">${data_recupered[i][8]}</td>
-          <td id="t_module">${data_recupered[i][9]}</td>
           <td>
               <!--<a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>-->
               <a class="see_profil" title="Voir Profil" onclick='print_profil_prof("${data_recupered[i][0]}")' data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
@@ -304,7 +300,7 @@ function printData_prof(data_recupered) {
   let btn_exporte = `
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
-          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data_to_csv('prof')">
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="margin-top: -40px;" onclick="export_data_to_csv('prof')">
                <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
           </button>
       </div>
@@ -318,7 +314,6 @@ function printData_prof(data_recupered) {
 
 //AFFICHAGE LISTE ETUDIANT
 function printData_etud(data_recupered) {
-    $('#module').hide();
     $('#fonction').hide();
     for (let i=0; i<data_recupered.length; i++){
         let line = `
@@ -348,7 +343,7 @@ function printData_etud(data_recupered) {
     let btn_exporte = `
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
-          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data_to_csv('student')">
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="margin-top: -40px;" onclick="export_data_to_csv('student')">
                <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
           </button>
       </div>
@@ -363,7 +358,6 @@ function printData_etud(data_recupered) {
 function printData_perso_admin(data_recupered) {
   $("#naissance").hide();
   $("#niveau").hide();
-  $("#module").hide();
   for (i=1; i<data_recupered.length; i++) {
     let line = `
             <tr>
@@ -391,7 +385,7 @@ function printData_perso_admin(data_recupered) {
   let btn_exporte = `
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800" id="h1_liste"></h1>
-          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_data_to_csv('perso_admin')">
+          <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="margin-top: -40px;" onclick="export_data_to_csv('perso_admin')">
                <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en CSV
           </button>
       </div>
@@ -456,7 +450,7 @@ function printData_perso_admin(data_recupered) {
                         <span class="font-weight-bold text-primary" id="cin">CIN: </span>
                         <span>${data_profil_student[i][8]}</span><br>
 
-                        <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                        <span class="font-weight-bold text-primary">ADRESSE ACTUELLE: </span>
                         <span>${data_profil_student[i][10]}</span><br>
 
                         <span class="font-weight-bold text-primary">NIVEAU: </span>
@@ -529,18 +523,13 @@ function printData_perso_admin(data_recupered) {
                         <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
                         <span>${data_profil_prof[i][7]}</span><br>
 
-                        <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUEL: </span>
+                        <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUELLE: </span>
                         <span>${data_profil_prof[i][9]}</span><br>
-
-                        <span class="font-weight-bold text-primary">MODULE: </span>
-                        <span>${data_profil_prof[i][10]}</span><br>
-
-                        
                     </div>
                 </div>
                 `
                 let profil_image = `
-                <img class="avatar" src="dist/img/pdp/${data_profil_prof[i][12]}" style="width: 150%; height: 85%;">
+                <img class="avatar" src="dist/img/pdp/${data_profil_prof[i][11]}" style="width: 150%; height: 85%;">
                 `
              
                 $('#profil_pdp_').append(profil_image);
@@ -588,7 +577,7 @@ function printData_perso_admin(data_recupered) {
                         <span class="font-weight-bold text-primary" id="cin">EMAIL: </span>
                         <span>${data_profil_admin[i][8]}</span><br>
 
-                        <span class="font-weight-bold text-primary">ADRESSE ACTUEL: </span>
+                        <span class="font-weight-bold text-primary">ADRESSE ACTUELLE: </span>
                         <span>${data_profil_admin[i][9]}</span><br>
 
                         
@@ -621,7 +610,7 @@ function printData_perso_admin(data_recupered) {
 //EXPORTATION DES PROFILS EN PDF
 function export_pdf_prof(){
   $('#close_modal').hide();
-  $('#modal_chargement').modal('show');
+  $('#modal_chargement').modal({backdrop: 'static', keyboard: false});
   let got_matricule = $('#val_matricule').text();
   eel.pdf_profil_prof(got_matricule)(exported_pdf_finished);
 }
@@ -637,14 +626,14 @@ function exported_pdf_finished(lien_file){
 
 function export_pdf_student(){
   $('#close_modal').hide();
-  $('#modal_chargement').modal('show');
+  $('#modal_chargement').modal({backdrop: 'static', keyboard: false});
   let got_matricule = $('#matricule_etud').text();
   eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
 }
 
 function export_pdf_perso_admin(){
   $('#close_modal').hide();
-  $('#modal_chargement').modal('show');
+  $('#modal_chargement').modal({backdrop: 'static', keyboard: false});
   let got_matricule = $('#matricule_person_admin').text();
   eel.pdf_profil_person_admin(got_matricule)(exported_pdf_finished);
 }

@@ -51,7 +51,6 @@ def createBDD():
 			cin					INTEGER	NOT NULL,
 			sexe					TEXT		NOT NULL,
 			adresse				TEXT		NOT NULL,
-			module				TEXT		NOT NULL,
 			mdp					TEXT		NOT NULL,
 			pdp_name				TEXT		NULL
 			);
@@ -181,17 +180,17 @@ def setData(d, e):
 		'''
 		cur.execute(donnee_note, d)
 			
-	else :
-		d[10] = hashlib.sha1(d[10].encode()).hexdigest()
+	elif e == 'ensg' :
+		d[9] = hashlib.sha1(d[9].encode()).hexdigest()
 		save_pdp = "pdp_" + str(time.time()) + '.jpg'
-		if d[11] == '':
-			d[11] = "\\face0.png"
+		if d[10] == '':
+			d[10] = "\\face0.png"
 		else:
-			copyfile(d[11], "src\\dist\\img\\pdp\\"+ save_pdp)
-			d[11] = save_pdp
+			copyfile(d[10], "src\\dist\\img\\pdp\\"+ save_pdp)
+			d[10] = save_pdp
 		donnee_enseignant = ''' 
-		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, module, mdp, pdp_name)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO ENSEIGNANT(matricule_ensg, annee_univ, nom, prenom, email, adresse, sexe, tel, cin, mdp, pdp_name)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		'''
 		cur.execute(donnee_enseignant, d)
 
@@ -221,7 +220,7 @@ def export_data_csv(val_bdd):
 			
 	elif val_bdd == 'prof' :
 		cur.execute('''SELECT matricule_ensg AS MATRICULE, annee_univ AS ANNEE_UNIVERSITAIRE, nom AS NOM, prenom AS PRENOM, tel AS TELEPHONE,
-			email AS EMAIL, cin AS CIN, sexe AS SEXE, adresse AS ADRESSE_ACTUELLE, module AS MODULE_ENSEIGNE 
+			email AS EMAIL, cin AS CIN, sexe AS SEXE, adresse AS ADRESSE_ACTUELLE
 		FROM ENSEIGNANT''')
 		#Exporting data into CSV file
 		dirpath = os.environ.get('USERPROFILE') + "\\Desktop\\"
@@ -259,7 +258,7 @@ def getData(val_bdd):
 			'''
 		elif val_bdd == 'prof':
 			get_data = '''
-			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse, module 
+			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse
 			FROM ENSEIGNANT
 			'''
 		else :
@@ -523,11 +522,12 @@ def pdf_profil_prof(data):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
 	get_profil_prof = cur.execute(''' 
-	SELECT matricule_ensg, nom, prenom, tel, email, cin, adresse, module, pdp_name  FROM ENSEIGNANT
+	SELECT matricule_ensg, nom, prenom, tel, email, cin, adresse, pdp_name  FROM ENSEIGNANT
 	WHERE matricule_ensg=?
 	''', (data,))
 	resu = get_profil_prof.fetchall()
 
+	
 	info = {
 		'num_matricule' : RichText(resu[0][0], font='Arial', bold=False, size=18),
 		'nom' : RichText(resu[0][1], font='Arial', bold=False, size= 18),
@@ -535,19 +535,19 @@ def pdf_profil_prof(data):
 		'tel' : RichText(resu[0][3], font='Arial', bold=False, size= 18),
 		'email' : RichText(resu[0][4], font='Arial', bold=False, size= 18),
 		'cin' : RichText(resu[0][5], font='Arial', bold=False, size= 18),
-		'adresse' : RichText(resu[0][6], font='Arial', bold=False, size= 18),
-		'module' : RichText(resu[0][7], font='Arial', bold=False, size= 18)
+		'adresse' : RichText(resu[0][6], font='Arial', bold=False, size= 18)
 	}
 
 	#get tamplate
 	document = DocxTemplate(f"template/template_prof.docx")
 
 	#change image in the template
-	if resu[0][8] != '' :
-		document.replace_pic('face0.png', os.getcwd() + f"\\src\\dist\\img\\pdp\\{resu[0][8]}")
+	if resu[0][7] != '' :
+		document.replace_pic('face0.png', os.getcwd() + f"\\src\\dist\\img\\pdp\\{resu[0][7]}")
 
 	#creation template
 	document.render(info)
+
 	name = "Profil_" + resu[0][1] + "_" + resu[0][2]
 
 	#save doc created
