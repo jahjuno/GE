@@ -238,6 +238,7 @@ function delete_perso_admin(data_recup){
   location.reload();
 }
 
+
 /* Ajouter autre note */
 /* $(".add_notes").hide();
 function add_new_note(){
@@ -267,12 +268,21 @@ let arg = window.location.search.substr(1);
 if (arg == 'prof_list') eel.getData('prof')(printData_prof); //AFFICHAGE LISTE PROF
 else if (arg == 'student_list') eel.getData('student')(printData_etud);//AFFICHAGE LISTE ETUD
 else if (arg == 'perso_admin_list') eel.getData('admin_personnel')(printData_perso_admin); //AFFICHER LISTE PERSONNEL ADMINISTRATIF
+else if (arg == 'module_got') eel.getData('module_created')(printData_module_created); //AFFICHER LISTE DES MODULES CREEES
+//else if (arg == 'prof_ensg') eel.getData('module_prof_name')(get_prof_name_on_module); //RECUPERER LE NOM DU PROF QUI ENSEIGNENT LE MODULE 
 
 //AFFICHAGE PROF
 function printData_prof(data_recupered) {
   $("#naissance").hide();
   $("#niveau").hide();
   $("#fonction").hide();
+  $("#id_module").hide();
+  $("#module_name").hide();
+  $("#reference").hide();
+  $("#semestre_module").hide();
+  $("#prof_module").hide();
+  $("#crdt_obtenu").hide();
+  $("#archive").hide();
   for (let i=0; i<data_recupered.length; i++){
       let line = `
           <tr>
@@ -314,6 +324,14 @@ function printData_prof(data_recupered) {
 //AFFICHAGE LISTE ETUDIANT
 function printData_etud(data_recupered) {
     $('#fonction').hide();
+    $("#id_module").hide();
+    $("#module_name").hide();
+    $("#reference").hide();
+    $("#semestre_module").hide();
+    $("#prof_module").hide();
+    $("#crdt_obtenu").hide();
+    $("#archive").hide();
+
     for (let i=0; i<data_recupered.length; i++){
         let line = `
             <tr>
@@ -357,6 +375,14 @@ function printData_etud(data_recupered) {
 function printData_perso_admin(data_recupered) {
   $("#naissance").hide();
   $("#niveau").hide();
+  $("#id_module").hide();
+  $("#module_name").hide();
+  $("#reference").hide();
+  $("#semestre_module").hide();
+  $("#prof_module").hide();
+  $("#crdt_obtenu").hide();
+  $("#archive").hide();
+
   for (i=1; i<data_recupered.length; i++) {
     let line = `
             <tr>
@@ -395,6 +421,72 @@ function printData_perso_admin(data_recupered) {
   $('#btn_export').append(btn_exporte);
 
 }
+
+// AFFICHAGE LISTE MODULE CREEE
+function printData_module_created(data_recupered) {
+  $("#naissance").hide();
+  $("#matricule").hide();
+  $("#niveau").hide();
+  $("#annee_univ").hide();
+  $("#name").hide();
+  $("#lastname").hide();
+  $("#fonction").hide();
+  $("#naissance").hide();
+  $("#tel").hide();
+  $("#email").hide();
+  $("#cin").hide();
+  $("#sexe").hide();
+  $("#adresse").hide();
+
+  $("#id_module").show();
+  $("#module_name").show();
+  $("#reference").show();
+  $("#semestre_module").show();
+  $("#prof_module").show();
+  $("#crdt_obtenu").show();
+  $("#archive").show();
+
+  $("#prof_module").hide();
+  
+  for (i=0; i<data_recupered.length; i++) {
+    let line = `
+            <tr>
+            <td id="t_id_module">${data_recupered[i][0]}</td>
+            <td id="t_module_name">${data_recupered[i][1]}</td>
+            <td id="t_reference">${data_recupered[i][2]}</td>
+            <td id="t_semestre_module">${data_recupered[i][3]}</td>
+            <!--<td id="t_prof_module">${data_recupered[i][5]}</td>-->
+            <td id="t_crdt_obtenu">${data_recupered[i][4]}</td>
+            <td id="t_archive">${data_recupered[i][5]}</td>
+            <td>
+                <!--<a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>-->
+                <a class="see_profil"  onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Archiver le module" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+            </td>
+        </tr>
+            `
+        $('#bdd_print').append(line);
+  };
+  let titre_left =  `LISTE DES MODULES`
+  let grand_titre_left = `MODULE`
+
+  $('#h1_liste').append(titre_left);
+  $('#titre_table').append(titre_left);
+  $('#list_title').append(grand_titre_left);
+  //get_prof_name_on_module();
+}
+
+/* eel.getData('module_prof_name')(get_prof_name_on_module);
+function get_prof_name_on_module(data_recup){
+  alert(data_recup);
+  for(i=0; i < data_recup.length; i++){
+    let line = `
+    <tr>
+      <td id="t_prof_module">${data_recup[i][0]}</td>
+    </tr>
+    `
+    $('#bdd_print').append(line);
+  }
+} */
 
 
 

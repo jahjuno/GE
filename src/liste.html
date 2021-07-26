@@ -191,9 +191,9 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <!-- <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>
+    </a> -->
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -236,18 +236,26 @@
     <script>
         
             let tableau_head = `
-                <th>Matricule</th>
-                <th>Année Universitaire</th>
-                <th>Nom</th>
-                <th>Prénom</th>
+                <th id="matricule">Matricule</th>
+                <th id="annee_univ">Année Universitaire</th>
+                <th id="name">Nom</th>
+                <th id="lastname">Prénom</th>
                 <th id="fonction">Fonction</th>
                 <th id="naissance">Date de naissance</th>
-                <th>Tél</th>
-                <th>Email</th>
-                <th>N° CIN</th>
-                <th>Sexe</th>
-                <th>Adresse actuel</th>
+                <th id="tel">Tél</th>
+                <th id="email">Email</th>
+                <th id="cin">N° CIN</th>
+                <th id="sexe">Sexe</th>
+                <th id="adresse">Adresse actuel</th>
                 <th id="niveau">Niveau</th>
+
+                <th id="id_module">ID_MODULE</th>
+                <th id="module_name">NOM MODULE</th>
+                <th id="reference">REFERENCE</th>
+                <th id="semestre_module">SEMESTRE</th>
+                <th id="prof_module">PROFESSEURS</th>
+                <th id="crdt_obtenu">CREDIT OBTENU</th>
+                <th id="archive">ETAT D'ARCHIVE</th>
                 <th>Actions</th>
             `
             $('#table_head').append(tableau_head);

@@ -261,10 +261,21 @@ def getData(val_bdd):
 			SELECT matricule_ensg, annee_univ, nom, prenom, tel, email, cin, sexe, adresse
 			FROM ENSEIGNANT
 			'''
-		else :
+		elif val_bdd == 'admin_personnel':
 			get_data = '''
 			SELECT matricule_perso_admin, annee_univ, nom, prenom, fonction,  tel, email,  cin, sexe, adresse
 			FROM PERSONNEL_ADMINISTRATIF
+			'''
+		elif val_bdd == 'module_created':
+			get_data = ''' 
+			SELECT id_module, nom, reference, semestre, credit_obtenu, archive  
+			FROM MODULE
+			'''
+		elif val_bdd == 'module_prof_name':
+			get_data = ''' 
+			SELECT E.nom AS NOM_PROF, E.prenom AS PRENOM_PROF
+			FROM MODULE M
+			JOIN ENSEIGNANT E ON E.matricule_ensg=M.matricule_ensg
 			'''
 
 		cur.execute(get_data)
