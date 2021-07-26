@@ -141,7 +141,7 @@ function recup_info_perso_admin() {
     let got_file_path = value_pdp.path;
     let donnee = [matri_perso_admin, nom, prenom,  fonction, annee_univ, tel, cin, mail, adresse,  sexe, got_file_path];
     x = eel.setData(donnee, 'perso_admin');
-    $('#insert_text').html('Personnel inscrit <i class="fas fa-check fa-sm"></i>')
+    $('#insert_text').html('Personnel inscrit <i class="fas fa-check fa-sm"></i>');
     $('#foot_modal').hide();
   }
   else {
@@ -164,8 +164,7 @@ function recup_module(){
   let credit_btenu = $("#credit_obt").val()
   let data = [module_name, ref_module, semestre, prof_matricule, credit_btenu];
   set_data = eel.setData(data, 'module');
-  alert('Module Enregistré');
-  location.reload();
+  $('#insert_text').html('Module enregistré <i class="fas fa-check fa-sm"></i>');
 }
 
 //AJOUT NOTE
@@ -610,7 +609,7 @@ function printData_perso_admin(data_recupered) {
 //EXPORTATION DES PROFILS EN PDF
 function export_pdf_prof(){
   $('#close_modal').hide();
-  $('#modal_chargement').modal({backdrop: 'static', keyboard: false});
+  $('#modal_chargement').modal({backdrop: 'static', keyboard: false}); //other event disabled
   let got_matricule = $('#val_matricule').text();
   eel.pdf_profil_prof(got_matricule)(exported_pdf_finished);
 }
@@ -621,19 +620,18 @@ function exported_pdf_finished(lien_file){
   //document.getElementById('exampleModalLabel').setAttribute('style', 'margin-left: 150px !important;');
   $('#body_modal').html('Exportation profil terminée <i class="fas fa-check fa-sm"></i><br> CHEMIN : ' + '<strong>' + lien_file + '</strong>');
   $('#modal_chargement').modal('show');
-  //alert('Exportation: \n' + lien_file + '\nterminée.');
 }
 
 function export_pdf_student(){
   $('#close_modal').hide();
-  $('#modal_chargement').modal({backdrop: 'static', keyboard: false});
+  $('#modal_chargement').modal({backdrop: 'static', keyboard: false}); //other event disabled
   let got_matricule = $('#matricule_etud').text();
   eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
 }
 
 function export_pdf_perso_admin(){
   $('#close_modal').hide();
-  $('#modal_chargement').modal({backdrop: 'static', keyboard: false});
+  $('#modal_chargement').modal({backdrop: 'static', keyboard: false}); //other event disabled
   let got_matricule = $('#matricule_person_admin').text();
   eel.pdf_profil_person_admin(got_matricule)(exported_pdf_finished);
 }

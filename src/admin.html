@@ -453,7 +453,7 @@
                                                 </div>
 
                                                 <div class="form-group col-2">
-                                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note" type="submit" onclick="recup_module()">
+                                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn_note" type="submit" onclick="confirm_module()">
                                                         <i class="fas fa-check fa-sm text-white-50"></i> Enregistrer
                                                     </button>
                                                 </div>
@@ -551,6 +551,15 @@
         $('#insert_text').append(body_text);
         $('.titre_modal').append(titre);
         document.getElementById('enrg').setAttribute('onclick', 'recup_info_perso_admin()');
+        $('#modal_student_enrg').modal('show');
+    }
+
+    function confirm_module(){
+        let titre = `CREATION MODULE`;
+        let body_text = `Voulez-vous enregistrer ce module?`;
+        $('#insert_text').append(body_text);
+        $('.titre_modal').append(titre);
+        document.getElementById('enrg').setAttribute('onclick', 'recup_module()');
         $('#modal_student_enrg').modal('show');
     }
 
