@@ -312,6 +312,14 @@ def getdata_profil(type_profil, profil_data):
 		''', (profil_data,))
 		storage_get_profil_data = cur.fetchall()
 
+#UPDATE VALUE ARCHIVE OF MODULE
+@eel.expose
+def update_archive_module(archived):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	update_requete = cur.execute(''' UPDATE MODULE SET archive=1 WHERE id_module=? ''', (archived,))
+	connect_to_bdd.commit()
+	
 
 #afficher les notes
 @eel.expose

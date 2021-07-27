@@ -268,7 +268,7 @@ let arg = window.location.search.substr(1);
 if (arg == 'prof_list') eel.getData('prof')(printData_prof); //AFFICHAGE LISTE PROF
 else if (arg == 'student_list') eel.getData('student')(printData_etud);//AFFICHAGE LISTE ETUD
 else if (arg == 'perso_admin_list') eel.getData('admin_personnel')(printData_perso_admin); //AFFICHER LISTE PERSONNEL ADMINISTRATIF
-else if (arg == 'module_got') eel.getData('module_created')(printData_module_created); //AFFICHER LISTE DES MODULES CREEES
+else if (arg == 'module_got') eel.getData('module_created')(printData_module_created, archive_module); //AFFICHER LISTE DES MODULES CREEES
 //else if (arg == 'prof_ensg') eel.getData('module_prof_name')(get_prof_name_on_module); //RECUPERER LE NOM DU PROF QUI ENSEIGNENT LE MODULE 
 
 //AFFICHAGE PROF
@@ -460,7 +460,7 @@ function printData_module_created(data_recupered) {
             <td id="t_archive">${data_recupered[i][5]}</td>
             <td>
                 <!--<a class="edit" title="Editer" data-toggle="tooltip"><i class="fas fa-fw fa-edit"></i></a>-->
-                <a class="see_profil"  onclick='print_person_admin_profil("${data_recupered[i][0]}")' title="Archiver le module" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
+                <a class="see_profil"  onclick='archive_module("${data_recupered[i][0]}")' title="Archiver le module" data-toggle="tooltip"><i class="fas fa-fw fa-user-circle"></i></a>
             </td>
         </tr>
             `
@@ -473,6 +473,12 @@ function printData_module_created(data_recupered) {
   $('#titre_table').append(titre_left);
   $('#list_title').append(grand_titre_left);
   //get_prof_name_on_module();
+}
+
+function archive_module(id_module_recup){
+  let module_id = id_module_recup[0];
+  console.log(module_id);
+  eel.update_archive_module(module_id);
 }
 
 /* eel.getData('module_prof_name')(get_prof_name_on_module);
