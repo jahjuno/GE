@@ -70,7 +70,7 @@ function recup_info_etudiant(){
   let email = $("#email").val();
   let sexe = $("input[name=genre]:checked").val();
   let annee_univ = $("#annee").val();
-  let niveau = $("#niveau :selected").text();
+  let niveau = $("#niveau").val();
   let tel = $("#tel").val();
   let cin = $("#cin").val();
   let value_pdp = document.getElementById('student_image').files[0];
@@ -475,10 +475,11 @@ function printData_module_created(data_recupered) {
   //get_prof_name_on_module();
 }
 
+
 function archive_module(id_module_recup){
   let module_id = id_module_recup[0];
-  console.log(module_id);
   eel.update_archive_module(module_id);
+  $("#archive_module").modal('show');
 }
 
 /* eel.getData('module_prof_name')(get_prof_name_on_module);
@@ -514,225 +515,6 @@ function get_prof_name_on_module(data_recup){
         }
 
 
-
-        let arg_print_profile = window.location.search.substr(1);
-        if (arg_print_profile =='student_profile') eel.new_data_profil()(print_student_profil);
-        else if (arg_print_profile == 'prof_profile')  eel.new_data_profil()(print_prof_profil);
-        else if (arg_print_profile == 'person_admin') eel.new_data_profil()(print_admin_profil);
-        
-        function print_student_profil(data_profil_student){
-            for (i=0; i < data_profil_student.length; i++) 
-            {
-                let print_profil = `
-                
-                    <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" >N° MATRICULE : </span>
-                        <span id="matricule_etud">${data_profil_student[i][1]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="nom">NOM:</span>
-                        <span>${data_profil_student[i][3]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
-                        <span>${data_profil_student[i][4]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="email">DATE DE NAISSANCE:</span>
-                        <span>${data_profil_student[i][5]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
-                        <span>${data_profil_student[i][6]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="date_naiss">EMAIL: </span>
-                        <span>${data_profil_student[i][7]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="cin">CIN: </span>
-                        <span>${data_profil_student[i][8]}</span><br>
-
-                        <span class="font-weight-bold text-primary">ADRESSE ACTUELLE: </span>
-                        <span>${data_profil_student[i][10]}</span><br>
-
-                        <span class="font-weight-bold text-primary">NIVEAU: </span>
-                        <span>${data_profil_student[i][11]}</span>
-                    </div>
-                </div>
-                `
-                let profil_image = `
-                <img class="avatar" src="dist/img/pdp/${data_profil_student[i][12]}" style="width: 150%; height: 85%;">
-                `
-                $('#profil_pdp_').append(profil_image);
-                $('#info').append(print_profil);
-                
-            };
-                let button_export = `
-                <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
-                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_student()">
-                    <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
-                  </button>
-                </div>
-                `
-                let title_profil = `PROFIL ETUDIANT`
-                let title_left = `PROFIL_ETUDIANT`
-                
-                $('#card_ohter_info').append(button_export);
-                $('#title_profil_var').append(title_profil);  
-                $('#side_title').append(title_left);
-                   
-                eel.get_note()(print_note);
-                function print_note(data_note){
-                  for(i=0; i<data_note.length; i++){
-                    let resultat = `
-                    <tr>
-                      <td>${data_note[i][0]}</td>
-                      <td>${data_note[i][1]}</td>
-                      <td>${data_note[i][2]}</td>
-                      <td>${data_note[i][3]}</td>
-                    </tr>
-                    ` 
-                    $('#note_info').append(resultat);
-                  }
-                }
-                                                            
-          }
-        
-      
-
-        function print_prof_profil(data_profil_prof){
-            $(".notes").hide();
-            $("#special_etud").hide();
-            for (i=0; i < data_profil_prof.length; i++) {
-                let print_profil = `
-                
-                    <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE : </span>
-                        <span id="val_matricule">${data_profil_prof[i][1]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="nom">NOM:</span>
-                        <span>${data_profil_prof[i][3]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
-                        <span>${data_profil_prof[i][4]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="email">TEL:</span>
-                        <span>${data_profil_prof[i][5]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="niveau">EMAIL: </span>
-                        <span>${data_profil_prof[i][6]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
-                        <span>${data_profil_prof[i][7]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="cin">ADRESSE ACTUELLE: </span>
-                        <span>${data_profil_prof[i][9]}</span><br>
-                    </div>
-                </div>
-                `
-                let profil_image = `
-                <img class="avatar" src="dist/img/pdp/${data_profil_prof[i][11]}" style="width: 150%; height: 85%;">
-                `
-             
-                $('#profil_pdp_').append(profil_image);
-                $('#info').append(print_profil);
-                }; 
-                let button_export = `
-                <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
-                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
-                    <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
-                  </button>
-                </div>
-                `
-                let title_profil = `PROFIL PROFESSEUR`
-                let title_left = `PROFIL_PROF`
-                $('#card_ohter_info').append(button_export);
-                $('#title_profil_var').append(title_profil);
-                $('#side_title').append(title_left);
-        }
-
-        function print_admin_profil(data_profil_admin) {
-          $(".notes").hide();
-          $("#special_etud").hide();
-            for (i=0; i < data_profil_admin.length; i++) {
-                let print_profil = `
-                
-                    <div class="card-body card_profil">
-                        <span class="font-weight-bold text-primary" id="matricule">N° MATRICULE : </span>
-                        <span id="matricule_person_admin">${data_profil_admin[i][1]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="nom">NOM:</span>
-                        <span>${data_profil_admin[i][2]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="tel">PRENOM:</span>
-                        <span>${data_profil_admin[i][3]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="email">FONCTION:</span>
-                        <span>${data_profil_admin[i][4]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="niveau">TEL: </span>
-                        <span>${data_profil_admin[i][6]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="date_naiss">CIN: </span>
-                        <span>${data_profil_admin[i][7]}</span><br>
-
-                        <span class="font-weight-bold text-primary" id="cin">EMAIL: </span>
-                        <span>${data_profil_admin[i][8]}</span><br>
-
-                        <span class="font-weight-bold text-primary">ADRESSE ACTUELLE: </span>
-                        <span>${data_profil_admin[i][9]}</span><br>
-
-                        
-                    </div>
-                </div>
-                `
-                let profil_image = `
-                <img class="avatar" src="dist/img/pdp/${data_profil_admin[i][12]}" style="width: 150%; height: 85%;">
-                `
-                $('#profil_pdp_').append(profil_image);
-                $('#info').append(print_profil);
-                }; 
-                let button_export = `
-                <div class="mb-4 col-6" style="margin-top : -22px !important; margin-left : 280px !important;">
-                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_perso_admin()">
-                    <i class="fas fa-file-export fa-sm text-white-50"></i> Exporter en pdf
-                  </button>
-                </div>
-                `
-                let title_profil = `PROFIL PERSONNEL ADMINISTRATIF`
-                let title_left = `PROFIL_ADMIN`
-                $('#title_profil_var').append(title_profil);
-                $('#card_ohter_info').append(button_export);
-                $('#side_title').append(title_left);
-
-        }
-
-
-
-//EXPORTATION DES PROFILS EN PDF
-function export_pdf_prof(){
-  $('#close_modal').hide();
-  $('#modal_chargement').modal({backdrop: 'static', keyboard: false}); //other event disabled
-  let got_matricule = $('#val_matricule').text();
-  eel.pdf_profil_prof(got_matricule)(exported_pdf_finished);
-}
-
-function exported_pdf_finished(lien_file){
-  $('#close_modal').show();
-  document.getElementById('body_modal').setAttribute('style', 'bottom: 0; left: 0; right: 0;');
-  //document.getElementById('exampleModalLabel').setAttribute('style', 'margin-left: 150px !important;');
-  $('#body_modal').html('Exportation profil terminée <i class="fas fa-check fa-sm"></i><br> CHEMIN : ' + '<strong>' + lien_file + '</strong>');
-  $('#modal_chargement').modal('show');
-}
-
-function export_pdf_student(){
-  $('#close_modal').hide();
-  $('#modal_chargement').modal({backdrop: 'static', keyboard: false}); //other event disabled
-  let got_matricule = $('#matricule_etud').text();
-  eel.pdf_profil_student(got_matricule)(exported_pdf_finished);
-}
-
-function export_pdf_perso_admin(){
-  $('#close_modal').hide();
-  $('#modal_chargement').modal({backdrop: 'static', keyboard: false}); //other event disabled
-  let got_matricule = $('#matricule_person_admin').text();
-  eel.pdf_profil_person_admin(got_matricule)(exported_pdf_finished);
-}
 
 /* Exporter les données en CSV */
 function export_data_to_csv(val_bdd) {

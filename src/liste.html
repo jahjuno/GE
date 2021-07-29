@@ -131,6 +131,13 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-link">
+                            <a class="nav-link" href="admin.html"  role="button" style="padding-top: 18%;">
+                                <span><i class="fas fa-arrow-left fa-sm fa-fw mr-2 text-gray-400"></i></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Retour</span>
+                            </a>
+                            <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Teste</span> -->
+                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -209,7 +216,7 @@
                 <div class="modal-body">Cliquer sur "Deconnexion" ci-dessous si vous êtes prêt à mettre fin à votre session. </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                    <a class="btn btn-primary" href="index.html">Deconnexion</a>
+                    <a class="btn btn-primary"  href="index.html" onclick="">Deconnexion</a>
                 </div>
             </div>
         </div>
@@ -232,8 +239,27 @@
         </div>
     </div>
 
+    <!-- MODAL CONFIRMATION ARCHIVE MODULE -->
+    <div class="modal fade" id="archive_module" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ARCHIVER MODULE</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" onclick="reload_page()">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Archivage terminé</div>
+            </div>
+        </div>
+    </div>
 
     <script>
+        function reload_page(){
+            location.reload();
+        }
+            
         
             let tableau_head = `
                 <th id="matricule">Matricule</th>
@@ -260,6 +286,7 @@
                 
             `
             $('#table_head').append(tableau_head);
+            
         
     </script>
 
