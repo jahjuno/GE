@@ -305,25 +305,32 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Voulez-vous changer la photo de profil?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="reload_profil_page()">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <input type="file" accept="image/jpg, .png, image/jpeg">
+                    <div class="modal-body" id="img_pdp_new">
+                        <input type="file" accept="image/jpg, .png, image/jpeg" id="pdp_new">
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="btn_footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                        <a class="btn btn-primary">Changer</a>
+                        <a class="btn btn-primary" onclick="update_profil_image()">Changer</a>
                     </div>
                 </div>
             </div>
         </div>
     <script>
+        function reload_profil_page(){
+            location.reload();
+        }
         //change Photo de profil
-        /* function change_pdp() {
-
-        } */
+        function change_pdp() {
+            let value_pdp = document.getElementById('pdp_new').files[0];
+            if (value_pdp){
+                let got_file_path = value_pdp.path;
+                let data = [got_file_path];
+            }
+        }
         let arg_print_profile = window.location.search.substr(1);
         if (arg_print_profile =='student_profile') eel.new_data_profil()(print_student_profil);
         else if (arg_print_profile == 'prof_profile')  eel.new_data_profil()(print_prof_profil);

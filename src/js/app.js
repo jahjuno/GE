@@ -482,6 +482,24 @@ function archive_module(id_module_recup){
   $("#archive_module").modal('show');
 }
 
+function update_profil_image(pdp_new_path, matricule_student){
+  let matricul_etud = $("#matricule_etud").text();
+  let new_pdp = document.getElementById('pdp_new').files[0];
+  if (new_pdp){
+    let new_image = new_pdp.path;
+    let data  = [new_image];
+    eel.change_profil_student_image(data, matricul_etud);
+    $("#btn_footer").hide();
+    $("#img_pdp_new").html('Photo de Profil changée <i class="fas fa-check fa-sm"></i>')
+  }else {
+    new_image = "";
+    data =[new_image];
+    $("#img_pdp_new").html('<i class="fas fa-exclamation-triangle fa-sm" style="color: red;"></i> Veuillez vérifiez le fichier !')
+    eel.change_profil_student_image(data, matricul_etud);
+  }
+ 
+}
+
 /* eel.getData('module_prof_name')(get_prof_name_on_module);
 function get_prof_name_on_module(data_recup){
   alert(data_recup);
