@@ -320,13 +320,11 @@ def update_archive_module(archived):
 	update_requete = cur.execute(''' UPDATE MODULE SET archive=1 WHERE id_module=? ''', (archived,))
 	connect_to_bdd.commit()
 	
-#UPDATE PDP
+#UPDATE PDP PROF, ETUDIANT, PERSONNEL ADMINISTRATIF
 @eel.expose
 def change_profil_student_image(new_pdp, matricule_etud_got):
 	connect_to_bdd = sqlite3.connect('donnee.db')
 	cur = connect_to_bdd.cursor()
-	print(new_pdp[0])
-	print(matricule_etud_got)
 	save_pdp = "pdp_" + str(time.time()) + '.jpg'
 	if matricule_etud_got:
 		if new_pdp[0] == '':
@@ -334,13 +332,48 @@ def change_profil_student_image(new_pdp, matricule_etud_got):
 		else:
 			copyfile(new_pdp[0], "src\\dist\\img\\pdp\\"+ save_pdp)
 			new_pdp[0] = save_pdp
-			print(save_pdp)
 			cur.execute(''' 
 			UPDATE ETUDIANT SET pdp_name=? WHERE  matricule_etud=?
 			''', (save_pdp, matricule_etud_got,))
 			connect_to_bdd.commit()
-	
-		
+	type_profil = 'student_profil'
+	getdata_profil(type_profil,matricule_etud_got)
+
+@eel.expose
+def change_profile_prof_image(new_pdp, matricule_prof_got):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	save_pdp = "pdp_" + str(time.time()) + '.jpg'
+	if matricule_prof_got:
+		if new_pdp[0] == '':
+			new_pdp[0] = "\\face0.png"
+		else:
+			copyfile(new_pdp[0], "src\\dist\\img\\pdp\\"+ save_pdp)
+			new_pdp[0] = save_pdp
+			cur.execute(''' 
+			UPDATE ENSEIGNANT SET pdp_name=? WHERE  matricule_ensg=?
+			''', (save_pdp, matricule_prof_got,))
+			connect_to_bdd.commit()
+	type_profil = 'prof_profil'
+	getdata_profil(type_profil,matricule_prof_got)
+
+@eel.expose
+def change_profile_admin_image(new_pdp, matricule_admin_got):
+	connect_to_bdd = sqlite3.connect('donnee.db')
+	cur = connect_to_bdd.cursor()
+	save_pdp = "pdp_" + str(time.time()) + '.jpg'
+	if matricule_admin_got:
+		if new_pdp[0] == '':
+			new_pdp[0] = "\\face0.png"
+		else:
+			copyfile(new_pdp[0], "src\\dist\\img\\pdp\\"+ save_pdp)
+			new_pdp[0] = save_pdp
+			cur.execute(''' 
+			UPDATE PERSONNEL_ADMINISTRATIF SET pdp_name=? WHERE  matricule_perso_admin=?
+			''', (save_pdp, matricule_admin_got,))
+			connect_to_bdd.commit()
+	type_profil = 'admin_perso_profil'
+	getdata_profil(type_profil,matricule_admin_got)
 	
 
 #afficher les notes

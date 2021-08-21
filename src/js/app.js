@@ -482,6 +482,23 @@ function archive_module(id_module_recup){
   $("#archive_module").modal('show');
 }
 
+// UPDATE PROFIL IMAGE
+function call_modal_update_pdp_student(){
+  $("#modal_change_pdp").modal('show');
+  document.getElementById('pdp_function_change').setAttribute('onclick', 'update_profil_image()');
+}
+
+function call_modal_update_pdp_prof(){
+  $("#modal_change_pdp").modal('show');
+  document.getElementById('pdp_function_change').setAttribute('onclick', 'update_profil_prof_image()');
+}
+
+function call_modal_update_pdp_admin(){
+  $("#modal_change_pdp").modal('show');
+  document.getElementById('pdp_function_change').setAttribute('onclick', 'update_profil_admin_image()');
+}
+
+
 function update_profil_image(pdp_new_path, matricule_student){
   let matricul_etud = $("#matricule_etud").text();
   let new_pdp = document.getElementById('pdp_new').files[0];
@@ -496,6 +513,42 @@ function update_profil_image(pdp_new_path, matricule_student){
     data =[new_image];
     $("#img_pdp_new").html('<i class="fas fa-exclamation-triangle fa-sm" style="color: red;"></i> Veuillez vérifiez le fichier !')
     eel.change_profil_student_image(data, matricul_etud);
+  }
+ 
+}
+
+function update_profil_prof_image(pdp_new_path, matricule_prof__){
+  let matricule_prof = $("#val_matricule").text();
+  let new_pdp = document.getElementById('pdp_new').files[0];
+  if (new_pdp){
+    let new_image = new_pdp.path;
+    let data  = [new_image];
+    eel.change_profile_prof_image(data, matricule_prof);
+    $("#btn_footer_prof").hide();
+    $("#img_pdp_new").html('Photo de Profil changée <i class="fas fa-check fa-sm"></i>')
+  }else {
+    new_image = "";
+    data =[new_image];
+    $("#img_pdp_new").html('<i class="fas fa-exclamation-triangle fa-sm" style="color: red;"></i> Veuillez vérifiez le fichier !')
+    eel.change_profile_prof_image(data, matricule_prof);
+  }
+ 
+}
+
+function update_profil_admin_image(pdp_new_path, admin_person_matricule){
+  let matricule_admin__ = $("#val_matricule").text();
+  let new_pdp = document.getElementById('pdp_new').files[0];
+  if (new_pdp){
+    let new_image = new_pdp.path;
+    let data  = [new_image];
+    eel.change_profile_prof_image(data, matricule_admin__);
+    $("#btn_footer_prof").hide();
+    $("#img_pdp_new").html('Photo de Profil changée <i class="fas fa-check fa-sm"></i>')
+  }else {
+    new_image = "";
+    data =[new_image];
+    $("#img_pdp_new").html('<i class="fas fa-exclamation-triangle fa-sm" style="color: red;"></i> Veuillez vérifiez le fichier !')
+    eel.change_profile_prof_image(data, matricule_admin__);
   }
  
 }
@@ -515,7 +568,7 @@ function get_prof_name_on_module(data_recup){
 
 
 
-//AFFICHAGE PROFILE ETUDIANT
+//AFFICHAGE PROFILES
 
         function print_profil_student(data){
           table_bdd = eel.getdata_profil('student_profil', data);

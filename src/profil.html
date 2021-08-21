@@ -204,10 +204,8 @@
                                             <i class="fas fa-file-export fa-sm text-white-50"></i> Voir Moyenne 
                                         </button>
                                     </div>
-                                    <div class="form-group">
-                                        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#" data-toggle="modal" data-target="#modal_change_pdp">
-                                            <i class="fas fa-edit fa-sm"></i> Modifier la photo
-                                        </button>
+                                    <div class="form-group" id="btn_change_pdp">
+                                        
                                     </div>
                                 </div>
                                 <div class="row register-form">
@@ -304,7 +302,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Voulez-vous changer la photo de profil?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Choisir la photo</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="reload_profil_page()">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -314,11 +312,12 @@
                     </div>
                     <div class="modal-footer" id="btn_footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                        <a class="btn btn-primary" onclick="update_profil_image()">Changer</a>
+                        <a class="btn btn-primary" onclick="" id="pdp_function_change">Changer</a>
                     </div>
                 </div>
             </div>
         </div>
+
     <script>
         function reload_profil_page(){
             location.reload();
@@ -374,8 +373,14 @@
                 let profil_image = `
                 <img class="avatar" src="dist/img/pdp/${data_profil_student[i][12]}" style="width: 150%; height: 85%;">
                 `
+                let btn_pdp_update = `
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="call_modal_update_pdp_student()">
+                    <i class="fas fa-edit fa-sm"></i> Modifier la photo
+                </button>
+                `
                 $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
+                $('#btn_change_pdp').append(btn_pdp_update);
                 
             };
                 let button_export = `
@@ -444,10 +449,16 @@
                 let profil_image = `
                 <img class="avatar" src="dist/img/pdp/${data_profil_prof[i][11]}" style="width: 150%; height: 85%;">
                 `
-             
+                let btn_pdp_update = `
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="call_modal_update_pdp_prof()">
+                    <i class="fas fa-edit fa-sm"></i> Modifier la photo
+                </button>
+                `
+                
                 $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
-                }; 
+                $('#btn_change_pdp').append(btn_pdp_update);
+            }; 
                 let button_export = `
                 <div class="form-group">
                   <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_prof()">
@@ -500,9 +511,17 @@
                 let profil_image = `
                 <img class="avatar" src="dist/img/pdp/${data_profil_admin[i][12]}" style="width: 150%; height: 85%;">
                 `
+
+                let btn_pdp_update = `
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="call_modal_update_pdp_admin()">
+                    <i class="fas fa-edit fa-sm"></i> Modifier la photo
+                </button>
+                `
+
                 $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
-                }; 
+                $('#btn_change_pdp').append(btn_pdp_update);
+            }; 
                 let button_export = `
                 <div class="form-group">
                   <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="export_pdf_perso_admin()">
@@ -515,6 +534,7 @@
                 $('#title_profil_var').append(title_profil);
                 $('#ohter_info_btn').append(button_export);
                 $('#side_title').append(title_left);
+                
 
         }
 
