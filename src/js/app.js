@@ -536,12 +536,12 @@ function update_profil_prof_image(pdp_new_path, matricule_prof__){
 }
 
 function update_profil_admin_image(pdp_new_path, admin_person_matricule){
-  let matricule_admin__ = $("#val_matricule").text();
+  let matricule_admin__ = $("#matricule_person_admin").text();
   let new_pdp = document.getElementById('pdp_new').files[0];
   if (new_pdp){
     let new_image = new_pdp.path;
     let data  = [new_image];
-    eel.change_profile_prof_image(data, matricule_admin__);
+    eel.change_profile_admin_image(data, matricule_admin__);
     $("#btn_footer_prof").hide();
     $("#img_pdp_new").html('Photo de Profil changée <i class="fas fa-check fa-sm"></i>')
   }else {
