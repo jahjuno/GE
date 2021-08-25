@@ -524,7 +524,7 @@ function update_profil_prof_image(pdp_new_path, matricule_prof__){
     let new_image = new_pdp.path;
     let data  = [new_image];
     eel.change_profile_prof_image(data, matricule_prof);
-    $("#btn_footer_prof").hide();
+    $("#btn_footer").hide();
     $("#img_pdp_new").html('Photo de Profil changée <i class="fas fa-check fa-sm"></i>')
   }else {
     new_image = "";
@@ -542,8 +542,8 @@ function update_profil_admin_image(pdp_new_path, admin_person_matricule){
     let new_image = new_pdp.path;
     let data  = [new_image];
     eel.change_profile_admin_image(data, matricule_admin__);
-    $("#btn_footer_prof").hide();
-    $("#img_pdp_new").html('Photo de Profil changée <i class="fas fa-check fa-sm"></i>')
+    $("#btn_footer").hide();
+    $("#img_pdp_new").html('Photo de Admin changée <i class="fas fa-check fa-sm"></i>')
   }else {
     new_image = "";
     data =[new_image];

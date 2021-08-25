@@ -133,12 +133,8 @@
                     <!-- Topbar Navbar -->
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-link">
-                            <a class="nav-link" href="liste.html"  role="button" style="padding-top: 18%;">
-                                <span><i class="fas fa-arrow-left fa-sm fa-fw mr-2 text-gray-400"></i></span>
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Retour</span>
-                            </a>
-                            <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Teste</span> -->
+                        <li class="nav-link" id="back">
+                            
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -319,6 +315,20 @@
         </div>
 
     <script>
+        function retour_to_list(){
+            document.location.href = 'liste.html?prof_list';
+        }
+
+        function retour_to_list_student(){
+            document.location.href = 'liste.html?student_list';
+        }
+
+        function retour_to_list_admin(){
+            document.location.href = 'liste.html?perso_admin_list';
+        }
+
+
+
         function reload_profil_page(){
             location.reload();
         }
@@ -378,6 +388,13 @@
                     <i class="fas fa-edit fa-sm"></i> Modifier la photo
                 </button>
                 `
+                let btn_back_to_list = `
+                <a class="nav-link" id="back_to_list" role="button" style="padding-top: 18%;" onclick="retour_to_list_student()">
+                    <span><i class="fas fa-arrow-left fa-sm fa-fw mr-2 text-gray-400"></i></span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Retour</span>
+                </a>
+                `
+                $('#back').append(btn_back_to_list);
                 $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
                 $('#btn_change_pdp').append(btn_pdp_update);
@@ -454,6 +471,13 @@
                     <i class="fas fa-edit fa-sm"></i> Modifier la photo
                 </button>
                 `
+                let btn_back_to_list = `
+                <a class="nav-link" id="back_to_list" role="button" style="padding-top: 18%;" onclick="retour_to_list()">
+                    <span><i class="fas fa-arrow-left fa-sm fa-fw mr-2 text-gray-400"></i></span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Retour</span>
+                </a>
+                `
+                $('#back').append(btn_back_to_list);
                 
                 $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
@@ -517,6 +541,13 @@
                     <i class="fas fa-edit fa-sm"></i> Modifier la photo
                 </button>
                 `
+                let btn_back_to_list = `
+                <a class="nav-link" id="back_to_list" role="button" style="padding-top: 18%;" onclick="retour_to_list_admin()">
+                    <span><i class="fas fa-arrow-left fa-sm fa-fw mr-2 text-gray-400"></i></span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Retour</span>
+                </a>
+                `
+                $('#back').append(btn_back_to_list);
 
                 $('#profil_pdp_').append(profil_image);
                 $('#info').append(print_profil);
