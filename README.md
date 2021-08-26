@@ -17,6 +17,7 @@ GE est un logiciel conçu pour gérer les grandes écoles ou des universités
 - Exportation des listes étudiante et prof en CSV
 - Exportation du profil en PDF
 - Ajout des photos sur le profil
+- Modification photo de profil
 
 ![Capture Espace Admin](/src/dist/img/admin.png "Admin Interface")
 
