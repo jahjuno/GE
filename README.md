@@ -2,7 +2,7 @@
 
 [![Windows](https://img.shields.io/badge/Windows-yes-red.svg)](#README)
 [![Version](https://img.shields.io/badge/Version-2.0.0-teal)](https://github.com/jahjuno/GE/releases)
-[![Github All Releases](https://img.shields.io/github/downloads/jahjuno/GE/total?style=plastic)](https://img.shields.io/github/downloads/jahjuno/GE/v2.1.1/total)
+[![Github All Releases](https://img.shields.io/github/downloads/jahjuno/GE/total?style=plastic)](https://github.com/jahjuno/GE/releases/tag/v2.1.1/ge_software_V2.1.1.exe)
 [![Github repo size](https://img.shields.io/github/repo-size/jahjuno/GE)](#README)
 
 GE est un logiciel conçu pour gérer les grandes écoles ou des universités
