@@ -1,4 +1,4 @@
-# GE ( Gestion d'établissement)
+# GE ( Gestion d'Etablissement)
 
 [![Windows](https://img.shields.io/badge/Windows-yes-red.svg)](#README)
 [![Version](https://img.shields.io/badge/Version-2.1.1-teal)](https://github.com/jahjuno/GE/releases)
